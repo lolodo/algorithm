@@ -9,6 +9,6 @@ int main(void)
     size = sizeof(a);
 
     printf("size is %d\n", size);
-
+    
     return 0;
 }
