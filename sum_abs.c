@@ -177,6 +177,17 @@ int main(void)
     int ret;
 
     array_len = sizeof(array) / sizeof(array[0]);
+    if (array_len < 1) {
+        printf("Wrong input parameters!\n");
+        return -1;
+    }
+
+    if (array_len == 1) {
+        printf("You have just input one parameter, so it doesn't need to be calculated!\n");
+        printf("The result is:%d\n", array[0]);
+        return 0;
+    }
+
     printf("origin:");
     for (i = 0; i < array_len; i++)
     {
