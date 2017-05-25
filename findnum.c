@@ -10,8 +10,7 @@
 
 // 所有链表都存在的数为 5 和 7， 找出其中一个即可
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "list.h"
 
 struct list_node
 {
@@ -213,7 +212,7 @@ int main(void)
         tmp++;
     }
 
-    common = find_common(n_list, 4);
+    common = find_common(n_list, 3);
     if (common > 0) {
         printf("found====>>>>%d\n", common);
     } else {
