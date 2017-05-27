@@ -1,4 +1,8 @@
+
 def find_lowest_cost_node(costs):
+    '''
+    find node
+    '''
     lowest_cost = float("inf")
     lowest_cost_node = None
     for node in costs:
