@@ -24,8 +24,10 @@ public class HeapSort {
     public static void heapSort(int[] array) {
         int i;
 
-        for (i = 0; i < array.length; i++)
-        buildHeap(array, array.length - 1)
+        for (i = 0; i < array.length; i++) {
+            buildHeap(array, array.length - 1)
+            
+        }
     }
     public static void main(String[] args) {
         int[] a = ShellSort.array;
