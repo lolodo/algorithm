@@ -1,4 +1,5 @@
 public class ShellSort {
+    public static int[] array = {49,38,65,97,76,13,27,49,78,34,12,64,5,4,62,99,98,54,56,17,18,23,34,15,35,25,53,51};
     public static void shellsort(int[] array) {
         int gap;
         int max;
@@ -32,9 +33,9 @@ public class ShellSort {
         System.out.println(" ");
     }
     public static void main(String[] args) {
-        int[] a = {49,38,65,97,76,13,27,49,78,34,12,64,5,4,62,99,98,54,56,17,18,23,34,15,35,25,53,51};
+        // int[] a = {49,38,65,97,76,13,27,49,78,34,12,64,5,4,62,99,98,54,56,17,18,23,34,15,35,25,53,51};
 
-        shellsort(a);
+        shellsort(array);
         // printArray(a);
     }
 }
