@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class BubbleSort {
     public static void bubblesort (int[] number) {
         int max;
@@ -25,11 +27,8 @@ public class BubbleSort {
         }
     }
     public static void main(String[] args) {
-        int[] array = {23,65,2,0, 3};
+        int[] array = ShellSort.array;
         bubblesort(array);
-
-        for (int num:array) {
-            System.out.print(num + " ");
-        }
+        System.out.println(Arrays.toString(array));
     }
 }

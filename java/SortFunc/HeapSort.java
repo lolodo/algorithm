@@ -33,6 +33,7 @@ public class HeapSort {
                 }
             }
         }
+        // System.out.println(Arrays.toString(array));
     }
 
     public static void heapSort(int[] array) {
