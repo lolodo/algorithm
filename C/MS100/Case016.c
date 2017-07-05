@@ -45,6 +45,43 @@ void print_by_level(struct BSTreeNode *root)
     }
 }
 
+void print_by_level_2(struct BSTreeNode *root)
+{
+    int i, j;
+
+    if (root == NULL) {
+        return;
+    }
+
+    i = 0;
+    a[0] = root;
+    a[1] = NULL;
+    j = 2;
+
+    while(i < j && j < 100) {
+        if (a[i]) {
+            printf("%d ", a[i]->val);
+        } else {
+            printf("\n");
+        }
+
+        if (a[i] && a[i]->left) {
+            a[j++] = a[i]->left;
+        }
+
+        if (a[i] && a[i]->right) {
+            a[j++] = a[i]->right;
+        }
+
+        if (a[i] == NULL) {
+            a[j++] = NULL;
+        }
+
+        i++;
+    }
+
+}
+
 int main(void)
 {
     int number;
@@ -58,5 +95,7 @@ int main(void)
 
     print_by_level(node);
     printf("\n");
+
+    print_by_level_2(node);
 }
 
