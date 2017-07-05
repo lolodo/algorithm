@@ -1,5 +1,9 @@
 {
     "files.associations": {
-        "string.h": "c"
+        "string.h": "c",
+        "stdio.h": "c",
+        "case001.c": "cpp",
+        "case004.c": "cpp",
+        "binary_tree.c": "cpp"
     }
 }
