@@ -73,6 +73,10 @@ void print_by_level_2(struct BSTreeNode *root)
             a[j++] = a[i]->right;
         }
 
+        if ((i + 1 == j) && (a[i] == NULL)) {
+            return;
+        }
+
         if (a[i] == NULL) {
             a[j++] = NULL;
         }

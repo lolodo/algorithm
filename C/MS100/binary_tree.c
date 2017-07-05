@@ -83,10 +83,10 @@ struct BSTreeNode *first_tree(void)
 static struct BSTreeNode n30, n31, n32, n33, n34, n35;
 struct BSTreeNode *second_tree(void)
 {
-    n30.val = 10;
-    n31.val = 6;
-    n32.val = 14;
-    n33.val = 4;
+    n0.val = 10;
+    n1.val = 6;
+    n2.val = 14;
+    n3.val = 4;
     n4.val = 8;
     n5.val = 34;
     n6.val = 23;
