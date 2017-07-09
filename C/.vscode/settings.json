@@ -4,6 +4,7 @@
         "stdio.h": "c",
         "case001.c": "cpp",
         "case004.c": "cpp",
-        "binary_tree.c": "cpp"
+        "binary_tree.c": "cpp",
+        "_string.h": "c"
     }
 }
