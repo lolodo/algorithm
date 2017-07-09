@@ -34,41 +34,22 @@ int continumax(char *outputstr, char *inputstr) {
 
 int continumax(char *outputstr, char *inputstr)
 {
-    int start = 0;
-    int start_cur = 0;
-
+    char *start;
     int max = 0;
     int max_cur = 0;
-    bool c_flag = false; //letter
-
     char *cur = inputstr;
+    int i;
 
     while (1)
     {
-        if (*cur >= '0' && *cur <= '9')
-        {
-            if (!c_flag)
-            {
-                start_cur = (int)(cur - inputstr);
-                max_cur = 1;
+        if (*cur >= '0' && *cur <= '9') {
+            max_cur++;
+        } else {
+            if (max_cur > max) {
+                start = cur - max_cur;
+                max = max_cur;
             }
-            else
-            {
-                max_cur++;
-            }
-            c_flag = true;
-        }
-        else
-        {
-            if (c_flag)
-            {
-                if (max_cur > max)
-                {
-                    max = max_cur;
-                    start = start_cur;
-                }
-            }
-            c_flag = false;
+            max_cur = 0;            
         }
 
         if (*cur == '\0') {
@@ -77,10 +58,11 @@ int continumax(char *outputstr, char *inputstr)
         cur++;
     }
 
-    if (max)
-    {
-        memcpy(outputstr, inputstr + start, max);
+    for(i = 0; i < max; i++) {
+        *outputstr++ = *start++;
     }
+
+    *outputstr = '\0';
 
     return max;
 }
