@@ -64,9 +64,36 @@ int fibonacci(int n)
 
         return fn[2];
     }
+}
+/*
+------               ----
+f[n+1]  = [ 1, 1] ^n f[1]
+f[n]      [ 1, 0]    f[0]
+------               ----
+*/
 
+unsigned int fibonacci2(unsigned int n)
+{
+    if (n == 0) {
+        return 0;
+    } else if(n == 1) {
+        return 1;
+    } else {
+        int a[4] = {1, 1, 1, 0};
+        int ret[4] = {1, 1, 1, 0};
+        
+        while (n-- > 1) {
+            ret[0] = ret[0] * a[0] + ret[1] * a[2];
+            ret[1] = ret[0] * a[1] + ret[1] * a[3];
+            ret[2] = ret[2] * a[0] + ret[3] * a[2];
+            ret[3] = ret[2] * a[1] + ret[3] * a[3];
+        }
+
+        return ret[2];
+    }
 
 }
+
 int main(void)
 {
     int n;
@@ -76,7 +103,10 @@ int main(void)
     scanf("%d", &n);
 
     ret = fibonacci(n);
-    printf("The result is %d\n", ret);
+    printf("1.The result is %d\n", ret);
+    
+    ret = fibonacci2(n);
+    printf("2.The result is %d\n", ret);
 
     return 0;
 }
