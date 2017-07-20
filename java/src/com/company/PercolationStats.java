@@ -1,4 +1,4 @@
-import com.company.Percolation;
+
 import edu.princeton.cs.algs4.*;
 import edu.princeton.cs.algs4.StdRandom;
 

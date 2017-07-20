@@ -1,10 +1,11 @@
-package com.company;
+//package com.company;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
-    WeightedQuickUnionUF uf;
+    private WeightedQuickUnionUF uf;
+    private WeightedQuickUnionUF ufback;
     private boolean[] NN;
     private int N;
 
@@ -12,6 +13,7 @@ public class Percolation {
         this.N = n;
         NN = new boolean[n * n + 2];
         uf = new WeightedQuickUnionUF(n * n + 4);
+        ufback =  new WeightedQuickUnionUF(n * n + 1);
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -35,6 +37,7 @@ public class Percolation {
         int right;
         int below;
         int self = i * N + j;
+        int flag = 0;
 
         if (NN[self]) {
             return;
@@ -48,6 +51,7 @@ public class Percolation {
         } else if ( row == N) {
             up = self - N;
             below = N * N + 1;
+            flag = 1;
         } else {
             up = self - N;
             below = self + N;
@@ -66,18 +70,24 @@ public class Percolation {
 
         if (NN[left]) {
             uf.union(left, self);
+            ufback.union(left, self);
         }
 
         if (NN[right]) {
+            uf.union(self, right);
             uf.union(self, right);
         }
 
         if (NN[up]) {
             uf.union(up, self);
+            uf.union(up, self);
         }
 
         if (NN[below]){
             uf.union(self, below);
+            if (flag != 1) {
+                ufback.union(self, below);
+            }
         }
 
     }    // open site (row, col) if it is not open already
@@ -93,7 +103,7 @@ public class Percolation {
             throw new java.lang.IndexOutOfBoundsException();
         }
 
-        return NN[(row - 1) * N + col - 1] && uf.connected((row - 1) * N + col - 1, N * N);
+        return NN[(row - 1) * N + col - 1] && ufback.connected((row - 1) * N + col - 1, N * N);
     }  // is site (row, col) full?
     public int numberOfOpenSites(){
         int i;
