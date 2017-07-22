@@ -106,15 +106,6 @@ public class Percolation {
         return NN[(row - 1) * N + col - 1] && ufback.connected((row - 1) * N + col - 1, N * N);
     }  // is site (row, col) full?
 
-    public void show_all() {
-        int i;
-
-        System.out.println("N is " + N);
-
-        for (i = 0; i < N * N; i++) {
-            System.out.print(NN[i] + " ");
-        }
-    }
     public int numberOfOpenSites(){
         int i;
         int count = 0;
