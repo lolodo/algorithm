@@ -57,5 +57,7 @@ public class InteractivePercolationVisualizer {
 
             StdDraw.pause(20);
         }
+
+//        perc.show_all();
     }
 }

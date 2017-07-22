@@ -37,7 +37,7 @@ public class Percolation {
         int right;
         int below;
         int self = i * N + j;
-        int flag = 0;
+//        int flag = 0;
 
         if (NN[self]) {
             return;
@@ -47,17 +47,17 @@ public class Percolation {
 
         if (row == 1) {
             up = N * N;
-            below = j;
+            below = self + N;
         } else if ( row == N) {
             up = self - N;
             below = N * N + 1;
-            flag = 1;
+//            flag = 1;
         } else {
             up = self - N;
             below = self + N;
         }
 
-        if ( col == 1) {
+        if (col == 1) {
             left = self;
             right = self + 1;
         } else if (col == N) {
@@ -68,24 +68,24 @@ public class Percolation {
             right = self + 1;
         }
 
-        if (NN[left]) {
+        if (NN[left] && (left !=self)) {
             uf.union(left, self);
             ufback.union(left, self);
         }
 
-        if (NN[right]) {
-            uf.union(self, right);
-            uf.union(self, right);
+        if (NN[right] && (right != self)) {
+            uf.union(right, self);
+            ufback.union(right, self);
         }
 
         if (NN[up]) {
             uf.union(up, self);
-            uf.union(up, self);
+            ufback.union(up, self);
         }
 
         if (NN[below]){
-            uf.union(self, below);
-            if (flag != 1) {
+            uf.union(below, self);
+            if (row != N) {
                 ufback.union(self, below);
             }
         }
@@ -105,6 +105,16 @@ public class Percolation {
 
         return NN[(row - 1) * N + col - 1] && ufback.connected((row - 1) * N + col - 1, N * N);
     }  // is site (row, col) full?
+
+    public void show_all() {
+        int i;
+
+        System.out.println("N is " + N);
+
+        for (i = 0; i < N * N; i++) {
+            System.out.print(NN[i] + " ");
+        }
+    }
     public int numberOfOpenSites(){
         int i;
         int count = 0;
