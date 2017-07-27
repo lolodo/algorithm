@@ -1,6 +1,7 @@
 public class Deque<Item> implements Iterable<Item> {
-    private  Item first;
-    private  Item second;
+    private Node first, last;
+    private  int size;
+
     public Deque() {
 
     }                           // construct an empty deque
