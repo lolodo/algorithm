@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c6b7d63-870b-4c84-b320-71ba8adde05a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Deque.java" afterPath="$PROJECT_DIR$/src/Deque.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RandomizedQueue.java" afterPath="$PROJECT_DIR$/src/RandomizedQueue.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Deque.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Deque.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Deque.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1755">
-              <caret line="117" column="13" lean-forward="true" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
+            <state relative-caret-position="235">
+              <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#932#938#0" expanded="true" />
@@ -45,12 +44,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RandomizedQueue.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RandomizedQueue.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/RandomizedQueue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-              <folding />
+            <state relative-caret-position="285">
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding>
+                <element signature="e#269#270#0" expanded="true" />
+                <element signature="e#305#306#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,6 +79,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>next</find>
+      <find>this</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -90,8 +93,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/RandomizedQueue.java" />
         <option value="$PROJECT_DIR$/src/Permutation.java" />
+        <option value="$PROJECT_DIR$/src/RandomizedQueue.java" />
         <option value="$PROJECT_DIR$/src/Deque.java" />
       </list>
     </option>
@@ -230,6 +233,14 @@
       <option name="presentableId" value="Default" />
       <updated>1501077250572</updated>
     </task>
+    <task id="LOCAL-00001" summary="new">
+      <created>1501520441381</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1501520441381</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -267,6 +278,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="new" />
+    <option name="LAST_COMMIT_MESSAGE" value="new" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -303,7 +318,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-          <folding />
+          <folding>
+            <element signature="e#269#270#0" expanded="true" />
+            <element signature="e#305#306#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -331,10 +349,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/RandomizedQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#269#270#0" expanded="true" />
+            <element signature="e#305#306#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Deque.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="117" column="13" lean-forward="true" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
+        <state relative-caret-position="235">
+          <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#932#938#0" expanded="true" />
@@ -355,14 +384,6 @@
             <element signature="e#4195#4196#0" expanded="true" />
             <element signature="e#4234#4235#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RandomizedQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
