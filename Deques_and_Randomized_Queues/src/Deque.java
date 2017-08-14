@@ -77,7 +77,7 @@ public class Deque<Item> implements Iterable<Item> {
 
     private void checkAvailability() {
         if (first == null && last == null) {
-            throw new java.util.NoSuchElementException();
+            throw new NoSuchElementException();
         }
     }
 
@@ -125,13 +125,14 @@ public class Deque<Item> implements Iterable<Item> {
     }        // return an iterator over items in order from front to end
 
     private  void nullCheck(Item item) {
+//        if (item == null) throw new NullPointerException();
         if (item == null) {
-            throw new NullPointerException();
+            System.out.println("check null!");
         }
     }
 
     private static class Node<Item> {
-        private  Item obj;
+        final private  Item obj;
         private  Node<Item> next;
         private  Node<Item> previous;
 
@@ -161,7 +162,7 @@ public class Deque<Item> implements Iterable<Item> {
             return previous;
         }
     }
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
 
-    }   // unit testing (optional)
+//    }   // unit testing (optional)
 }

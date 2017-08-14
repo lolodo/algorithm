@@ -3,6 +3,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.Iterator;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
+    @SuppressWarnings(value = {"unchecked"})
     private  Item[] elems = (Item[]) new Object[0];
     private  int numElems = 0;
 
@@ -43,6 +44,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     private void resize(int max) {
+        @SuppressWarnings(value = {"unchecked"})
         final Item[] temp = (Item[]) new Object[max];
         final int arrLength = elems.length;
         int numElemToCopy;
@@ -100,7 +102,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
                 if (o == null) {
                     break;
                 }
-
+//                @SuppressWarnings(value = {"unchecked"})
                 newColl.enqueue((Item) o);
             }
         }
