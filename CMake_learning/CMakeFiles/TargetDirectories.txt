@@ -1,4 +1,0 @@
-/home/fangyuan/workspace/github/algorithm/CMake_learning/CMakeFiles/edit_cache.dir
-/home/fangyuan/workspace/github/algorithm/CMake_learning/CMakeFiles/rebuild_cache.dir
-/home/fangyuan/workspace/github/algorithm/CMake_learning/CMakeFiles/Tutorial.dir
-/home/fangyuan/workspace/github/algorithm/CMake_learning/CMakeFiles/MathFunctions.dir
