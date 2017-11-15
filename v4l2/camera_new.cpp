@@ -7,8 +7,9 @@
 #include <sys/mman.h>
 #include <malloc.h>
 #include <stdlib.h>
-#include <errno.h>
 using namespace std;
+
+#define PIC_CNT 4
 
 struct buffer {  
     void *                  start;  
@@ -16,49 +17,73 @@ struct buffer {
 };  
 unsigned long n_buffers;
 struct buffer *buffers;
-int file_fd;
 int fd;
 
-#define FRAME_CNT 4
 static int read_frame(void) 
 {
     struct v4l2_buffer buf;
 	int ret;
 	int i;
-	int size;
-	FILE *fp=fopen("mtknew.jpg","wb");
-	void *p;
-	
-	printf("[%s]%d\n", __func__, __LINE__);
-    buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-    buf.memory = V4L2_MEMORY_USERPTR;
-    ret = ioctl(fd, VIDIOC_DQBUF, &buf); 
-	if (ret) {
-		printf("[%s]%d, failed!\n", __func__, __LINE__);
-		return ret;
-	}
+	char file_name[16];
+	int f_id;
+	//int timeout;
 
 	printf("[%s]%d\n", __func__, __LINE__);
-	for (i = 0; i < FRAME_CNT; i++ ) {
-		if (buf.m.userptr == (unsigned long)buffers[i].start && buf.length == buffers[i].length) {
-			break;
+
+	for (i = 0; i < PIC_CNT; i++) {
+		ret = snprintf(file_name, 16, "mtk_yuyv%d.data",i);
+		if (ret < 0){
+			cout << __func__<< ":" << dec << __LINE__ << "==>>pic "<< i<< endl;
+			return ret;
 		}
-	}
 
-	printf("[%s]%d, %d\n", __func__, __LINE__, i);
+		f_id = open(file_name, O_RDWR | O_CREAT, 0777);
+		
+		buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+	    buf.memory = V4L2_MEMORY_MMAP;
+		buf.index = i;
+	    ret = ioctl(fd, VIDIOC_DQBUF, &buf); 
+		if (ret) {
+			printf("[%s]%d, failed:%d\n", __func__, __LINE__, i);
+			return ret;
+		}
+#if 0	
+		fd_set fds;
 
-	p = (void *)buffers[i].start;
-	size = buf.bytesused;
-	fwrite(p, size, 1, fp);
-	fflush(fp);
-	fclose(fp);
-	printf("[%s]%d, ret:%d\n", __func__, __LINE__, ret);
+	    FD_ZERO(&fds);
+	    FD_SET(f_id, &fds);
 
-    ret = ioctl(fd, VIDIOC_QBUF, &buf);
-	if (ret) {
-		printf("[%s]%d, failed!\n", __func__, __LINE__);
-		return ret;
-	}
+		select(f_id + 1, &fds, NULL, NULL, NULL);
+#endif	
+#if 0
+		timeout = 0;
+		while ((buf.flags & V4L2_BUF_FLAG_QUEUED)){
+			usleep(100);
+			if (timeout > 100){
+				printf("[%s]%d, failed:timeout\n", __func__, __LINE__);
+				break;
+			}
+
+			timeout++;
+		}
+#endif	
+		usleep(100000);
+		printf("[%s]%d\n", __func__, __LINE__);
+	    ret = write(f_id, buffers[buf.index].start, buffers[buf.index].length);
+		if (ret < 0) {
+			printf("[%s]%d, failed!\n", __func__, __LINE__);
+			return ret;
+		}
+
+	    ret = ioctl(fd, VIDIOC_QBUF, &buf);
+		if (ret) {
+			printf("[%s]%d, failed!\n", __func__, __LINE__);
+			return ret;
+	
+		}
+
+		close(f_id);
+    }
 
     return 1;
 }
@@ -74,7 +99,6 @@ int main(int argc, char *argv[])
     int i;
 	int ret;
 	char dev_name[16];
-	int buffer_size;
 
 	if (argc !=2) {
 		cout << "invalid param!" << endl;
@@ -89,8 +113,7 @@ int main(int argc, char *argv[])
 
 	cout << "dev name is " << dev_name << endl;
 
-    file_fd = open("mtk.jpg", O_RDWR | O_CREAT, 0777);
-    fd = open(dev_name, O_RDWR);
+    fd = open(dev_name, O_RDWR| O_NONBLOCK, 0);
     // filed_fd = open("test.jpg", O_RDWR | O_CREAT);
 
     ret = ioctl(fd, VIDIOC_QUERYCAP, &cap);
@@ -120,47 +143,49 @@ int main(int argc, char *argv[])
 	usleep(1000);
     fmt.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
     fmt.fmt.pix.width = 1280;
-    fmt.fmt.pix.height = 720;
+    fmt.fmt.pix.height = 3200;//720;
     fmt.fmt.pix.field = V4L2_FIELD_INTERLACED;
-    fmt.fmt.pix.pixelformat =V4L2_PIX_FMT_RGB565;
+    fmt.fmt.pix.pixelformat = V4L2_PIX_FMT_YUYV;
 
-	cout << __func__<< ":" << dec << __LINE__ << endl;
     ret = ioctl(fd, VIDIOC_S_FMT, &fmt);
 	if (ret) {
 		cout << __func__<< ":" << dec << __LINE__ << "==>>ret is "<< dec << ret << endl;
 		return ret;
 	}
 
-    req.count = FRAME_CNT;
+    req.count = PIC_CNT;
     req.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-    req.memory = V4L2_MEMORY_USERPTR;
+    req.memory = V4L2_MEMORY_MMAP;
     ret = ioctl(fd, VIDIOC_REQBUFS, &req);
 	if (ret) {
-		if (EINVAL == errno) {
-			cout << __func__ << ":" << __LINE__ << ":" << "it dosen't support userptr" << endl;
-		}
-
 		cout << __func__<< ":" << __LINE__ << "ret is " << ret << endl;
 		return ret;
 	}
 
     buffers = (struct buffer *)calloc(req.count, sizeof(*buffers));
-	buffer_size = fmt.fmt.pix.width * fmt.fmt.pix.height * 8;	
+
 	cout << __func__<< ":" << dec << __LINE__ << endl;
     for (n_buffers = 0; n_buffers < req.count; n_buffers++)
     {
-        buffers[n_buffers].length =buffer_size;
-        buffers[n_buffers].start = malloc(buffer_size);
+        buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+        buf.memory = V4L2_MEMORY_MMAP;
+        buf.index = n_buffers;
+
+        ret = ioctl(fd, VIDIOC_QUERYBUF, &buf);
+		if (ret) {
+			cout << __func__<< ":" << __LINE__ << "ret is " << ret << endl;
+			return ret;
+		}
+
+        buffers[n_buffers].length = buf.length;
+        buffers[n_buffers].start = mmap(NULL, buf.length, PROT_READ | PROT_WRITE, MAP_SHARED, fd, buf.m.offset);
     }
 
 	cout << __func__<< ":" << dec << __LINE__ << endl;
     for (i = 0; i < n_buffers; i++){
         buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-        buf.memory =  V4L2_MEMORY_USERPTR;
+        buf.memory =  V4L2_MEMORY_MMAP;
         buf.index = i;
-        buf.m.userptr = (unsigned long)buffers[i].start;
-		buf.length = buffers[i].length;
-		
         ret = ioctl(fd, VIDIOC_QBUF, &buf);
 		if (ret) {
 			cout << __func__<< ":" << __LINE__ << "ret is " << ret << endl;
@@ -183,19 +208,23 @@ int main(int argc, char *argv[])
     FD_SET(fd, &fds);
 
 	cout << __func__<< ":" << dec << __LINE__ << endl;
-    select(fd + 1, &fds, NULL, NULL, NULL);
-	cout << __func__<< ":" << dec << __LINE__ << endl;
-    read_frame();
+    ret = select(fd + 1, &fds, NULL, NULL, NULL);
+	if (ret > 0) {
+		if (FD_ISSET(fd, &fds)) {
+			cout << __func__<< ":" << dec << __LINE__ << endl;
+			read_frame();
+		} else {
+			cout << __func__<< ":" << dec << __LINE__ << endl;
+		}
+	}
 
 	cout << __func__<< ":" << dec << __LINE__ << endl;
     for (i = 0; i < n_buffers; i++){
-        //munmap(buffers[i].start, buffers[i].length);
-		free(buffers[i].start);
+        munmap(buffers[i].start, buffers[i].length);
     }
 
 	cout << __func__<< ":" << dec << __LINE__ << endl;
     close(fd);
-    close(file_fd);
     cout << "Camera done.\n" << endl;
 
 	cout << __func__<< ":" << dec << __LINE__ << endl;

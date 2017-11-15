@@ -51,5 +51,5 @@ for i in range(0,height):
 # R = 1.164(Y - 16) + 1.596(V - 128)
 ######################################################
  
-#image_out.save("out.bmp")
+image_out.save("out.png")
 image_out.show()

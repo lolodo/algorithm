@@ -6,10 +6,10 @@
 #########################################################################
 #!/bin/bash
 #~/workspace/cross_compile_app/bin/aarch64-linux-gnu-g++ camera_yuyv.cpp -o mtk_yuyv
-scp root@192.168.1.1:~/mtk_yuyv0.data .
-scp root@192.168.1.1:~/mtk_yuyv1.data .
-scp root@192.168.1.1:~/mtk_yuyv2.data .
-scp root@192.168.1.1:~/mtk_yuyv3.data .
+scp root@10.111.253.64:~/mtk_yuyv0.data .
+scp root@10.111.253.64:~/mtk_yuyv1.data .
+scp root@10.111.253.64:~/mtk_yuyv2.data .
+scp root@10.111.253.64:~/mtk_yuyv3.data .
 
 python ./python/yuyv2png.py mtk_yuyv0.data 1280 720
 python ./python/yuyv2png.py mtk_yuyv1.data 1280 720

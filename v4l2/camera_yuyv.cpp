@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
 	usleep(1000);
     fmt.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
     fmt.fmt.pix.width = 1280;
-    fmt.fmt.pix.height = 720;
+    fmt.fmt.pix.height = 2880;//720;
     fmt.fmt.pix.field = V4L2_FIELD_INTERLACED;
     fmt.fmt.pix.pixelformat = V4L2_PIX_FMT_YUYV;
 
