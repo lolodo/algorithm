@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/fangyuan/workspace/github/algorithm/CMake_learning/TutorialConfig.h
+
+/home/fangyuan/workspace/github/algorithm/CMake_learning/tutorial.c
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+TutorialConfig.h
+/home/fangyuan/workspace/github/algorithm/CMake_learning/TutorialConfig.h
+
