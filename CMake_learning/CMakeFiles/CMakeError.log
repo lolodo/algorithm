@@ -1,0 +1,50 @@
+Determining if the function log exists failed with the following output:
+Change Dir: /home/fangyuan/workspace/github/algorithm/CMake_learning/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e40ba/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e40ba.dir/build.make CMakeFiles/cmTC_e40ba.dir/build
+make[1]: Entering directory '/home/fangyuan/workspace/github/algorithm/CMake_learning/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e40ba.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=log   -o CMakeFiles/cmTC_e40ba.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+<command-line>:0:23: warning: conflicting types for built-in function ‘log’
+/usr/share/cmake-3.5/Modules/CheckFunctionExists.c:6:6: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+ char CHECK_FUNCTION_EXISTS();
+      ^
+Linking C executable cmTC_e40ba
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e40ba.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=log    CMakeFiles/cmTC_e40ba.dir/CheckFunctionExists.c.o  -o cmTC_e40ba -rdynamic 
+CMakeFiles/cmTC_e40ba.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x15): undefined reference to `log'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_e40ba.dir/build.make:97: recipe for target 'cmTC_e40ba' failed
+make[1]: *** [cmTC_e40ba] Error 1
+make[1]: Leaving directory '/home/fangyuan/workspace/github/algorithm/CMake_learning/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_e40ba/fast' failed
+make: *** [cmTC_e40ba/fast] Error 2
+
+
+Determining if the function exp exists failed with the following output:
+Change Dir: /home/fangyuan/workspace/github/algorithm/CMake_learning/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_fc9a3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_fc9a3.dir/build.make CMakeFiles/cmTC_fc9a3.dir/build
+make[1]: Entering directory '/home/fangyuan/workspace/github/algorithm/CMake_learning/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_fc9a3.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=exp   -o CMakeFiles/cmTC_fc9a3.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+<command-line>:0:23: warning: conflicting types for built-in function ‘exp’
+/usr/share/cmake-3.5/Modules/CheckFunctionExists.c:6:6: note: in expansion of macro ‘CHECK_FUNCTION_EXISTS’
+ char CHECK_FUNCTION_EXISTS();
+      ^
+Linking C executable cmTC_fc9a3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fc9a3.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=exp    CMakeFiles/cmTC_fc9a3.dir/CheckFunctionExists.c.o  -o cmTC_fc9a3 -rdynamic 
+CMakeFiles/cmTC_fc9a3.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x15): undefined reference to `exp'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_fc9a3.dir/build.make:97: recipe for target 'cmTC_fc9a3' failed
+make[1]: *** [cmTC_fc9a3] Error 1
+make[1]: Leaving directory '/home/fangyuan/workspace/github/algorithm/CMake_learning/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_fc9a3/fast' failed
+make: *** [cmTC_fc9a3/fast] Error 2
+
+
