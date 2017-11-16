@@ -73,11 +73,11 @@
 
 #define max9286_info(fmt, args...)                \
 		do { (void)pr_info("[max9286][info] %s %d: %s " fmt "\n",\
-			__func__, __LINE__, dev_name(&client->dev), ##args)} while (0)
+			__func__, __LINE__, dev_name(&client->dev), ##args);} while (0)
 
 #define max9286_err(fmt, args...)                \
 		do { (void)pr_info("[max9286][error] %s %d: %s " fmt "\n",\
-			__func__, __LINE__, dev_name(&client->dev), ##args)} while (0)
+			__func__, __LINE__, dev_name(&client->dev), ##args);} while (0)
 
 
 struct reg_val_ops {
