@@ -1,0 +1,1 @@
+/usr/bin/cc     CMakeFiles/MakeTable.dir/MakeTable.c.o  -o MakeTable -rdynamic 
