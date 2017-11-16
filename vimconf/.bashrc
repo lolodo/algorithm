@@ -129,13 +129,13 @@ function proxy_nio_on() {
 	echo -e "已开启 NIO 代理"
 }
 #export PATH=~/bin:$PATH:/home/fangyuan/workspace/cross_compile_kernel:~/Android/Sdk/ndk-bundle/
-export PATH=~/bin:$PATH:~/Android/Sdk/ndk-bundle:~/workspace/cross_compile_avm/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin
-export TEMPLATECONF=${PWD}/meta/base/conf/mt2712/auto2712m1v1-ivi_agl
+#export PATH=~/bin:$PATH:~/Android/Sdk/ndk-bundle:~/workspace/cross_compile_avm/gcc-linaro-6.2.1-2016.11-x86_64_aarch64-linux-gnu/bin
+#export TEMPLATECONF=${PWD}/meta/base/conf/mt2712/auto2712m1v1-ivi_agl
 export CSCOPE_EIDTOR=vim
 #alias tmux='tmux -2'
 
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+#export WORKON_HOME=$HOME/.virtualenvs
+#source /usr/local/bin/virtualenvwrapper.sh
 
 function proxy_ss_on() {
 	export http_proxy="http://127.0.0.1:8150"
