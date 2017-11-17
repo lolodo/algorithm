@@ -55,16 +55,18 @@ static int read_frame(void)
 	char file_name[16];
 	int f_id;
 	uint64_t sec, usec;
-	char *pic_buff[i];
+	char *pic_buff[PIC_CNT];
 	
 	printf("[%s]%d\n", __func__, __LINE__);
 	for (i = 0; i < PIC_CNT; i++) {
 		pic_buff[i] = (char *)malloc(PIC_SIZE);
 		if (pic_buff[i] == NULL) {
-			printf("[%s]%d, get the %dth pic_buff failed!\n");
+			printf("[%s]%d, get the %dth pic_buff failed!\n", __func__, __LINE__, i);
 			return -1;
 		}
 	}
+
+	printf("[%s]%d\n", __func__, __LINE__);
 
 	for (i = 0; i < PIC_CNT; i++) {
 		ret = snprintf(file_name, 16, "mtk_yuyv%d.data",i);
@@ -73,6 +75,7 @@ static int read_frame(void)
 			return ret;
 		}
 
+		printf("[%s]%d\n", __func__, __LINE__);
 		f_id = open(file_name, O_RDWR | O_CREAT, 0777);
 		
 		buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
