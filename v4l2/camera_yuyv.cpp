@@ -47,26 +47,7 @@ static int read_frame(void)
 			printf("[%s]%d, failed:%d\n", __func__, __LINE__, i);
 			return ret;
 		}
-#if 0	
-		fd_set fds;
 
-	    FD_ZERO(&fds);
-	    FD_SET(f_id, &fds);
-
-		select(f_id + 1, &fds, NULL, NULL, NULL);
-#endif	
-#if 0
-		timeout = 0;
-		while ((buf.flags & V4L2_BUF_FLAG_QUEUED)){
-			usleep(100);
-			if (timeout > 100){
-				printf("[%s]%d, failed:timeout\n", __func__, __LINE__);
-				break;
-			}
-
-			timeout++;
-		}
-#endif	
 		usleep(100000);
 		printf("[%s]%d\n", __func__, __LINE__);
 	    ret = write(f_id, buffers[buf.index].start, buffers[buf.index].length);
@@ -90,7 +71,6 @@ static int read_frame(void)
 
 int main(int argc, char *argv[])
 {
-    // struct v4l2_buffer buf;
     struct v4l2_capability cap;
     struct v4l2_format fmt;
     struct v4l2_requestbuffers req;
@@ -114,7 +94,6 @@ int main(int argc, char *argv[])
 	cout << "dev name is " << dev_name << endl;
 
     fd = open(dev_name, O_RDWR| O_NONBLOCK, 0);
-    // filed_fd = open("test.jpg", O_RDWR | O_CREAT);
 
     ret = ioctl(fd, VIDIOC_QUERYCAP, &cap);
 	if (ret){
@@ -124,7 +103,6 @@ int main(int argc, char *argv[])
 	
 	struct v4l2_fmtdesc fmtdesc;
 	fmtdesc.index = 0;
-	//memset(&fmtdesc,0,sizeof(fmtdesc));
 	fmtdesc.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
 	while (ioctl(fd,VIDIOC_ENUM_FMT,&fmtdesc) == 0)
 	{
