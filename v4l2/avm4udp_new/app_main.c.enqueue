@@ -14,8 +14,6 @@
 #include <errno.h>
 #include "avm_common.h"
 
-//#define BOARD_DEV
-//#define USB_CAMERA 
 #define BUFFER_CNT 4 
 #define BUFFER_WATERLINE 3
 
@@ -32,19 +30,11 @@ uint32_t dest_width = 1280;
 uint32_t dest_height = 800;
 char *dest_format = "NV12";
 #else
-#ifdef USB_CAMERA
-uint32_t src_width = 640;
-uint32_t src_height = 480;
-
-uint32_t dest_width = 640;
-uint32_t dest_height = 480;
-#else
 uint32_t src_width = 1280;
 uint32_t src_height = 720;
 
 uint32_t dest_width = 1280;
 uint32_t dest_height = 720;
-#endif
 char *dest_format = "YUY2";
 #endif
 float factor = 3/2;
@@ -180,7 +170,7 @@ void sig_handler(int signo) {
 		printf("===force to quit====\n");
 		if (sec > 0) {
 			avm_fps = pic_count / (unsigned int)sec;
-			printf("============avm:count:%d, sec:%lu, delta:%ldms, fps:%u============\n", pic_count, sec, delta, avm_fps);
+			printf("avm:count:%d, sec:%lu, delta:%ldms, fps:%u\n", pic_count, sec, delta, avm_fps);
 		} else {
 			printf("avm:Waiting longer!\n");
 		}
@@ -254,34 +244,39 @@ unsigned long check_if_write_available(void)
 	return number;
 }
 
-int enqueue(void *single_image, unsigned length, struct avm_buffer_ctrl *ctrl)
+int enqueue(struct avm_buffer_ctrl *ctrl)
 {
 	void *start;
+	void *buffer;
 	unsigned long widx;
 	unsigned long size;
+	unsigned int len;
 
 	size = ctrl->size;
-	if (length > size) {
-		printf("enqueue:length > size!\n");
-		return -1;
-	}
-
 	if (check_if_write_available() < BUFFER_WATERLINE) {
 		pthread_mutex_lock(&(ctrl->mutex));
 		pthread_cond_wait(&(ctrl->consume_cond), &(ctrl->mutex));
 		pthread_mutex_unlock(&(ctrl->mutex));
 		return -1;
 	}
+	
+    len = pull_buffer(&buffer);
+	if (!len) {
+		printf("[%s]%d len is zero!\n", __func__, __LINE__);
+		return -1;
+	}
+
+	if (len > size) {
+		printf("enqueue:length > size!\n");
+		return 0;
+	}
 
 	pthread_mutex_lock(&(ctrl->mutex));
 
 	widx = (ctrl->w_idx) % (ctrl->depth);
 	start = (void *)((unsigned long)ctrl->buffer + widx * size);
-	memcpy(start, single_image, length);
+	memcpy(start, buffer, len);
 	ctrl->w_idx++;
-	
-	/* Simulate memory copy */
-//	usleep(40000);
 
 	pthread_cond_signal(&(ctrl->produce_cond));
 	pthread_mutex_unlock(&(ctrl->mutex));
@@ -404,7 +399,7 @@ void *gst_consumer(void *args)
 		printf("consumer:convert ");
 
 		/* Simulate converting */
-		//usleep(120000);
+		usleep(120000);
 
 		print_time_diff(curr_sec, curr_usec);
 
@@ -424,39 +419,15 @@ void *gst_consumer(void *args)
 void *gst_producer(void *args)
 {
     uint64_t curr_sec, curr_usec;
-    uint64_t sec, usec;
-    char *buff;
-	int size, ret;
-	static int count = 0;
+	int ret;
 	struct avm_buffer_ctrl *ctrl;
 	
 	ctrl = (struct avm_buffer_ctrl *)args;
 	while (1) {
-		printf("producer:start to pull\n");
         get_time_stamp(&curr_sec, &curr_usec);
-        get_time_stamp(&sec, &usec);
-		
-        size = pull_buffer(&buff);
-		if (!size) {
-			printf("[%s]%d size is zero!\n", __func__, __LINE__);
-			continue;
-		}
-		printf("producer:pull end, size:%d ", size);
-
-        print_time_diff(curr_sec, curr_usec);
-
-        get_time_stamp(&curr_sec, &curr_usec);
-
-		//printf("[%s]%d\n", __func__, __LINE__);
-		if (buff == NULL) {
-			printf("[%s]%d, buffer is null!\n", __func__, __LINE__);
-			continue;
-		}
-	
-		printf("producer:start to copy\n");
-		ret = enqueue(buff, size, ctrl);
+		printf("producer:start to pull&copy\n");
+		ret = enqueue(ctrl);
 		if (ret) {
-			free_pull_buffer();
 			printf("[%s]%d, enqueue failed!\n", __func__, __LINE__);
 			continue;
 		}
@@ -464,7 +435,6 @@ void *gst_producer(void *args)
         printf("producer:copy end ");
         print_time_diff(curr_sec, curr_usec);
 		free_pull_buffer();
-		count++;
 	}
 }
 

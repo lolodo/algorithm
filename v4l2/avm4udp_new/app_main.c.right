@@ -14,8 +14,6 @@
 #include <errno.h>
 #include "avm_common.h"
 
-//#define BOARD_DEV
-//#define USB_CAMERA 
 #define BUFFER_CNT 4 
 #define BUFFER_WATERLINE 3
 
@@ -32,19 +30,11 @@ uint32_t dest_width = 1280;
 uint32_t dest_height = 800;
 char *dest_format = "NV12";
 #else
-#ifdef USB_CAMERA
-uint32_t src_width = 640;
-uint32_t src_height = 480;
-
-uint32_t dest_width = 640;
-uint32_t dest_height = 480;
-#else
 uint32_t src_width = 1280;
 uint32_t src_height = 720;
 
 uint32_t dest_width = 1280;
 uint32_t dest_height = 720;
-#endif
 char *dest_format = "YUY2";
 #endif
 float factor = 3/2;
@@ -180,7 +170,7 @@ void sig_handler(int signo) {
 		printf("===force to quit====\n");
 		if (sec > 0) {
 			avm_fps = pic_count / (unsigned int)sec;
-			printf("============avm:count:%d, sec:%lu, delta:%ldms, fps:%u============\n", pic_count, sec, delta, avm_fps);
+			printf("avm:count:%d, sec:%lu, delta:%ldms, fps:%u\n", pic_count, sec, delta, avm_fps);
 		} else {
 			printf("avm:Waiting longer!\n");
 		}

@@ -4,7 +4,6 @@
 #include <stdint.h>
 
 #define AVM_CONFIG_PATH "/etc/avm"
-//#define BOARD_DEV
 
 int libgst_init(int argc, char *argv[]);
 int gst_appsrc_init();
