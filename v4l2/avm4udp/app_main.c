@@ -48,6 +48,8 @@ struct avm_buffer_ctrl {
 	unsigned long r_idx;
 	unsigned long depth;
 	unsigned long size;
+	unsigned long convert_size;
+	void *convert_buffer;
 };
 
 struct avm_buffer_ctrl avm_bctl; 
@@ -177,12 +179,20 @@ int buffer_queue_init(unsigned int num, unsigned int size) {
 	if (!buffer) {
 		printf("malloc buffer failed!\n");
 		return -1;
+	}	
+
+	avm_bctl.convert_size = (dest_width * dest_height * 3) / 2;
+	avm_bctl.convert_buffer = malloc(avm_bctl.convert_size);
+	if (avm_bctl.convert_buffer == NULL) {
+		printf("convert_buff unavailable!\n");
+		return -1;
 	}
 
 	avm_bctl.buffer = buffer;
 	avm_bctl.size = size;
 	avm_bctl.w_idx = 0;
 	avm_bctl.r_idx = 0;
+	avm_bctl.depth = num;
 	avm_bctl.depth = num;
 
 	printf("init succeed!\n");
@@ -280,22 +290,15 @@ void *gst_consumer(void *args)
 {
 	int ret;
 	void *buffer;
-	void *convert_buff;
+	void *convert_buffer;
 	struct avm_buffer_ctrl *ctrl;
 	unsigned long size;
-	unsigned long convert_size;
     uint64_t curr_sec, curr_usec;
 
 	ctrl = (struct avm_buffer_ctrl *)args;
+	convert_size = ctrl->convert_size;
+	convert_buffer = ctrl->convert_buffer;
 	size = src_width * src_height * 2;
-
-	convert_size = (dest_width * dest_height * 3) / 2;
-	convert_buff = malloc(size);
-	if (convert_buff == NULL) {
-		printf("convert_buff unavailable!\n");
-		return NULL;
-	}
-	
 	while(1) {
 		if (ctrl->size == 0) {
 			return NULL;
@@ -310,7 +313,7 @@ void *gst_consumer(void *args)
 		get_time_stamp(&curr_sec, &curr_usec);
 
 		/* simulate convert process */
-		libavm_blacksesame_convert_image(buffer, size, convert_buff, convert_size);	
+		libavm_blacksesame_convert_image(buffer, size, convert_buffer, convert_size);	
 
 		printf("consumer:convert ");
 		print_time_diff(curr_sec, curr_usec);
@@ -391,6 +394,13 @@ int main(int argc, char *argv[])
 		printf("init buffer failed!\n");
 		goto release_gst;
 	}
+	
+	convert_size = (dest_width * dest_height * 3) / 2;
+	convert_buff = malloc(convert_size);
+	if (convert_buff == NULL) {
+		printf("convert_buff unavailable!\n");
+		return NULL;
+	
 
 	usleep(10000);
 	ctrl = &avm_bctl;
