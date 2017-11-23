@@ -23,7 +23,7 @@ GstBuffer *recv_buff;
 
 void buffer_destroy_notify (gpointer data)
 {
-    printf("[%s]%d data:%p\n", __func__, __LINE__, data);
+    printf("[%s]%d data:%x\n", __func__, __LINE__, data);
 }
 
 int prepare_buffer(char *buff_send, uint32_t size) 
@@ -38,9 +38,11 @@ int prepare_buffer(char *buff_send, uint32_t size)
     if (buff_send == NULL)
         return -1;
 
+    //printf("[%s]%d data:%x\n", __func__, __LINE__, buff_send);
+
     buffer = gst_buffer_new_wrapped_full( 0, buff_send, size, 0, size, (gpointer)buff_send, buffer_destroy_notify);
 
-    ret = gst_app_src_push_buffer((GstAppSrc *)appsrc, buffer);
+    ret = gst_app_src_push_buffer(appsrc, buffer);
 
     if (ret != GST_FLOW_OK) {
         /* something wrong, stop pushing */
@@ -97,12 +99,9 @@ int pull_buffer(char **buff)
         } else {
             return 0;
         }
-    } else {
-		int ret;
-		ret = gst_app_sink_is_eos((GstAppSink *)appsink);
-		printf("[%s]%d, ret is %d\n", __func__, __LINE__, ret);
-		return 0;
-	}
+    } else 
+        return 0;
+
 }
 
 static void cb_new_sample (GstElement *appsink, guint unused_size, gpointer user_data) 

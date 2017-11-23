@@ -11,7 +11,6 @@ pkg_check_modules (GSTREAMER   gstreamer-1.0)
 # add dependency libraries
 set (LIBRARIES ${LIBRARIES}
     gstapp-1.0
-	pthread
     blacksesame
     ${GSTREAMER_LIBRARIES}
     )
