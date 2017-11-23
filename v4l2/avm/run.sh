@@ -13,6 +13,7 @@ fi
 
 cd ./build
 cmake ../
+make clean
 make
 if [ $? -ne 0 ]
 then
