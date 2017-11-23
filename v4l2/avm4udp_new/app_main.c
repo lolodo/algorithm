@@ -14,19 +14,29 @@
 #include <errno.h>
 #include "avm_common.h"
 
-#define BUFFER_CNT 16 
-#define BUFFER_WATERLINE 6 
-#define ADJUST_CNT 10 
+#define BUFFER_CNT 8
+#define BUFFER_WATERLINE 4
 
 int dest_port = 8554;
 char *dest_address = "127.0.0.1";
 int v4l2_device = 14;
 
+char *src_format = "YUY2";
+#ifdef BOARD_DEV
 uint32_t src_width = 1280;
 uint32_t src_height = 3200;
 
 uint32_t dest_width = 1280;
 uint32_t dest_height = 800;
+char *dest_format = "NV12";
+#else
+uint32_t src_width = 1280;
+uint32_t src_height = 720;
+
+uint32_t dest_width = 1280;
+uint32_t dest_height = 720;
+char *dest_format = "YUY2";
+#endif
 float factor = 3/2;
 
 unsigned int avm_fps = 0;
@@ -36,11 +46,7 @@ uint64_t avm_sec, avm_usec;
 pthread_t consumer = 0;  
 pthread_t producer = 0;  
 
-char *src_format = "YUY2";
-char *dest_format = "NV12";
-
 int original_image = -1;
-
 int app_debug = 0;
 
 struct avm_buffer_ctrl {
@@ -49,16 +55,14 @@ struct avm_buffer_ctrl {
 	unsigned long r_idx;
 	unsigned long depth;
 	unsigned long size;
-	unsigned long convert_size;
-	void *convert_buffer;
 
+#ifdef BOARD_DEV
+	void *convert_buffer;
+	unsigned long convert_size;
+#endif
 	pthread_mutex_t mutex;
 	pthread_cond_t consume_cond;
 	pthread_cond_t produce_cond;
-
-
-	unsigned long producer_gap;
-	unsigned long consumer_gap;
 };
 
 struct avm_buffer_ctrl avm_bctl; 
@@ -126,14 +130,18 @@ void sig_handler(int signo) {
 	if (signo == SIGINT){
 		pthread_cancel(producer);
 		pthread_cancel(consumer);
+		pthread_mutex_destroy(&(avm_bctl.mutex));
+		pthread_cond_destroy(&(avm_bctl.produce_cond));
+		pthread_cond_destroy(&(avm_bctl.consume_cond));
 
 		avm_bctl.size = 0;
 		
 		gst_appsrc_fini();
 		gst_appsink_fini();
 		free_queue(&avm_bctl);
-
+#ifdef BOARD_DEV
 		libavm_blacksesame_deinit();
+#endif
 		printf("avm_sec:%lu, avm_usec:%lu\n", avm_sec, avm_usec);
         get_time_stamp(&sec, &usec);
 		printf("sec:%lu, usec:%lu\n", sec, usec);
@@ -183,7 +191,7 @@ int buffer_queue_init(unsigned int num, unsigned int size) {
 		return -1;
 	}
 
-	if (num < 4) {
+	if (num < 2) {
 		printf("buffer number is too small:%u!\n", num);
 		return -1;
 	}
@@ -194,12 +202,14 @@ int buffer_queue_init(unsigned int num, unsigned int size) {
 		return -1;
 	}	
 
+#ifdef BOARD_DEV
 	avm_bctl.convert_size = (dest_width * dest_height * 3) / 2;
 	avm_bctl.convert_buffer = malloc(avm_bctl.convert_size);
 	if (avm_bctl.convert_buffer == NULL) {
 		printf("convert_buff unavailable!\n");
 		return -1;
 	}
+#endif
 
 	avm_bctl.buffer = buffer;
 	avm_bctl.size = size;
@@ -207,8 +217,6 @@ int buffer_queue_init(unsigned int num, unsigned int size) {
 	avm_bctl.r_idx = 0;
 	avm_bctl.depth = num;
 	avm_bctl.depth = num;
-	avm_bctl.producer_gap = 0;
-	avm_bctl.consumer_gap = 0;
 
 	pthread_mutex_init(&(avm_bctl.mutex), NULL);
 	pthread_cond_init(&(avm_bctl.produce_cond), NULL);
@@ -248,19 +256,22 @@ int enqueue(void *single_image, unsigned length, struct avm_buffer_ctrl *ctrl)
 		return -1;
 	}
 
-	if (!check_if_write_available()) {
+	if (check_if_write_available() < 2) {
+		pthread_mutex_lock(&(ctrl->mutex));
+		pthread_cond_wait(&(ctrl->consume_cond), &(ctrl->mutex));
+		pthread_mutex_unlock(&(ctrl->mutex));
 		return -1;
 	}
 
-	pthread_mutex_lock(&(ctrl->mutex));
-	pthread_cond_wait(&(ctrl->produce_cond), &(ctrl->mutex));
+//	pthread_mutex_lock(&(ctrl->mutex));
 
 	widx = (ctrl->w_idx) % (ctrl->depth);
 	start = (void *)((unsigned long)ctrl->buffer + widx * size);
 	memcpy(start, single_image, length);
 	ctrl->w_idx++;
 
-	pthread_mutex_unlock(&(ctrl->mutex));
+//	pthread_cond_signal(&(ctrl->produce_cond));
+//	pthread_mutex_unlock(&(ctrl->mutex));
 	printf("enqueue:widx:%ld\n", ctrl->w_idx);
 
 	return 0;
@@ -290,6 +301,11 @@ void *dequeue(struct avm_buffer_ctrl *ctrl, unsigned length)
 	}
 
 	if (!check_if_read_available()) {
+#if 0
+		pthread_mutex_lock(&(ctrl->mutex));
+		pthread_cond_wait(&(ctrl->produce_cond), &(ctrl->mutex));
+		pthread_mutex_unlock(&(ctrl->mutex));
+#endif
 		return NULL;
 	}
 	
@@ -299,7 +315,7 @@ void *dequeue(struct avm_buffer_ctrl *ctrl, unsigned length)
 	start = (void *)((unsigned long)ctrl->buffer + ridx * ctrl->size);
 	ctrl->r_idx++;
 
-	pthread_cond_signal(&(ctrl->produce_cond));
+	pthread_cond_signal(&(ctrl->consume_cond));
 	pthread_mutex_unlock(&(ctrl->mutex));
 
 	printf("dequeue:ridx:%ld\n", ctrl->r_idx);
@@ -316,25 +332,37 @@ void free_queue(struct avm_buffer_ctrl *ctrl)
 	ctrl->depth = 0;
 	free(ctrl->buffer);
 
+#ifdef BOARD_DEV
 	free(ctrl->convert_buffer);
 	ctrl->convert_size = 0;
+#endif
 }
 
 void *gst_consumer(void *args)
 {
 	int ret;
 	void *buffer;
+
+#ifdef BOARD_DEV
 	void *convert_buffer;
+	unsigned long convert_size;
+#endif
+
 	struct avm_buffer_ctrl *ctrl;
 	unsigned long size;
-	unsigned long convert_size;
     uint64_t curr_sec, curr_usec;
 
 	ctrl = (struct avm_buffer_ctrl *)args;
+
+#ifdef BOARD_DEV
 	convert_size = ctrl->convert_size;
 	convert_buffer = ctrl->convert_buffer;
-	size = src_width * src_height * 2;
+#endif
 
+	size = src_width * src_height * 2;
+	
+
+	printf("consumer:start to run!\n");
     get_time_stamp(&avm_sec, &avm_usec);
 	while(1) {
 		if (ctrl->size == 0) {
@@ -349,7 +377,7 @@ void *gst_consumer(void *args)
 
 		get_time_stamp(&curr_sec, &curr_usec);
 
-		/* simulate convert process */
+#ifdef BOARD_DEV
 		libavm_blacksesame_convert_image(buffer, size, convert_buffer, convert_size);	
 
 		printf("consumer:convert ");
@@ -360,6 +388,25 @@ void *gst_consumer(void *args)
 		printf("consumer:display ");
 		print_time_diff(curr_sec, curr_usec);
 		pic_count++;
+#else
+
+		printf("consumer:convert ");
+
+		/* Simulate converting */
+		usleep(250000);
+
+		print_time_diff(curr_sec, curr_usec);
+
+		get_time_stamp(&curr_sec, &curr_usec);
+		prepare_buffer(buffer, size);
+		printf("consumer:display ");
+		print_time_diff(curr_sec, curr_usec);
+		pic_count++;
+
+		if (pic_count < 5) {
+			get_time_stamp(&avm_sec, &avm_usec);
+		}
+#endif
 	}
 }
 
@@ -403,7 +450,6 @@ void *gst_producer(void *args)
 			continue;
 		}
 
-		//usleep(40000);
         printf("producer:copy end ");
         print_time_diff(curr_sec, curr_usec);
 		free_pull_buffer();
@@ -424,11 +470,13 @@ int main(int argc, char *argv[])
     gst_appsink_init(); 
     gst_appsrc_init(); 
 
+#ifdef BOARD_DEV
 	ret = libavm_blacksesame_init();
 	if (ret != 0) {
 		printf("[%s]%d ret:%d\n", __func__, __LINE__, ret);
 		goto release_gst;
 	}
+#endif
 
     original_size = src_width * src_height * 2;
 	ret = buffer_queue_init(BUFFER_CNT,original_size);
@@ -455,15 +503,15 @@ int main(int argc, char *argv[])
 	pthread_join(producer, NULL);
 	pthread_join(consumer, NULL);
 
-	//sig_handler(SIGINT);
-
 	return 0;
 
 release_buffer:
 	free_queue(ctrl);
 
 release_black:
+#ifdef BOARD_DEV
 	libavm_blacksesame_deinit();
+#endif
 
 release_gst:
     gst_appsink_fini();
