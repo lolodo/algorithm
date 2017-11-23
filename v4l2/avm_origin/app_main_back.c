@@ -15,7 +15,7 @@
 #include "avm_common.h"
 
 
-#define BUFFER_CNT 32 
+#define BUFFER_CNT 128 
 
 int dest_port = 8554;
 char *dest_address = "127.0.0.1";
@@ -26,13 +26,13 @@ uint32_t src_height = 720;
 
 uint32_t dest_width = 1280;
 uint32_t dest_height = 720;
+float factor = 3/2;
 
 unsigned int avm_fps = 0;
 unsigned int pic_count = 0;
 unsigned int avm_play_time = 0;
 uint64_t avm_sec, avm_usec;
 pthread_t consumer = 0;  
-pthread_t producer = 0;  
 
 char *src_format = "YUY2";
 char *dest_format = "YUY2";
@@ -112,8 +112,7 @@ void sig_handler(int signo) {
 	int64_t delta;
 
 	if (signo == SIGINT){
-		pthread_cancel(producer);
-		//pthread_cancel(consumer);
+		pthread_cancel(consumer);
 		printf("avm_sec:%lu, avm_usec:%lu\n", avm_sec, avm_usec);
         get_time_stamp(&sec, &usec);
 		printf("sec:%lu, usec:%lu\n", sec, usec);
@@ -142,7 +141,7 @@ void sig_handler(int signo) {
 		printf("===force to quit====\n");
 		if (sec > 0) {
 			avm_fps = pic_count / (unsigned int)sec;
-			printf("avm:count:%d, sec:%lu, delta:%ldms, FPS:%u\n", pic_count, sec, delta, avm_fps);
+			printf("avm:count:%d, sec:%lu, delta:%ldms, fps:%u\n", pic_count, sec, delta, avm_fps);
 		} else {
 			printf("avm:Waiting longer!\n");
 		}
@@ -182,8 +181,6 @@ int buffer_queue_init(unsigned int num, unsigned int size) {
 	avm_bctl.w_idx = 0;
 	avm_bctl.r_idx = 0;
 	avm_bctl.depth = num;
-
-	printf("init succeed!\n");
 
 	return 0;
 }
@@ -249,7 +246,7 @@ void *dequeue(struct avm_buffer_ctrl *ctrl, unsigned length)
 	unsigned long ridx;
 
 	if (length > ctrl->size) {
-		printf("dequeue:length(%d) > size(%d)!\n", length, ctrl->size);
+		printf("dequeue:length > size!\n");
 		return NULL;
 	}
 
@@ -274,6 +271,42 @@ void free_queue(struct avm_buffer_ctrl *ctrl)
 	free(ctrl->buffer);
 }
 
+void *new_consumer(void)
+{
+	int ret;
+	void *buffer;
+	struct avm_buffer_ctrl *ctrl;
+	unsigned long size;
+    uint64_t curr_sec, curr_usec;
+
+	printf("consumer thread is running!\n");
+
+	ctrl = &avm_bctl;
+	size = src_width * src_height * 2;
+	//while(1) {
+		get_time_stamp(&curr_sec, &curr_usec);
+		buffer = dequeue(ctrl, size);
+		if (buffer == NULL) {
+			return NULL;
+		}
+
+		get_time_stamp(&curr_sec, &curr_usec);
+
+		/* simulate convert process */
+		usleep(10000);
+
+		printf("avm:convert ");
+		print_time_diff(curr_sec, curr_usec);
+
+		get_time_stamp(&curr_sec, &curr_usec);
+		prepare_buffer(buffer, size);
+		printf("avm:display ");
+		print_time_diff(curr_sec, curr_usec);
+		pic_count++;
+	//}
+}
+
+
 void *gst_consumer(void *args)
 {
 	int ret;
@@ -282,13 +315,11 @@ void *gst_consumer(void *args)
 	unsigned long size;
     uint64_t curr_sec, curr_usec;
 
-	ctrl = (struct avm_buffer_ctrl *)args;
+	printf("consumer thread is running!\n");
+
+	ctrl = &avm_bctl;
 	size = src_width * src_height * 2;
 	while(1) {
-		if (ctrl->size == 0) {
-			return NULL;
-		}
-
 		get_time_stamp(&curr_sec, &curr_usec);
 		buffer = dequeue(ctrl, size);
 		if (buffer == NULL) {
@@ -298,7 +329,7 @@ void *gst_consumer(void *args)
 		get_time_stamp(&curr_sec, &curr_usec);
 
 		/* simulate convert process */
-	//	usleep(120000);
+		usleep(10000);
 
 		printf("consumer:convert ");
 		print_time_diff(curr_sec, curr_usec);
@@ -311,55 +342,16 @@ void *gst_consumer(void *args)
 	}
 }
 
-void *gst_producer(void *args)
-{
-    uint64_t curr_sec, curr_usec;
-    char *buff;
-	int size, ret;
-	struct avm_buffer_ctrl *ctrl;
-	
-	ctrl = (struct avm_buffer_ctrl *)args;
-	while (1) {
-		printf("producer:start to pull\n");
-        get_time_stamp(&curr_sec, &curr_usec);
-		
-        size = pull_buffer(&buff);
-		if (!size) {
-			printf("[%s]%d size is zero!\n", __func__, __LINE__);
-			continue;
-		}
-		printf("producer:pull end, size:%d ", size);
-
-        print_time_diff(curr_sec, curr_usec);
-
-        get_time_stamp(&curr_sec, &curr_usec);
-
-		//printf("[%s]%d\n", __func__, __LINE__);
-		if (buff == NULL) {
-			printf("[%s]%d, buffer is null!\n", __func__, __LINE__);
-			continue;
-		}
-	
-		printf("producer:start to copy\n");
-		ret = enqueue(buff, size, ctrl);
-		if (ret) {
-			printf("[%s]%d, enqueue failed!\n", __func__, __LINE__);
-			continue;
-		}
-
-		usleep(40000);
-        printf("producer:copy end ");
-        print_time_diff(curr_sec, curr_usec);
-		free_pull_buffer();
-	}
-}
-
 int main(int argc, char *argv[])
 {
     int ret = 0;
     int original_size;
+    uint64_t curr_sec, curr_usec;
+    char *buff, *copy_buffer;
+	int size;
 	struct avm_buffer_ctrl *ctrl;
 	
+	ctrl = &avm_bctl;
 	signal(SIGINT, sig_handler);
     libgst_init(argc, argv);
     parse_opts(argc, argv);
@@ -373,26 +365,46 @@ int main(int argc, char *argv[])
 		printf("init buffer failed!\n");
 		goto release_gst;
 	}
-
-	//usleep(10000);
-	ctrl = &avm_bctl;
-	ret = pthread_create(&producer, NULL, gst_producer, &avm_bctl);
-	if (ret) {
-		printf("create producer failed!\n");
-		goto release_buffer;
-		
-	}
-#if 0
-	ret = pthread_create(&consumer, NULL, gst_consumer, &avm_bctl);
+	ret = pthread_create(&consumer, NULL, gst_consumer, NULL);
 	if (ret) {
 		printf("create consumer failed!\n");
 		goto release_buffer;
 	}
-#endif
-    get_time_stamp(&avm_sec, &avm_usec);
-	gst_consumer(&avm_bctl);
 
-	return 0;
+    get_time_stamp(&avm_sec, &avm_usec);
+    while (1) {
+        get_time_stamp(&curr_sec, &curr_usec);
+		
+        size = pull_buffer(&buff);
+		if (!size) {
+			printf("[%s]%d size is zero!\n", __func__, __LINE__);
+			ret = -1;
+			goto release_buffer;
+		}
+		printf("avm:pull size:%d ", size);
+
+        print_time_diff(curr_sec, curr_usec);
+
+        get_time_stamp(&curr_sec, &curr_usec);
+
+		//printf("[%s]%d\n", __func__, __LINE__);
+		if (buff == NULL) {
+			printf("[%s]%d, buffer is null!\n", __func__, __LINE__);
+			ret = -1;
+			goto release_buffer;
+		}
+	
+		ret = enqueue(buff, size, ctrl);
+		if (ret) {
+			printf("[%s]%d, enqueue failed!\n", __func__, __LINE__);
+			ret = -1;
+			goto release_buffer;
+		}
+		usleep(40000);
+        printf("avm:copy ");
+        print_time_diff(curr_sec, curr_usec);
+		free_pull_buffer();
+	}
 
 release_buffer:
 	free_queue(ctrl);
@@ -400,5 +412,6 @@ release_buffer:
 release_gst:
     gst_appsink_fini();
     gst_appsrc_fini();
+
     return ret;
 }

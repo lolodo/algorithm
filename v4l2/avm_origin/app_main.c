@@ -15,7 +15,7 @@
 #include "avm_common.h"
 
 
-#define BUFFER_CNT 32 
+#define BUFFER_CNT 128 
 
 int dest_port = 8554;
 char *dest_address = "127.0.0.1";
@@ -26,6 +26,7 @@ uint32_t src_height = 720;
 
 uint32_t dest_width = 1280;
 uint32_t dest_height = 720;
+float factor = 3/2;
 
 unsigned int avm_fps = 0;
 unsigned int pic_count = 0;
@@ -142,7 +143,7 @@ void sig_handler(int signo) {
 		printf("===force to quit====\n");
 		if (sec > 0) {
 			avm_fps = pic_count / (unsigned int)sec;
-			printf("avm:count:%d, sec:%lu, delta:%ldms, FPS:%u\n", pic_count, sec, delta, avm_fps);
+			printf("avm:count:%d, sec:%lu, delta:%ldms, fps:%u\n", pic_count, sec, delta, avm_fps);
 		} else {
 			printf("avm:Waiting longer!\n");
 		}
@@ -298,7 +299,7 @@ void *gst_consumer(void *args)
 		get_time_stamp(&curr_sec, &curr_usec);
 
 		/* simulate convert process */
-	//	usleep(120000);
+		usleep(120000);
 
 		printf("consumer:convert ");
 		print_time_diff(curr_sec, curr_usec);
@@ -374,7 +375,7 @@ int main(int argc, char *argv[])
 		goto release_gst;
 	}
 
-	//usleep(10000);
+	usleep(10000);
 	ctrl = &avm_bctl;
 	ret = pthread_create(&producer, NULL, gst_producer, &avm_bctl);
 	if (ret) {

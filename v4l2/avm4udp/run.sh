@@ -5,7 +5,6 @@
 # Created Time: 2017年11月22日 星期三 12时05分34秒
 #########################################################################
 #!/bin/bash
-./gen_vim.sh
 
 if [ ! -d "./build" ]; then
   mkdir ./build
@@ -13,6 +12,7 @@ fi
 
 cd ./build
 cmake ../
+make clean
 make
 if [ $? -ne 0 ]
 then

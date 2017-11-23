@@ -87,37 +87,20 @@ static gboolean bus_message (GstBus * bus, GstMessage * message,  GMainLoop *loo
 
 int pull_buffer(char **buff)
 {
-
-    uint64_t curr_sec, curr_usec;
-
-    get_time_stamp(&curr_sec, &curr_usec);
     sample = gst_app_sink_pull_sample((GstAppSink*)appsink);
     if (sample != NULL) {
-		printf("[%s]%d, ", __func__, __LINE__);
-		print_time_diff(curr_sec, curr_usec);
-
-		get_time_stamp(&curr_sec, &curr_usec);
         recv_buff = gst_sample_get_buffer (sample);
-		printf("[%s]%d, ", __func__, __LINE__);
-		print_time_diff(curr_sec, curr_usec);
-		
-		get_time_stamp(&curr_sec, &curr_usec);
         gst_buffer_map (recv_buff, &map, GST_MAP_READ); 
         if (map.data != NULL) {
             *buff = (char *)map.data;
-			printf("[%s]%d, get map data ", __func__, __LINE__);
-			print_time_diff(curr_sec, curr_usec);
             return map.size;
         } else {
-			printf("[%s]%d, map data is NULL ", __func__, __LINE__);
-			print_time_diff(curr_sec, curr_usec);
             return 0;
         }
     } else {
 		int ret;
 		ret = gst_app_sink_is_eos((GstAppSink *)appsink);
-		printf("[%s]%d, ret is %d ", __func__, __LINE__, ret);
-		print_time_diff(curr_sec, curr_usec);
+		printf("[%s]%d, ret is %d\n", __func__, __LINE__, ret);
 		return 0;
 	}
 }

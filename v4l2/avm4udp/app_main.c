@@ -15,17 +15,18 @@
 #include "avm_common.h"
 
 
-#define BUFFER_CNT 32 
+#define BUFFER_CNT 16 
 
 int dest_port = 8554;
 char *dest_address = "127.0.0.1";
 int v4l2_device = 14;
 
 uint32_t src_width = 1280;
-uint32_t src_height = 720;
+uint32_t src_height = 3200;
 
 uint32_t dest_width = 1280;
-uint32_t dest_height = 720;
+uint32_t dest_height = 800;
+float factor = 3/2;
 
 unsigned int avm_fps = 0;
 unsigned int pic_count = 0;
@@ -35,7 +36,7 @@ pthread_t consumer = 0;
 pthread_t producer = 0;  
 
 char *src_format = "YUY2";
-char *dest_format = "YUY2";
+char *dest_format = "NV12";
 
 int original_image = -1;
 
@@ -113,6 +114,7 @@ void sig_handler(int signo) {
 
 	if (signo == SIGINT){
 		pthread_cancel(producer);
+		libavm_blacksesame_deinit();
 		//pthread_cancel(consumer);
 		printf("avm_sec:%lu, avm_usec:%lu\n", avm_sec, avm_usec);
         get_time_stamp(&sec, &usec);
@@ -142,7 +144,7 @@ void sig_handler(int signo) {
 		printf("===force to quit====\n");
 		if (sec > 0) {
 			avm_fps = pic_count / (unsigned int)sec;
-			printf("avm:count:%d, sec:%lu, delta:%ldms, FPS:%u\n", pic_count, sec, delta, avm_fps);
+			printf("avm:count:%d, sec:%lu, delta:%ldms, fps:%u\n", pic_count, sec, delta, avm_fps);
 		} else {
 			printf("avm:Waiting longer!\n");
 		}
@@ -278,12 +280,22 @@ void *gst_consumer(void *args)
 {
 	int ret;
 	void *buffer;
+	void *convert_buff;
 	struct avm_buffer_ctrl *ctrl;
 	unsigned long size;
+	unsigned long convert_size;
     uint64_t curr_sec, curr_usec;
 
 	ctrl = (struct avm_buffer_ctrl *)args;
 	size = src_width * src_height * 2;
+
+	convert_size = (dest_width * dest_height * 3) / 2;
+	convert_buff = malloc(size);
+	if (convert_buff == NULL) {
+		printf("convert_buff unavailable!\n");
+		return NULL;
+	}
+	
 	while(1) {
 		if (ctrl->size == 0) {
 			return NULL;
@@ -298,13 +310,13 @@ void *gst_consumer(void *args)
 		get_time_stamp(&curr_sec, &curr_usec);
 
 		/* simulate convert process */
-	//	usleep(120000);
+		libavm_blacksesame_convert_image(buffer, size, convert_buff, convert_size);	
 
 		printf("consumer:convert ");
 		print_time_diff(curr_sec, curr_usec);
 
 		get_time_stamp(&curr_sec, &curr_usec);
-		prepare_buffer(buffer, size);
+		prepare_buffer(convert_buff, convert_size);
 		printf("consumer:display ");
 		print_time_diff(curr_sec, curr_usec);
 		pic_count++;
@@ -367,6 +379,12 @@ int main(int argc, char *argv[])
     gst_appsink_init(); 
     gst_appsrc_init(); 
 
+	ret = libavm_blacksesame_init();
+	if (ret != 0) {
+		printf("[%s]%d ret:%d\n", __func__, __LINE__, ret);
+		return ret;	
+	}
+
     original_size = src_width * src_height * 2;
 	ret = buffer_queue_init(BUFFER_CNT,original_size);
 	if (ret) {
@@ -374,7 +392,7 @@ int main(int argc, char *argv[])
 		goto release_gst;
 	}
 
-	//usleep(10000);
+	usleep(10000);
 	ctrl = &avm_bctl;
 	ret = pthread_create(&producer, NULL, gst_producer, &avm_bctl);
 	if (ret) {

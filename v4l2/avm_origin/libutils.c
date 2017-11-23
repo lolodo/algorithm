@@ -17,15 +17,13 @@ uint64_t print_time_diff(uint64_t orig_sec, uint64_t orig_usec)
     uint64_t curr_sec, curr_usec, delta;
     get_time_stamp(&curr_sec, &curr_usec);
     if (curr_sec > orig_sec)
-        //delta = (1000000 + curr_usec - orig_usec) / 1000;
-        delta = 1000000 + curr_usec - orig_usec;
+        delta = (1000000 + curr_usec - orig_usec) / 1000;
     else
-        delta = curr_usec - orig_usec;
-        //delta = (curr_usec - orig_usec) / 1000;
+        delta = (curr_usec - orig_usec) / 1000;
 	
-	printf("s:%lu us:%lu delta:%luus\n", curr_sec, curr_usec, delta);
+   // printf("s:%lu us:%lu delta:%lums\n", curr_sec, curr_usec, delta);
     
-    //printf("delta:%lums\n", delta);
+    printf("delta:%lums\n", delta);
     return delta;
 }
 

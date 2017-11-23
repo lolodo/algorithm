@@ -1,0 +1,13 @@
+StatFreq=4
+StatL=8
+StatH=248
+ThresRatio=14
+ThresL=16
+ThresH=128
+DSIntvl=2
+nDataL=4
+beta=1
+tcRatio=4
+tcH=16
+gMgn=0.05
+Spd=1
