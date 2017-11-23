@@ -14,8 +14,8 @@
 #include <errno.h>
 #include "avm_common.h"
 
-#define BUFFER_CNT 8
-#define BUFFER_WATERLINE 4
+#define BUFFER_CNT 4 
+#define BUFFER_WATERLINE 3
 
 int dest_port = 8554;
 char *dest_address = "127.0.0.1";
@@ -256,22 +256,22 @@ int enqueue(void *single_image, unsigned length, struct avm_buffer_ctrl *ctrl)
 		return -1;
 	}
 
-	if (check_if_write_available() < 2) {
+	if (check_if_write_available() < BUFFER_WATERLINE) {
 		pthread_mutex_lock(&(ctrl->mutex));
 		pthread_cond_wait(&(ctrl->consume_cond), &(ctrl->mutex));
 		pthread_mutex_unlock(&(ctrl->mutex));
 		return -1;
 	}
 
-//	pthread_mutex_lock(&(ctrl->mutex));
+	pthread_mutex_lock(&(ctrl->mutex));
 
 	widx = (ctrl->w_idx) % (ctrl->depth);
 	start = (void *)((unsigned long)ctrl->buffer + widx * size);
 	memcpy(start, single_image, length);
 	ctrl->w_idx++;
 
-//	pthread_cond_signal(&(ctrl->produce_cond));
-//	pthread_mutex_unlock(&(ctrl->mutex));
+	pthread_cond_signal(&(ctrl->produce_cond));
+	pthread_mutex_unlock(&(ctrl->mutex));
 	printf("enqueue:widx:%ld\n", ctrl->w_idx);
 
 	return 0;
@@ -301,11 +301,9 @@ void *dequeue(struct avm_buffer_ctrl *ctrl, unsigned length)
 	}
 
 	if (!check_if_read_available()) {
-#if 0
 		pthread_mutex_lock(&(ctrl->mutex));
 		pthread_cond_wait(&(ctrl->produce_cond), &(ctrl->mutex));
 		pthread_mutex_unlock(&(ctrl->mutex));
-#endif
 		return NULL;
 	}
 	
@@ -393,7 +391,7 @@ void *gst_consumer(void *args)
 		printf("consumer:convert ");
 
 		/* Simulate converting */
-		usleep(250000);
+		usleep(320000);
 
 		print_time_diff(curr_sec, curr_usec);
 
