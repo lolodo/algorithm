@@ -55,6 +55,7 @@ dkms.conf
 *.class
 .DS_Store
 
+build/
 v4l2/avm/build
 cscope.*
 tags
