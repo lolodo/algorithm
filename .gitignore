@@ -54,3 +54,5 @@ dkms.conf
 #java
 *.class
 .DS_Store
+
+v4l2/avm/build
