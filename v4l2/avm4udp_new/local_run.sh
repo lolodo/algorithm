@@ -19,6 +19,7 @@ then
    echo "make error"
 else
    echo "make success!"
-   ./avm_blacksesame -p 8554 -d 127.0.0.1 -v 0
+   ./avm_blacksesame -p 8554 -d 127.0.0.1 -m 1 -v 0
+   #./avm_blacksesame -p 8554 -d 127.0.0.1 -v 0
 fi
 

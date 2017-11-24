@@ -15,7 +15,7 @@
 #include "avm_common.h"
 
 //#define BOARD_DEV
-//#define USB_CAMERA 
+#define USB_CAMERA 
 #define BUFFER_CNT 4 
 #define BUFFER_WATERLINE 3
 
@@ -49,6 +49,7 @@ char *dest_format = "YUY2";
 #endif
 float factor = 3/2;
 
+unsigned int free_flag = 0;
 unsigned int avm_fps = 0;
 unsigned int pic_count = 0;
 unsigned int avm_play_time = 0;
@@ -59,12 +60,19 @@ pthread_t producer = 0;
 int original_image = -1;
 int app_debug = 0;
 
+enum avm_thread_mode {
+	SINGLE_THREAD,
+	MULTI_THREAD,
+	MODE_BUTTOM
+};
+
 struct avm_buffer_ctrl {
 	void *buffer;
 	unsigned long w_idx;
 	unsigned long r_idx;
 	unsigned long depth;
 	unsigned long size;
+	int convert_delay;
 
 #ifdef BOARD_DEV
 	void *convert_buffer;
@@ -73,6 +81,8 @@ struct avm_buffer_ctrl {
 	pthread_mutex_t mutex;
 	pthread_cond_t consume_cond;
 	pthread_cond_t produce_cond;
+
+	enum avm_thread_mode thread_mode;
 };
 
 struct avm_buffer_ctrl avm_bctl; 
@@ -85,6 +95,8 @@ static void print_usage(const char *prog)
             "  -d --dest                specfiy dest address to send\n"
             "  -o --original            specfiy which original camera num to display\n"
             "  -v --v4l2device          specfiy v4l2 device file, 14 for /dev/video14\n"
+			"  -m --mode                specfiy thread mode\n"
+			"  -l --delay				specfiy convert delay(ms)\n"
             "  -h --help                print help info \n");
     exit(1);
 }
@@ -97,12 +109,14 @@ static void parse_opts(int argc, char *argv[])
             { "dest", 1, 0, 'd' },
             { "original", 1, 0, 'o' },
             { "v4l2device", 1, 0, 'v' },
+			{ "mode", 1, 0, 'm' },
+			{ "delay", 1, 0, 'l' },
             { "help", 0, 0, 'h' },
             { NULL, 0, 0, 0 },
         };
         int c;
 
-        c = getopt_long(argc, argv, "d:ho:p:v:", lopts, NULL);
+        c = getopt_long(argc, argv, "d:ho:p:v:m:l:", lopts, NULL);
 
         if (c == -1)
             break;
@@ -119,9 +133,23 @@ static void parse_opts(int argc, char *argv[])
                 break;
             case 'o':
                 original_image = atoi(optarg);
-                if (original_image < 0 && original_image > 3)
+                if (original_image < 0 || original_image > 3)
                     original_image = -1;
                 break;
+			case 'm':
+				avm_bctl.thread_mode = atoi(optarg);
+				if (avm_bctl.thread_mode >= MODE_BUTTOM) {
+					printf("thread mode is error:%d\n", avm_bctl.thread_mode);
+					avm_bctl.thread_mode = 0;
+				}
+				break;
+			case 'l':
+				avm_bctl.convert_delay = atoi(optarg);
+				printf("convert_delay:%d\n", avm_bctl.convert_delay);
+				if (avm_bctl.convert_delay < 0) {
+					avm_bctl.convert_delay = 0;
+				}
+				break;
             case '?':
             case 'h':
             default:
@@ -136,12 +164,16 @@ static void parse_opts(int argc, char *argv[])
 void sig_handler(int signo) {
 	uint64_t sec, usec;
 	int64_t delta;
+	struct avm_buffer_ctrl *ctrl; 
 
+	ctrl = &avm_bctl;
 	if (signo == SIGINT){
-		avm_bctl.size = 0;
-		
-		pthread_cond_signal(&(avm_bctl.produce_cond));
-		pthread_cond_signal(&(avm_bctl.consume_cond));
+		ctrl->size = 0;
+
+		if (ctrl->thread_mode == MULTI_THREAD) {
+			pthread_cond_signal(&(ctrl->produce_cond));
+			pthread_cond_signal(&(ctrl->consume_cond));
+		}
 		
 		//pthread_cancel(producer);
 		//pthread_cancel(consumer);
@@ -170,29 +202,42 @@ void sig_handler(int signo) {
 			goto out;
 		}
 
-		printf("===force to quit====\n");
+		printf("====force to quit====\n");
 		if (sec > 0) {
-			avm_fps = pic_count / (unsigned int)sec;
-			printf("============avm:count:%d, sec:%lu, delta:%ldms, fps:%u============\n", pic_count, sec, delta, avm_fps);
+			avm_fps = (pic_count - 5) / (unsigned int)sec;
+			printf("====avm:count:%d, sec:%lu, delta:%ldms, fps:%u====\n", pic_count, sec, delta, avm_fps);
 		} else {
 			printf("avm:Waiting longer!\n");
 		}
 out:
-		pthread_mutex_destroy(&(avm_bctl.mutex));
-		pthread_cond_destroy(&(avm_bctl.produce_cond));
-		pthread_cond_destroy(&(avm_bctl.consume_cond));
-		
-		gst_appsrc_fini();
-		gst_appsink_fini();
-		free_queue(&avm_bctl);
+		if (ctrl->thread_mode == MULTI_THREAD) {
+			printf("[%s]====kill producer and consumer!====\n", __func__);
+			pthread_cancel(producer);
+			pthread_cancel(consumer);
+			printf("[%s]====free mutex and cond!====\n", __func__);
+			//pthread_mutex_destroy(&(ctrl->mutex));
+			//pthread_cond_destroy(&(ctrl->produce_cond));
+			//pthread_cond_destroy(&(ctrl->consume_cond));
+		}
+
+		if (free_flag == 0){
+			printf("[%s]====free gst/avm/buffer!====\n", __func__);
+			gst_appsrc_fini();
+			gst_appsink_fini();
 #ifdef BOARD_DEV
-		libavm_blacksesame_deinit();
+			libavm_blacksesame_deinit();
 #endif
+			free_queue(ctrl);
+		}
+		
+		free_flag = 1;
 	}
 }
 
-int buffer_queue_init(unsigned int num, unsigned int size) {
+int buffer_queue_init(unsigned int num, unsigned int size) 
+{
 	void *buffer;
+	unsigned long convert_factor;
 	
 	if (num == 0 || size == 0) {
 		printf("input error, num:%u, size:%u\n", num, size);
@@ -216,7 +261,13 @@ int buffer_queue_init(unsigned int num, unsigned int size) {
 	}	
 
 #ifdef BOARD_DEV
-	avm_bctl.convert_size = (dest_width * dest_height * 3) / 2;
+	if (!strcmp(dest_format, "NV12")) {
+		convert_factor = 3;
+	} else if (!strcmp(dest_format, "YUY2"){
+		convert_factor = 4;
+	}
+
+	avm_bctl.convert_size = (dest_width * dest_height * convert_factor) / 2;
 	avm_bctl.convert_buffer = malloc(avm_bctl.convert_size);
 	if (avm_bctl.convert_buffer == NULL) {
 		printf("convert_buff unavailable!\n");
@@ -229,12 +280,14 @@ int buffer_queue_init(unsigned int num, unsigned int size) {
 	avm_bctl.w_idx = 0;
 	avm_bctl.r_idx = 0;
 	avm_bctl.depth = num;
-	avm_bctl.depth = num;
+	
+	if (avm_bctl.thread_mode == MULTI_THREAD) {
+		pthread_mutex_init(&(avm_bctl.mutex), NULL);
+		pthread_cond_init(&(avm_bctl.produce_cond), NULL);
+		pthread_cond_init(&(avm_bctl.consume_cond), NULL);
+	}
 
-	pthread_mutex_init(&(avm_bctl.mutex), NULL);
-	pthread_cond_init(&(avm_bctl.produce_cond), NULL);
-	pthread_cond_init(&(avm_bctl.consume_cond), NULL);
-
+	free_flag = 0;
 	printf("init succeed!\n");
 
 	return 0;
@@ -354,16 +407,21 @@ void *dequeue(struct avm_buffer_ctrl *ctrl, unsigned length)
 
 void free_queue(struct avm_buffer_ctrl *ctrl)
 {
+	if (ctrl->depth == 0){
+		return;
+	}
+
 	ctrl->w_idx = 0;
 	ctrl->r_idx = 0;
 	ctrl->size = 0;
-	ctrl->depth = 0;
 	free(ctrl->buffer);
 
 #ifdef BOARD_DEV
 	free(ctrl->convert_buffer);
 	ctrl->convert_size = 0;
 #endif
+
+	ctrl->depth = 0;
 }
 
 void *gst_consumer(void *args)
@@ -388,9 +446,7 @@ void *gst_consumer(void *args)
 #endif
 
 	size = src_width * src_height * 2;
-	
 
-	printf("consumer:start to run!\n");
     get_time_stamp(&avm_sec, &avm_usec);
 	while(1) {
 		if (ctrl->size == 0) {
@@ -403,47 +459,46 @@ void *gst_consumer(void *args)
 			continue;
 		}
 
+		printf("[%s]:dequeue buffer ", __func__);
+		print_time_diff(curr_sec, curr_usec);
 		get_time_stamp(&curr_sec, &curr_usec);
-
 #ifdef BOARD_DEV
 		libavm_blacksesame_convert_image(buffer, size, convert_buffer, convert_size);	
 
-		printf("consumer:convert ");
+		printf("[%s]:convert buffer ", __func__);
 		print_time_diff(curr_sec, curr_usec);
 
 		get_time_stamp(&curr_sec, &curr_usec);
 		prepare_buffer(convert_buffer, convert_size);
-		printf("consumer:display ");
+		printf("[%s]:display buffer ", __func__);
 		print_time_diff(curr_sec, curr_usec);
-		pic_count++;
 #else
-
-		printf("consumer:convert ");
-
 		/* Simulate converting */
-		//usleep(120000);
+		if(ctrl->convert_delay) {
+			usleep(1000 * ctrl->convert_delay);
+		}
 
+		printf("[%s]:convert buffer ", __func__);
 		print_time_diff(curr_sec, curr_usec);
 
 		get_time_stamp(&curr_sec, &curr_usec);
 		prepare_buffer(buffer, size);
-		printf("consumer:display ");
+		printf("[%s]:display buffer ", __func__);
 		print_time_diff(curr_sec, curr_usec);
+#endif
 		pic_count++;
 
 		if (pic_count < 5) {
 			get_time_stamp(&avm_sec, &avm_usec);
+		
 		}
-#endif
 	}
-
 	pthread_exit(0);
 }
 
 void *gst_producer(void *args)
 {
     uint64_t curr_sec, curr_usec;
-    uint64_t sec, usec;
     char *buff;
 	int size, ret;
 	static int count = 0;
@@ -455,28 +510,21 @@ void *gst_producer(void *args)
 			break;
 		}
 
-		printf("producer:start to pull\n");
         get_time_stamp(&curr_sec, &curr_usec);
-        get_time_stamp(&sec, &usec);
-		
         size = pull_buffer(&buff);
 		if (!size) {
 			printf("[%s]%d size is zero!\n", __func__, __LINE__);
 			continue;
 		}
-		printf("producer:pull end, size:%d ", size);
-
+		
+		printf("[%s]:pull buffer ", __func__);
         print_time_diff(curr_sec, curr_usec);
-
         get_time_stamp(&curr_sec, &curr_usec);
-
-		//printf("[%s]%d\n", __func__, __LINE__);
 		if (buff == NULL) {
 			printf("[%s]%d, buffer is null!\n", __func__, __LINE__);
 			continue;
 		}
 	
-		printf("producer:start to copy\n");
 		ret = enqueue(buff, size, ctrl);
 		if (ret) {
 			free_pull_buffer();
@@ -484,7 +532,7 @@ void *gst_producer(void *args)
 			continue;
 		}
 
-        printf("producer:copy end ");
+		printf("[%s]:enqueue buffer ", __func__);
         print_time_diff(curr_sec, curr_usec);
 		free_pull_buffer();
 		count++;
@@ -493,12 +541,96 @@ void *gst_producer(void *args)
 	pthread_exit(0);
 }
 
+void single_thread_run(struct avm_buffer_ctrl *ctrl)
+{
+	unsigned long src_size, dst_size;
+	void *src_buffer;
+	void *dst_buffer;
+    uint64_t curr_sec, curr_usec;
+
+#ifdef BOARD_DEV
+	void *output_buffer;
+	unsigned long convert_size;
+	convert_size = ctrl->convert_size;
+	output_buffer = ctrl->convert_buffer;
+#endif
+
+	dst_buffer= ctrl->buffer;
+	dst_size = ctrl->size;
+	while (1) {
+		if (ctrl->size == 0) {
+			break;
+		}
+
+		get_time_stamp(&curr_sec, &curr_usec);
+		src_size = pull_buffer(&src_buffer);
+		if (!src_size) {
+			printf("[%s]src_size is zero!\n", __func__);
+			continue;
+		}
+
+		if (!src_buffer) {
+			printf("[%s]src_buffer is NULL!\n", __func__);
+			continue;
+		}
+
+		if (src_size > dst_size) {
+			printf("[%s]%d, src size is %lu, dst size is %lu\n", __func__, __LINE__, src_size, dst_size);
+			src_size = dst_size;
+		}
+		
+		printf("[%s]pull buffer ", __func__);
+		print_time_diff(curr_sec, curr_usec);
+		
+		get_time_stamp(&curr_sec, &curr_usec);
+
+#ifdef BOARD_DEV
+		memcpy(dst_buffer, src_buffer, src_size);
+#endif
+		printf("[%s]copy buffer ", __func__);
+		print_time_diff(curr_sec, curr_usec);
+
+		get_time_stamp(&curr_sec, &curr_usec);
+		if (ctrl->convert_delay) {
+			usleep(1000 * ctrl->convert_delay);
+		}
+
+#ifdef BOARD_DEV
+		if (original_image != -1) {
+			prepare_buffer(buffer + convert_size * original_image, convert_size);
+		} else {
+			ret = libavm_blacksesame_convert_image(dst_buffer, dst_size, output_buffer, convert_size);
+			if (ret) {
+				printf("convert failed\n");
+				continue;
+			}
+			prepare_buffer(output_buffer, convert_size);
+		}
+
+#else
+		prepare_buffer(src_buffer, src_size);
+#endif
+		printf("[%s]convert buffer ", __func__);
+		print_time_diff(curr_sec, curr_usec);
+
+		free_pull_buffer();
+		pic_count++;
+		if (pic_count < 5) {
+			get_time_stamp(&avm_sec, &avm_usec);
+		}
+	}
+}
+
 int main(int argc, char *argv[])
 {
     int ret = 0;
     int original_size;
 	struct avm_buffer_ctrl *ctrl;
-	
+
+	printf("[%s]init start!\n", __func__);
+	ctrl = &avm_bctl;
+	memset(ctrl, 0, sizeof(struct avm_buffer_ctrl));
+
 	signal(SIGINT, sig_handler);
     libgst_init(argc, argv);
     parse_opts(argc, argv);
@@ -521,36 +653,52 @@ int main(int argc, char *argv[])
 		goto release_black;
 	}
 
-	ctrl = &avm_bctl;
-	ret = pthread_create(&producer, NULL, gst_producer, &avm_bctl);
-	if (ret) {
-		printf("create producer failed!\n");
-		goto release_buffer;
-		
+	printf("[%s]init end!\n", __func__);
+	if (ctrl->thread_mode == SINGLE_THREAD ){
+		printf("[%s]single_thread_run!\n", __func__);
+		single_thread_run(ctrl);
+	} else {
+		printf("[%s]multi_thread_run!\n", __func__);
+		ret = pthread_create(&producer, NULL, gst_producer, ctrl);
+		if (ret) {
+			printf("create producer failed!\n");
+			goto release_buffer;
+		}
+
+		ret = pthread_create(&consumer, NULL, gst_consumer, ctrl);
+		if (ret) {
+			printf("create producer failed!\n");
+			goto release_buffer;
+		}	
+
+		/* block threads */
+		pthread_join(producer, NULL);
+		pthread_join(consumer, NULL);
 	}
-
-	ret = pthread_create(&consumer, NULL, gst_consumer, &avm_bctl);
-	if (ret) {
-		printf("create producer failed!\n");
-		goto release_buffer;
-	}	
-
-	/* block threads */
-	pthread_join(producer, NULL);
-	pthread_join(consumer, NULL);
 
 	return 0;
 
 release_buffer:
-	free_queue(ctrl);
+	if (free_flag == 0){
+		printf("[%s]====free buffer====\n", __func__);
+		free_queue(ctrl);
+	}
 
 release_black:
 #ifdef BOARD_DEV
-	libavm_blacksesame_deinit();
+	if (free_flag == 0){
+		printf("[%s]====free avm====\n", __func__);
+		libavm_blacksesame_deinit();
+	}
 #endif
 
 release_gst:
-    gst_appsink_fini();
-    gst_appsrc_fini();
+	if (free_flag == 0){
+		printf("[%s]====free gst====\n", __func__);
+	    gst_appsink_fini();
+		gst_appsrc_fini();
+	}
+
+	free_flag = 1;
     return ret;
 }
