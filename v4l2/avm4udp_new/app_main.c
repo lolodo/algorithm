@@ -138,20 +138,13 @@ void sig_handler(int signo) {
 	int64_t delta;
 
 	if (signo == SIGINT){
-		pthread_cancel(producer);
-		pthread_cancel(consumer);
-		pthread_mutex_destroy(&(avm_bctl.mutex));
-		pthread_cond_destroy(&(avm_bctl.produce_cond));
-		pthread_cond_destroy(&(avm_bctl.consume_cond));
-
 		avm_bctl.size = 0;
 		
-		gst_appsrc_fini();
-		gst_appsink_fini();
-		free_queue(&avm_bctl);
-#ifdef BOARD_DEV
-		libavm_blacksesame_deinit();
-#endif
+		pthread_cond_signal(&(avm_bctl.produce_cond));
+		pthread_cond_signal(&(avm_bctl.consume_cond));
+		
+		//pthread_cancel(producer);
+		//pthread_cancel(consumer);
 		printf("avm_sec:%lu, avm_usec:%lu\n", avm_sec, avm_usec);
         get_time_stamp(&sec, &usec);
 		printf("sec:%lu, usec:%lu\n", sec, usec);
@@ -170,11 +163,11 @@ void sig_handler(int signo) {
 			delta = (usec - avm_usec) / 1000;
 			if (delta < 0) {
 				printf("delta < 0!\n");
-				return;
+				goto out;
 			}
 		} else {
 			printf("sec < avm_sec!\n");
-			return;
+			goto out;
 		}
 
 		printf("===force to quit====\n");
@@ -184,7 +177,17 @@ void sig_handler(int signo) {
 		} else {
 			printf("avm:Waiting longer!\n");
 		}
-
+out:
+		pthread_mutex_destroy(&(avm_bctl.mutex));
+		pthread_cond_destroy(&(avm_bctl.produce_cond));
+		pthread_cond_destroy(&(avm_bctl.consume_cond));
+		
+		gst_appsrc_fini();
+		gst_appsink_fini();
+		free_queue(&avm_bctl);
+#ifdef BOARD_DEV
+		libavm_blacksesame_deinit();
+#endif
 	}
 }
 
@@ -259,6 +262,7 @@ int enqueue(void *single_image, unsigned length, struct avm_buffer_ctrl *ctrl)
 	void *start;
 	unsigned long widx;
 	unsigned long size;
+	int ret = 0;
 
 	size = ctrl->size;
 	if (length > size) {
@@ -268,9 +272,22 @@ int enqueue(void *single_image, unsigned length, struct avm_buffer_ctrl *ctrl)
 
 	if (check_if_write_available() < BUFFER_WATERLINE) {
 		pthread_mutex_lock(&(ctrl->mutex));
+		free_pull_buffer();
+		length = pull_buffer(&single_image);
+		if (length > size) {
+			ret = -1;
+		}
+
+		if (single_image == NULL) {
+			ret = -1 ;
+		}
+
 		pthread_cond_wait(&(ctrl->consume_cond), &(ctrl->mutex));
 		pthread_mutex_unlock(&(ctrl->mutex));
-		return -1;
+
+		if (ret) {
+			return ret;
+		}
 	}
 
 	pthread_mutex_lock(&(ctrl->mutex));
@@ -377,7 +394,7 @@ void *gst_consumer(void *args)
     get_time_stamp(&avm_sec, &avm_usec);
 	while(1) {
 		if (ctrl->size == 0) {
-			return NULL;
+			break;
 		}
 
 		get_time_stamp(&curr_sec, &curr_usec);
@@ -419,6 +436,8 @@ void *gst_consumer(void *args)
 		}
 #endif
 	}
+
+	pthread_exit(0);
 }
 
 void *gst_producer(void *args)
@@ -432,6 +451,10 @@ void *gst_producer(void *args)
 	
 	ctrl = (struct avm_buffer_ctrl *)args;
 	while (1) {
+		if (ctrl->size == 0) {
+			break;
+		}
+
 		printf("producer:start to pull\n");
         get_time_stamp(&curr_sec, &curr_usec);
         get_time_stamp(&sec, &usec);
@@ -466,6 +489,8 @@ void *gst_producer(void *args)
 		free_pull_buffer();
 		count++;
 	}
+
+	pthread_exit(0);
 }
 
 int main(int argc, char *argv[])

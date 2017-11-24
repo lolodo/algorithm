@@ -203,7 +203,7 @@ int gst_appsink_init()
                 "width", G_TYPE_INT, src_width,
                 "height", G_TYPE_INT, src_height,
                 NULL), NULL);
-    gst_app_sink_set_max_buffers(appsink, 10);
+    gst_app_sink_set_max_buffers(appsink, 1);
     g_object_set (G_OBJECT (appsink),
             "drop", TRUE, NULL);
 
