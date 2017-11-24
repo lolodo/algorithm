@@ -263,7 +263,7 @@ int buffer_queue_init(unsigned int num, unsigned int size)
 #ifdef BOARD_DEV
 	if (!strcmp(dest_format, "NV12")) {
 		convert_factor = 3;
-	} else if (!strcmp(dest_format, "YUY2"){
+	} else if (!strcmp(dest_format, "YUY2")){
 		convert_factor = 4;
 	}
 
@@ -549,6 +549,7 @@ void single_thread_run(struct avm_buffer_ctrl *ctrl)
     uint64_t curr_sec, curr_usec;
 
 #ifdef BOARD_DEV
+	int ret;
 	void *output_buffer;
 	unsigned long convert_size;
 	convert_size = ctrl->convert_size;
@@ -585,7 +586,10 @@ void single_thread_run(struct avm_buffer_ctrl *ctrl)
 		get_time_stamp(&curr_sec, &curr_usec);
 
 #ifdef BOARD_DEV
-		memcpy(dst_buffer, src_buffer, src_size);
+	//	if (original_image == -1) {
+			memcpy(dst_buffer, src_buffer, src_size);
+			free_pull_buffer();
+	//	}
 #endif
 		printf("[%s]copy buffer ", __func__);
 		print_time_diff(curr_sec, curr_usec);
@@ -597,7 +601,9 @@ void single_thread_run(struct avm_buffer_ctrl *ctrl)
 
 #ifdef BOARD_DEV
 		if (original_image != -1) {
-			prepare_buffer(buffer + convert_size * original_image, convert_size);
+			printf("[%s]display the %dth image, size:%d!\n", __func__, original_image, convert_size);
+			prepare_buffer(dst_buffer + convert_size * original_image, convert_size);
+			//free_pull_buffer();
 		} else {
 			ret = libavm_blacksesame_convert_image(dst_buffer, dst_size, output_buffer, convert_size);
 			if (ret) {
@@ -609,11 +615,11 @@ void single_thread_run(struct avm_buffer_ctrl *ctrl)
 
 #else
 		prepare_buffer(src_buffer, src_size);
+		free_pull_buffer();
 #endif
 		printf("[%s]convert buffer ", __func__);
 		print_time_diff(curr_sec, curr_usec);
 
-		free_pull_buffer();
 		pic_count++;
 		if (pic_count < 5) {
 			get_time_stamp(&avm_sec, &avm_usec);
@@ -634,6 +640,12 @@ int main(int argc, char *argv[])
 	signal(SIGINT, sig_handler);
     libgst_init(argc, argv);
     parse_opts(argc, argv);
+
+#ifdef BOARD_DEV
+	if (original_image != -1) {
+		dest_format = src_format;
+	}
+#endif
 
     gst_appsink_init(); 
     gst_appsrc_init(); 
