@@ -1,4 +1,4 @@
-package com.example.liufangyuan.databasetest;
+package com.example.alex.databasetest;
 
 import org.junit.Test;
 
