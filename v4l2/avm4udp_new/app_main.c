@@ -15,7 +15,7 @@
 #include "avm_common.h"
 
 //#define BOARD_DEV
-#define USB_CAMERA 
+//#define USB_CAMERA 
 #define BUFFER_CNT 4 
 #define BUFFER_WATERLINE 3
 
