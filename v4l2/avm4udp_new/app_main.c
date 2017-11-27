@@ -14,7 +14,7 @@
 #include <errno.h>
 #include "avm_common.h"
 
-//#define BOARD_DEV
+#define BOARD_DEV
 //#define USB_CAMERA 
 #define BUFFER_CNT 4 
 #define BUFFER_WATERLINE 3
@@ -73,6 +73,7 @@ struct avm_buffer_ctrl {
 	unsigned long depth;
 	unsigned long size;
 	int convert_delay;
+	unsigned long no_cpy;
 
 #ifdef BOARD_DEV
 	void *convert_buffer;
@@ -92,11 +93,12 @@ static void print_usage(const char *prog)
 {
     printf("Usage: %s [options]\n", prog);
     puts(   "  -p --port                specify port to send\n"
-            "  -d --dest                specfiy dest address to send\n"
-            "  -o --original            specfiy which original camera num to display\n"
-            "  -v --v4l2device          specfiy v4l2 device file, 14 for /dev/video14\n"
-			"  -m --mode                specfiy thread mode\n"
-			"  -l --delay				specfiy convert delay(ms)\n"
+            "  -d --dest                specify dest address to send\n"
+            "  -o --original            specify which original camera num to display\n"
+            "  -v --v4l2device          specify v4l2 device file, 14 for /dev/video14\n"
+			"  -m --mode                specify thread mode\n"
+			"  -l --delay				specify convert delay(ms)\n"
+			"  -n --nocopy              specify if copy memory\n"
             "  -h --help                print help info \n");
     exit(1);
 }
@@ -111,12 +113,13 @@ static void parse_opts(int argc, char *argv[])
             { "v4l2device", 1, 0, 'v' },
 			{ "mode", 1, 0, 'm' },
 			{ "delay", 1, 0, 'l' },
+			{ "nocopy", 1, 0, 'n' },
             { "help", 0, 0, 'h' },
             { NULL, 0, 0, 0 },
         };
         int c;
 
-        c = getopt_long(argc, argv, "d:ho:p:v:m:l:", lopts, NULL);
+        c = getopt_long(argc, argv, "d:ho:p:v:m:l:n:", lopts, NULL);
 
         if (c == -1)
             break;
@@ -149,6 +152,10 @@ static void parse_opts(int argc, char *argv[])
 				if (avm_bctl.convert_delay < 0) {
 					avm_bctl.convert_delay = 0;
 				}
+				break;
+			case 'n':
+				avm_bctl.no_cpy = !!(atoi(optarg));
+				printf("no copy:%d\n", avm_bctl.no_cpy);
 				break;
             case '?':
             case 'h':
@@ -580,17 +587,17 @@ void single_thread_run(struct avm_buffer_ctrl *ctrl)
 			src_size = dst_size;
 		}
 		
+		printf("\n\n======begin======\n");
 		printf("[%s]pull buffer ", __func__);
 		print_time_diff(curr_sec, curr_usec);
 		
 		get_time_stamp(&curr_sec, &curr_usec);
 
-#ifdef BOARD_DEV
-	//	if (original_image == -1) {
+		if (!(ctrl->no_cpy)) {
 			memcpy(dst_buffer, src_buffer, src_size);
 			free_pull_buffer();
-	//	}
-#endif
+		}
+
 		printf("[%s]copy buffer ", __func__);
 		print_time_diff(curr_sec, curr_usec);
 
@@ -602,24 +609,46 @@ void single_thread_run(struct avm_buffer_ctrl *ctrl)
 #ifdef BOARD_DEV
 		if (original_image != -1) {
 			printf("[%s]display the %dth image, size:%d!\n", __func__, original_image, convert_size);
-			prepare_buffer(dst_buffer + convert_size * original_image, convert_size);
-			//free_pull_buffer();
+			if (ctrl->no_cpy) {
+				prepare_buffer(src_buffer + convert_size * original_image, convert_size);
+				free_pull_buffer();
+			} else {
+				prepare_buffer(dst_buffer + convert_size * original_image, convert_size);
+			}
 		} else {
-			ret = libavm_blacksesame_convert_image(dst_buffer, dst_size, output_buffer, convert_size);
+			if (ctrl->no_cpy) {
+				ret = libavm_blacksesame_convert_image(src_buffer, src_size, output_buffer, convert_size);
+			} else {
+				ret = libavm_blacksesame_convert_image(dst_buffer, dst_size, output_buffer, convert_size);
+			}
+
 			if (ret) {
 				printf("convert failed\n");
+				if (ctrl->no_cpy) {
+					free_pull_buffer();
+				}
+
 				continue;
 			}
+
 			prepare_buffer(output_buffer, convert_size);
+			if (ctrl->no_cpy) {
+				free_pull_buffer();
+			}
 		}
 
 #else
-		prepare_buffer(src_buffer, src_size);
-		free_pull_buffer();
+		if (ctrl->no_cpy) {
+			prepare_buffer(src_buffer, src_size);
+			free_pull_buffer();
+		} else {
+			prepare_buffer(dst_buffer, dst_size);
+		}
 #endif
 		printf("[%s]convert buffer ", __func__);
 		print_time_diff(curr_sec, curr_usec);
-
+		printf("======end======\n\n");
+		
 		pic_count++;
 		if (pic_count < 5) {
 			get_time_stamp(&avm_sec, &avm_usec);
