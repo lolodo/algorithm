@@ -11,6 +11,8 @@
 #include <string.h>
 #include <signal.h>
 #include <time.h>
+#define __USE_GNU  
+#include <sched.h> 
 #include <pthread.h>  
 #include <errno.h>
 #include "avm_common.h"
@@ -23,6 +25,7 @@
 int dest_port = 8554;
 char *dest_address = "127.0.0.1";
 int v4l2_device = 14;
+int sync_main_wait = 1;
 
 char *src_format = "YUY2";
 #ifdef BOARD_DEV
@@ -76,6 +79,8 @@ struct avm_buffer_ctrl {
 	unsigned long size;
 	int convert_delay;
 	unsigned long no_cpy;
+	unsigned long dequeue_flag;
+	unsigned long enqueue_flag;
 
 #ifdef BOARD_DEV
 	void *convert_buffer;
@@ -329,6 +334,7 @@ unsigned long check_if_write_available(void)
 	return number;
 }
 
+int sync_enqueue_wait = 0;
 int sync_enqueue(struct avm_buffer_ctrl *ctrl)
 {
 	void *start;
@@ -340,10 +346,11 @@ int sync_enqueue(struct avm_buffer_ctrl *ctrl)
 	int ret = 0;
     uint64_t curr_sec, curr_usec;
 
-//	printf("[%s]line:%d\n", __func__, __LINE__);
 	get_time_stamp(&curr_sec, &curr_usec);
 	pthread_mutex_lock(&(ctrl->mutex));
+	sync_enqueue_wait = 1;
 	pthread_cond_wait(&(ctrl->produce_cond), &(ctrl->mutex));
+	sync_enqueue_wait = 0;
 	pthread_mutex_unlock(&(ctrl->mutex));
 
 //	printf("[%s]line:%d\n", __func__, __LINE__);
@@ -374,19 +381,40 @@ int sync_enqueue(struct avm_buffer_ctrl *ctrl)
 	ctrl->w_idx++;
 	
 	/* Simulate memory copy */
-	usleep(80000);
+//	usleep(80000);
+	free_pull_buffer();
 	printf("[%s]copy mem ", __func__);
 	print_time_diff(curr_sec, curr_usec);
-
 	printf("[%s]widx:%ld\n", __func__, ctrl->w_idx);
-	free_pull_buffer();
+	get_time_stamp(&curr_sec, &curr_usec);
+
+	pthread_mutex_lock(&(ctrl->m_mutex));
+	ctrl->enqueue_flag = 1;
+	if (ctrl->dequeue_flag) {
+		while(!sync_main_wait) {}
+		pthread_cond_signal(&(ctrl->main_cond));
+		printf("[%s]signal done ", __func__);
+		print_time_diff(0, 0);
+		ctrl->enqueue_flag = 0;
+		ctrl->dequeue_flag = 0;
+	}
+
+	pthread_mutex_unlock(&(ctrl->m_mutex));
 
 	return 0;
 }
 
 void *sync_producer(void *args)
 {
+	cpu_set_t mask;
 	struct avm_buffer_ctrl *ctrl = (struct avm_buffer_ctrl *)args;
+	
+	CPU_ZERO(&mask);
+	CPU_SET(1, &mask);
+	if (pthread_setaffinity_np(pthread_self(), sizeof(mask), &mask) < 0) {
+		printf("[%s]set thread affinity failed!\n");
+		return NULL;
+	}
 
 //	printf("[%s]line:%d\n", __func__, __LINE__);
 	while (1) {
@@ -461,7 +489,7 @@ int check_if_read_available(void)
 
 	return number;
 }
-
+int sync_dequeue_wait = 0;
 int sync_dequeue(struct avm_buffer_ctrl *ctrl)
 {
 	void *start;
@@ -473,12 +501,13 @@ int sync_dequeue(struct avm_buffer_ctrl *ctrl)
 	unsigned long convert_size;
 	unsigned long convert_buffer;
 #endif
-
-//	printf("[%s]line:%d\n", __func__, __LINE__);
+	
 	get_time_stamp(&curr_sec, &curr_usec);
 	length = ctrl->size;
 	pthread_mutex_lock(&(ctrl->c_mutex));
+	sync_dequeue_wait = 1;
 	pthread_cond_wait(&(ctrl->consume_cond), &(ctrl->c_mutex));
+	sync_dequeue_wait = 0;
 	pthread_mutex_unlock(&(ctrl->c_mutex));
 
 	if (!check_if_read_available()) {
@@ -508,7 +537,7 @@ int sync_dequeue(struct avm_buffer_ctrl *ctrl)
 		usleep(90000);
 		prepare_buffer(start, length);
 #endif
-		printf("[%s]convert buffer ", __func__);
+		printf("[%s]convert_buffer ", __func__);
 		print_time_diff(curr_sec, curr_usec);
 		ctrl->r_idx++;
 		printf("[%s]ridx:%ld\n", __func__, ctrl->r_idx);
@@ -519,19 +548,35 @@ int sync_dequeue(struct avm_buffer_ctrl *ctrl)
 		}	
 	}
 
-//	printf("[%s]line:%d\n", __func__, __LINE__);
 out:
 	pthread_mutex_lock(&(ctrl->m_mutex));
-	pthread_cond_signal(&(ctrl->main_cond));
+	ctrl->dequeue_flag = 1;
+	if (ctrl->enqueue_flag) {
+		while(!sync_main_wait) {}
+		pthread_cond_signal(&(ctrl->main_cond));
+		printf("[%s]cond signal done ", __func__);
+		print_time_diff(0, 0);
+		ctrl->dequeue_flag = 0;
+		ctrl->enqueue_flag = 0;
+	}
+
 	pthread_mutex_unlock(&(ctrl->m_mutex));
-	
 //	printf("[%s]line:%d\n", __func__, __LINE__);
+
 	return 0;
 }
 
 void *sync_consumer(void *args)
 {
+	cpu_set_t mask;
 	struct avm_buffer_ctrl *ctrl = (struct avm_buffer_ctrl *)args;
+
+	CPU_ZERO(&mask);
+	CPU_SET(2, &mask);
+	if (pthread_setaffinity_np(pthread_self(), sizeof(mask), &mask) < 0) {
+		printf("[%s]set thread affinity failed!\n");
+		return NULL;
+	}
 
 //	printf("[%s]line:%d\n", __func__, __LINE__);
 	while (1) {
@@ -719,10 +764,19 @@ void sync_thread_run(struct avm_buffer_ctrl *ctrl)
 	void *dst_buffer;
     uint64_t curr_sec, curr_usec;
 	int ret;
+	int i;
 	int count = 0;
 	struct timespec timeout;
+	cpu_set_t mask;
+	
+	CPU_ZERO(&mask);
+	CPU_SET(0, &mask);
+	if (pthread_setaffinity_np(pthread_self(), sizeof(mask), &mask) < 0) {
+		printf("[%s]set thread affinity failed!\n");
+		return NULL;
+	}
 
-	printf("[%s]enter!\n", __func__);
+	printf("[%s]version:1.5!\n", __func__);
 	ret = pthread_create(&producer, NULL, sync_producer, ctrl);
 	if (ret) {
 		printf("[%s]create enqueue failed!\n", __func__);
@@ -738,10 +792,25 @@ void sync_thread_run(struct avm_buffer_ctrl *ctrl)
 		count++;
 	}
 
+	if (count >= 1000) {
+		printf("[%s]check_if_read_available timeout!\n", __func__);
+	}
+
+	printf("[%s]readable!\n", __func__);
 	ret = pthread_create(&consumer, NULL, sync_consumer, ctrl);
 	if (ret) {
 		printf("[%s]create dequeue failed!\n", __func__);
 		return;
+	}
+
+	count = 0;
+	while (!sync_dequeue_wait && (count < 1000)) {
+		usleep(10000);
+		count++;
+	}
+
+	if (count >= 1000) {
+		printf("[%s]sync dequeue timeout!\n", __func__);
 	}
 
 	printf("[%s]run!\n", __func__);
@@ -752,22 +821,23 @@ void sync_thread_run(struct avm_buffer_ctrl *ctrl)
 		
 		printf("\n\n========[%s]start========\n", __func__);
 		get_time_stamp(&curr_sec, &curr_usec);
-		timeout.tv_sec = time(NULL) + 2;
+		timeout.tv_sec = time(NULL) + 10;
 		timeout.tv_nsec = 0;
 
-//		printf("[%s]line:%d\n", __func__, __LINE__);
 		pthread_mutex_lock(&(ctrl->c_mutex));
+		while (!sync_dequeue_wait) {}
 		pthread_cond_signal(&(ctrl->consume_cond));
 		pthread_mutex_unlock(&(ctrl->c_mutex));
 	
-//		printf("[%s]line:%d\n", __func__, __LINE__);
 		pthread_mutex_lock(&(ctrl->mutex));
+		while (!sync_enqueue_wait) {}
 		pthread_cond_signal(&(ctrl->produce_cond));
 		pthread_mutex_unlock(&(ctrl->mutex));
 
-//		printf("[%s]line:%d\n", __func__, __LINE__);
 		pthread_mutex_lock(&(ctrl->m_mutex));
+		sync_main_wait = 1;
 		pthread_cond_timedwait(&(ctrl->main_cond), &(ctrl->m_mutex), &timeout);
+		sync_main_wait = 0;
 		pthread_mutex_unlock(&(ctrl->m_mutex));
 
 		printf("[%s]output a image ", __func__);
@@ -826,7 +896,6 @@ void single_thread_run(struct avm_buffer_ctrl *ctrl)
 		get_time_stamp(&curr_sec, &curr_usec);
 
 		if (!(ctrl->no_cpy)) {
-			usleep(90000);
 			memcpy(dst_buffer, src_buffer, src_size);
 			free_pull_buffer();
 		}
@@ -898,7 +967,8 @@ int main(int argc, char *argv[])
 	printf("[%s]init start!\n", __func__);
 	ctrl = &avm_bctl;
 	memset(ctrl, 0, sizeof(struct avm_buffer_ctrl));
-
+	
+	ctrl->dequeue_flag = 1;
 	signal(SIGINT, sig_handler);
     libgst_init(argc, argv);
     parse_opts(argc, argv);
