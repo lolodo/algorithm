@@ -91,8 +91,10 @@ int main(int argc, char *argv[])
 
 				case GST_MESSAGE_STATE_CHANGED:
 					/* We are only interested in state-changed messages from the pipeline */
-					gst_message_parse_state_changed(msg, &old_state, &new_state, &pending_state);
-					g_print("Pipeline state changed from %s to %s:\n", gst_element_state_get_name(old_state), gst_element_state_get_name(new_state));
+					if (GST_MESSAGE_SRC(msg) == GST_OBJECT(data.pipeline)) {
+						gst_message_parse_state_changed(msg, &old_state, &new_state, &pending_state);
+						g_print("Pipeline state changed from %s to %s:\n", gst_element_state_get_name(old_state), gst_element_state_get_name(new_state));
+					}
 					break;
 				default:
 					/* we should not reach here */
@@ -131,6 +133,7 @@ static void pad_added_handler(GstElement *src, GstPad *new_pad, CustomData *data
 	/* Check the new pad's type */
 	new_pad_caps = gst_pad_query_caps(new_pad, NULL);
 	new_pad_struct = gst_caps_get_structure(new_pad_caps, 0);
+	new_pad_type = gst_structure_get_name(new_pad_struct);
 	if (!g_str_has_prefix(new_pad_type, "audio/x-raw")) {
 		g_print("It has type '%s' which is not raw audio. Ignoring.\n", new_pad_type);
 		goto exit;
