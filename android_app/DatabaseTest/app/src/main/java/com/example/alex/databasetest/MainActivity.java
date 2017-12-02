@@ -3,6 +3,7 @@ package com.example.alex.databasetest;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,85 +14,70 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "DatabaseTest";
     private MyDatabaseHelper dbHelper;
+    private String newId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dbHelper = new MyDatabaseHelper(this, "BookStore.db", null, 2);
-        Button createDatabase = (Button)findViewById(R.id.create_database);
-        createDatabase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dbHelper.getWritableDatabase();
-            }
-        });
-
-        Button addData = (Button)findViewById(R.id.add_data);
+        Button addData = (Button) findViewById(R.id.add_data);
         addData.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
+            public void onClick(View v) {
+                Uri uri = Uri.parse("content://com.example.databasetest.provider/book");
                 ContentValues values = new ContentValues();
-
-                values.put("name", "The Da Vinci Code");
-                values.put("author", "Dan Brown");
-                values.put("pages", 454);
-                values.put("price", 16.96);
-                db.insert("Book", null, values);
-                values.clear();
-
-                values.put("name",  "The Lost Symbol");
-                values.put("author",  "Dan Brown");
-                values.put("pages", 510);
-                values.put("price", 19.95);
-                db.insert("Book", null, values);
+                values.put("name", "A Clash of Kings");
+                values.put("author", "George Martin");
+                values.put("pages", 1040);
+                values.put("price", 22.85);
+                Uri newUri = getContentResolver().insert(uri, values);
+                newId = newUri.getPathSegments().get(1);
             }
         });
 
-        Button updateData = (Button)findViewById(R.id.update_data);
-        updateData.setOnClickListener(new View.OnClickListener() {
+        Button queryData = (Button) findViewById(R.id.query_data);
+        queryData.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put("price", 10.99);
-                db.update("Book", values, "name = ?", new String[] {
-                        "The Da Vinci Code"
-                });
-            }
-        });
-
-        Button deleteButton = (Button)findViewById(R.id.delete_data);
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                db.delete("Book", "pages > ?", new String[] { "500"});
-            }
-        });
-
-        Button queryButton = (Button)findViewById(R.id.query_data);
-        queryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                Cursor cursor = db.query("Book", null, null, null, null, null, null);
-                if (cursor.moveToFirst()) {
-                    do {
+            public void onClick(View v) {
+                Uri uri = Uri.parse("content://com.example.databasetest.provider/book");
+                Cursor cursor = getContentResolver().query(uri, null, null, null
+                        , null);
+                if (cursor != null) {
+                    while (cursor.moveToNext()) {
                         String name = cursor.getString(cursor.getColumnIndex("name"));
                         String author = cursor.getString(cursor.getColumnIndex("author"));
                         int pages = cursor.getInt(cursor.getColumnIndex("pages"));
-                        double price = cursor.getDouble(cursor.getColumnIndex("price"));
-
+                        double price = cursor.getInt(cursor.getColumnIndex("price"));
                         Log.d(TAG, "onClick: book name is " + name);
                         Log.d(TAG, "onClick: book author is " + author);
                         Log.d(TAG, "onClick: book pages is " + pages);
                         Log.d(TAG, "onClick: book price is " + price);
-                    } while (cursor.moveToNext());
-                }
+                    }
 
-                cursor.close();
+                    cursor.close();
+                }
+            }
+        });
+
+        Button updateData = (Button) findViewById(R.id.update_data);
+        updateData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("content://com.example.databasetest.provider/book/" + newId);
+                ContentValues values = new ContentValues();
+                values.put("name", "A Storm of Swords");
+                values.put("pages", 1216);
+                values.put("price", 24.05);
+                getContentResolver().update(uri, values, null, null);
+            }
+        });
+
+        Button deleteData = (Button) findViewById(R.id.delete_data);
+        deleteData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("content://com.example.databasetest.provider/book/" + newId);
+                getContentResolver().delete(uri, null, null);
             }
         });
     }

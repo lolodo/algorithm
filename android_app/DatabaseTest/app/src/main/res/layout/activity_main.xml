@@ -6,32 +6,27 @@
     >
 
     <Button
-        android:id="@+id/create_database"
-        android:text="create database"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
         android:id="@+id/add_data"
-        android:text="Add datas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/update_data"
-        android:text="Update data"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/delete_data"
-        android:text="Delete data"
+        android:text="Add to Book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/query_data"
-        android:text="Query data"
+        android:text="Query From Book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:id="@+id/update_data"
+        android:text="Update Book"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/delete_data"
+        android:text="Delete From Book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

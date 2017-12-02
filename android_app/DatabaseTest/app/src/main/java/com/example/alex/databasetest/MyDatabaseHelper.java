@@ -21,7 +21,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             + "id integer primary key autoincrement, "
             + "category_name text, "
             + "category_code integer)";
- code, refer to the Building the tutorials section for your platform: Linux, Mac OS X or Windows, or use this
     private Context mContext;
     public MyDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int vertion) {
         super(context, name, factory, vertion);
