@@ -18,5 +18,5 @@
         android:id="@+id/resonse_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    </ScrollView>
+     </ScrollView>
 </LinearLayout>
