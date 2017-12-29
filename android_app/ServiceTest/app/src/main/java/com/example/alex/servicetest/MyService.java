@@ -49,6 +49,13 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand: executed");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                stopSelf();
+            }
+        }).start();
         return super.onStartCommand(intent, flags, startId);
     }
 
