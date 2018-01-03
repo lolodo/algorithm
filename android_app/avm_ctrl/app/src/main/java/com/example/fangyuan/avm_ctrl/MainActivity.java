@@ -3,6 +3,7 @@ package com.example.fangyuan.avm_ctrl;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,13 +20,14 @@ import java.net.UnknownHostException;
 
 public class MainActivity extends AppCompatActivity {
 
+	private static final String TAG = "ipaddress";
 	private int option;
 	private int angle;
 	private EditText ipAddr;
 	private Socket socket;
 	private OutputStream outputStream;
 	private CameraPara cameraPara;
-	private byte[] buffer= new byte[32];
+	private byte[] buffer= new byte[36];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +115,12 @@ public class MainActivity extends AppCompatActivity {
 
 				switch (v.getId()) {
 					case R.id.send:
-						send_socket();
+						new Thread(new Runnable() {
+							@Override
+							public void run() {
+								send_socket();
+							}
+						}).start();
 						break;
 					default:
 						break;
@@ -128,9 +135,9 @@ public class MainActivity extends AppCompatActivity {
 			return;
 		}
 
+		Log.d(TAG, "send_socket: ip address is " + ipAddr.getText().toString());
 		try {
-			InetAddress serAddr = InetAddress.getByName(ipAddr.getText().toString());
-			socket = new Socket(serAddr, 8556);
+			socket = new Socket(ipAddr.getText().toString(), 8556);
 		} catch (UnknownHostException e1) {
 			e1.printStackTrace();
 		} catch (IOException e2) {
@@ -145,9 +152,9 @@ public class MainActivity extends AppCompatActivity {
 			cameraPara = new CameraPara();
 			cameraPara.setHorizontalViewAngle(angle);
 			cameraPara.setOption(option);
-
+			cameraPara.formatBuffer();
 			outputStream = socket.getOutputStream();
-			outputStream.write(buffer, 0, 32);
+			outputStream.write(buffer, 0, 36);
 			outputStream.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -159,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		Toast.makeText(getApplicationContext(), "Send OK!", Toast.LENGTH_SHORT).show();
 	}
 
 	public class CameraPara {
@@ -225,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
 			intToLH(20, this.shiftX);
 			intToLH(24, this.shiftY);
 			floatToLH(28, this.zoom);
+			intToLH(32, 1);
 		}
 
 		private void intToLH(int n, int val) {
