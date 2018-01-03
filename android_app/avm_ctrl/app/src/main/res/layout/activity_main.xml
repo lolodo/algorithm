@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ip_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type ip address"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#000000"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Options"/>
+
+    <RadioGroup
+        android:id="@+id/Options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/option_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"/>
+
+        <RadioButton
+            android:id="@+id/option_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"/>
+
+        <RadioButton
+            android:id="@+id/option_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"/>
+
+        <RadioButton
+            android:id="@+id/option_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"/>
+
+        <RadioButton
+            android:id="@+id/option_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6"/>
+
+        <RadioButton
+            android:id="@+id/option_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7"/>
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#000000"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Angles"/>
+
+    <RadioGroup
+        android:id="@+id/Angles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/angle_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"/>
+
+        <RadioButton
+            android:id="@+id/angle_45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="45"/>
+
+        <RadioButton
+            android:id="@+id/angle_90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="90"/>
+
+        <RadioButton
+            android:id="@+id/angle_135"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="135"/>
+
+        <RadioButton
+            android:id="@+id/angle_180"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="180"/>
+
+        <RadioButton
+            android:id="@+id/angle_225"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="225"/>
+
+        <RadioButton
+            android:id="@+id/angle_270"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="270"/>
+
+        <RadioButton
+            android:id="@+id/angle_315"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="315"/>
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#000000"/>
+
+    <Button
+        android:id="@+id/send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="send"/>
+</LinearLayout>
