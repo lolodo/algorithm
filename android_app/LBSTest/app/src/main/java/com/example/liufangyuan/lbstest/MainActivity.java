@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
     private void initLocation() {
         LocationClientOption option = new LocationClientOption();
         option.setScanSpan(5000);
+//        option.setLocationMode(LocationClientOption.LocationMode.Device_Sensors);
+        option.setIsNeedAddress(true);
         mLocationClient.setLocOption(option);
     }
 
@@ -112,6 +114,11 @@ public class MainActivity extends AppCompatActivity {
                     } else if (bdLocation.getLocType() == BDLocation.TypeNetWorkLocation){
                         currentPosition.append("Network");
                     }
+                    currentPosition.append("\n");
+                    currentPosition.append("Provice:").append(bdLocation.getProvince()).append("\n");
+                    currentPosition.append("City:").append(bdLocation.getCity()).append("\n");
+                    currentPosition.append("District:").append(bdLocation.getDistrict()).append("\n");
+                    currentPosition.append("Street:").append(bdLocation.getStreet()).append("\n");
                     SimpleDateFormat sdf=new SimpleDateFormat("mm:ss");
                     String date=sdf.format(new java.util.Date());
                     Toast.makeText(getApplicationContext(), "Time is " + date, Toast.LENGTH_SHORT).show();
