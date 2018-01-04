@@ -8,13 +8,18 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
+import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         mLocationClient = new LocationClient(getApplicationContext());
         mLocationClient.registerLocationListener(new MyLocationListener());
         setContentView(R.layout.activity_main);
-        positionText = (TextView)findViewById(R.id.position_text_view);
+        positionText = (TextView) findViewById(R.id.position_text_view);
         List<String> permissionList = new ArrayList<>();
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
@@ -51,7 +56,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void requestLocation() {
+        initLocation();
         mLocationClient.start();
+    }
+
+    private void initLocation() {
+        LocationClientOption option = new LocationClientOption();
+        option.setScanSpan(5000);
+        mLocationClient.setLocOption(option);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mLocationClient.stop();
     }
 
     @Override
@@ -60,13 +78,51 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case 1:
                 if (grantResults.length > 0) {
-                    for (int result:grantResults) {
-                        if (result != PackageManager.PERMISSION_DENIED)
+                    for (int result : grantResults) {
+                        if (result != PackageManager.PERMISSION_GRANTED) {
+                            Toast.makeText(this, "You must agree to use this program", Toast.LENGTH_SHORT).show();
+                            finish();
+                            return;
+                        }
                     }
+
+                    requestLocation();
+                } else {
+                    Toast.makeText(this, "Unkown error!", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
+                break;
+            default:
+                break;
         }
     }
 
-    private class MyLocationListener extends BDAbstractLocationListener implements BDLocationListener {
+    public class MyLocationListener implements BDLocationListener {
+        @Override
+        public void onReceiveLocation(final BDLocation bdLocation) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    StringBuilder currentPosition = new StringBuilder();
+                    currentPosition.append("latitule:").append(bdLocation.getLatitude()).append("\n");
+                    currentPosition.append("longitude:").append(bdLocation.getLongitude()).append("\n");
+                    currentPosition.append("Location mode:");
+                    if (bdLocation.getLocType() == BDLocation.TypeGpsLocation) {
+                        currentPosition.append("GPS");
+                    } else if (bdLocation.getLocType() == BDLocation.TypeNetWorkLocation){
+                        currentPosition.append("Network");
+                    }
+                    SimpleDateFormat sdf=new SimpleDateFormat("mm:ss");
+                    String date=sdf.format(new java.util.Date());
+                    Toast.makeText(getApplicationContext(), "Time is " + date, Toast.LENGTH_SHORT).show();
+
+                    positionText.setText(currentPosition);
+
+                }
+            });
+        }
+
+
     }
+
 }
