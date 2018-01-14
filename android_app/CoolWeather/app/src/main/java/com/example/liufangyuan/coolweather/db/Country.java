@@ -12,35 +12,35 @@ public class Country extends DataSupport {
     private String weatherId;
     private int cityId;
 
-    private int getId() {
+    public int getId() {
         return  id;
     }
 
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    private String getCountryName() {
+    public String getCountryName() {
         return countryName;
     }
 
-    private void setCountryName(String countryName) {
+    public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
 
-    private String getWeatherId() {
+    public String getWeatherId() {
         return weatherId;
     }
 
-    private void setWeatherId(String weatherId) {
+    public void setWeatherId(String weatherId) {
         this.weatherId = weatherId;
     }
 
-    private int getCityId() {
+    public int getCityId() {
         return cityId;
     }
 
-    private  void setCityId(int cityId) {
+    public void setCityId(int cityId) {
         this.cityId = cityId;
     }
 }
