@@ -48,24 +48,13 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fangyuan/workspace/github/udp-image-streaming
+CMAKE_SOURCE_DIR = /home/fangyuan/workspace/github/algorithm/udp-image-streaming
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fangyuan/workspace/github/udp-image-streaming
+CMAKE_BINARY_DIR = /home/fangyuan/workspace/github/algorithm/udp-image-streaming
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -78,11 +67,22 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/udp-image-streaming/CMakeFiles /home/fangyuan/workspace/github/udp-image-streaming/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/udp-image-streaming/CMakeFiles /home/fangyuan/workspace/github/algorithm/udp-image-streaming/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/udp-image-streaming/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/udp-image-streaming/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,19 +111,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named client
-
-# Build rule for target.
-client: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 client
-.PHONY : client
-
-# fast build rule for target.
-client/fast:
-	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
-.PHONY : client/fast
-
-#=============================================================================
 # Target rules for targets named server
 
 # Build rule for target.
@@ -136,40 +123,12 @@ server/fast:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
-Client.o: Client.cpp.o
-
-.PHONY : Client.o
-
-# target to build an object file
-Client.cpp.o:
-	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Client.cpp.o
-.PHONY : Client.cpp.o
-
-Client.i: Client.cpp.i
-
-.PHONY : Client.i
-
-# target to preprocess a source file
-Client.cpp.i:
-	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Client.cpp.i
-.PHONY : Client.cpp.i
-
-Client.s: Client.cpp.s
-
-.PHONY : Client.s
-
-# target to generate assembly for a file
-Client.cpp.s:
-	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Client.cpp.s
-.PHONY : Client.cpp.s
-
 PracticalSocket.o: PracticalSocket.cpp.o
 
 .PHONY : PracticalSocket.o
 
 # target to build an object file
 PracticalSocket.cpp.o:
-	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/PracticalSocket.cpp.o
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/PracticalSocket.cpp.o
 .PHONY : PracticalSocket.cpp.o
 
@@ -179,7 +138,6 @@ PracticalSocket.i: PracticalSocket.cpp.i
 
 # target to preprocess a source file
 PracticalSocket.cpp.i:
-	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/PracticalSocket.cpp.i
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/PracticalSocket.cpp.i
 .PHONY : PracticalSocket.cpp.i
 
@@ -189,7 +147,6 @@ PracticalSocket.s: PracticalSocket.cpp.s
 
 # target to generate assembly for a file
 PracticalSocket.cpp.s:
-	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/PracticalSocket.cpp.s
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/PracticalSocket.cpp.s
 .PHONY : PracticalSocket.cpp.s
 
@@ -226,13 +183,9 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... client"
+	@echo "... rebuild_cache"
 	@echo "... server"
-	@echo "... Client.o"
-	@echo "... Client.i"
-	@echo "... Client.s"
 	@echo "... PracticalSocket.o"
 	@echo "... PracticalSocket.i"
 	@echo "... PracticalSocket.s"
