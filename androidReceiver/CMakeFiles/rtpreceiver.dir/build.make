@@ -97,6 +97,7 @@ rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_stitching.so.2.4.9
 rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_ocl.so.2.4.9
 rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_gpu.so.2.4.9
 rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_contrib.so.2.4.9
+rtpreceiver: rtph264depay/librtph264depay.a
 rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.2.4.9
 rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_legacy.so.2.4.9
 rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_video.so.2.4.9

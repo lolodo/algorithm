@@ -124,14 +124,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles /home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(CMAKE_COMMAND) -E cmake_progress_start /home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/CMakeFiles/progress.marks
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,71 +141,60 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named rtpreceiver
+# Convenience name for target.
+rtph264depay/CMakeFiles/rtph264depay.dir/rule:
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/CMakeFiles/rtph264depay.dir/rule
+.PHONY : rtph264depay/CMakeFiles/rtph264depay.dir/rule
 
-# Build rule for target.
-rtpreceiver: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rtpreceiver
-.PHONY : rtpreceiver
+# Convenience name for target.
+rtph264depay: rtph264depay/CMakeFiles/rtph264depay.dir/rule
 
-# fast build rule for target.
-rtpreceiver/fast:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/build
-.PHONY : rtpreceiver/fast
-
-#=============================================================================
-# Target rules for targets named rtph264depay
-
-# Build rule for target.
-rtph264depay: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rtph264depay
 .PHONY : rtph264depay
 
 # fast build rule for target.
 rtph264depay/fast:
-	$(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/build
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/build
 .PHONY : rtph264depay/fast
 
-rtpreceiver.o: rtpreceiver.cpp.o
+gstrtph264depay.o: gstrtph264depay.c.o
 
-.PHONY : rtpreceiver.o
+.PHONY : gstrtph264depay.o
 
 # target to build an object file
-rtpreceiver.cpp.o:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o
-.PHONY : rtpreceiver.cpp.o
+gstrtph264depay.c.o:
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o
+.PHONY : gstrtph264depay.c.o
 
-rtpreceiver.i: rtpreceiver.cpp.i
+gstrtph264depay.i: gstrtph264depay.c.i
 
-.PHONY : rtpreceiver.i
+.PHONY : gstrtph264depay.i
 
 # target to preprocess a source file
-rtpreceiver.cpp.i:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.i
-.PHONY : rtpreceiver.cpp.i
+gstrtph264depay.c.i:
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.i
+.PHONY : gstrtph264depay.c.i
 
-rtpreceiver.s: rtpreceiver.cpp.s
+gstrtph264depay.s: gstrtph264depay.c.s
 
-.PHONY : rtpreceiver.s
+.PHONY : gstrtph264depay.s
 
 # target to generate assembly for a file
-rtpreceiver.cpp.s:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.s
-.PHONY : rtpreceiver.cpp.s
+gstrtph264depay.c.s:
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.s
+.PHONY : gstrtph264depay.c.s
 
 # Help Target
 help:
@@ -216,14 +205,13 @@ help:
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... rtpreceiver"
+	@echo "... rtph264depay"
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... edit_cache"
-	@echo "... rtph264depay"
-	@echo "... rtpreceiver.o"
-	@echo "... rtpreceiver.i"
-	@echo "... rtpreceiver.s"
+	@echo "... gstrtph264depay.o"
+	@echo "... gstrtph264depay.i"
+	@echo "... gstrtph264depay.s"
 .PHONY : help
 
 
@@ -235,6 +223,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

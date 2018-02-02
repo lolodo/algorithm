@@ -5,6 +5,7 @@ find_package(PkgConfig)
 
 find_package(OpenCV REQUIRED)
 add_executable(rtpreceiver rtpreceiver.cpp)
-target_link_libraries(rtpreceiver jrtp ${OpenCV_LIBS})
+target_link_libraries(rtpreceiver jrtp ${OpenCV_LIBS} rtph264depay)
 
 install (TARGETS rtpreceiver DESTINATION bin)
+add_subdirectory(rtph264depay)

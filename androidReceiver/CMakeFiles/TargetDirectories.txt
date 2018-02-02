@@ -5,3 +5,10 @@
 /home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles/install/strip.dir
 /home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles/install/local.dir
 /home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles/edit_cache.dir
+/home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/CMakeFiles/install.dir
+/home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/CMakeFiles/list_install_components.dir
+/home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/CMakeFiles/rebuild_cache.dir
+/home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/CMakeFiles/rtph264depay.dir
+/home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/CMakeFiles/install/strip.dir
+/home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/CMakeFiles/install/local.dir
+/home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/CMakeFiles/edit_cache.dir
