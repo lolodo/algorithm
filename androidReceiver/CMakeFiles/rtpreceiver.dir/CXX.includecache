@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/alex/workspace/github/algorithm/androidReceiver/rtpreceiver.cpp
+jrtplib3/rtpsession.h
+-
+jrtplib3/rtppacket.h
+-
+jrtplib3/rtpudpv4transmitter.h
+-
+jrtplib3/rtpipv4address.h
+-
+jrtplib3/rtpsessionparams.h
+-
+jrtplib3/rtperrors.h
+-
+jrtplib3/rtpsourcedata.h
+-
+stdlib.h
+-
+stdio.h
+-
+iostream
+-
+string
+-
+opencv2/opencv.hpp
+/home/alex/workspace/github/algorithm/androidReceiver/opencv2/opencv.hpp
+

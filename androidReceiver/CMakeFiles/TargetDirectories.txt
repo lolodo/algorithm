@@ -1,0 +1,7 @@
+/home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles/install.dir
+/home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles/list_install_components.dir
+/home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles/rebuild_cache.dir
+/home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles/rtpreceiver.dir
+/home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles/install/strip.dir
+/home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles/install/local.dir
+/home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles/edit_cache.dir

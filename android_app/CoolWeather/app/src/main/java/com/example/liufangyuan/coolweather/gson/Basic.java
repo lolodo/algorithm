@@ -15,7 +15,7 @@ public class Basic {
 
     public Update update;
 
-    private class Update {
+    public class Update {
         @SerializedName("Ioc")
         public String updateTime;
     }
