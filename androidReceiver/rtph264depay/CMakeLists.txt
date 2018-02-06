@@ -1,1 +1,1 @@
-add_library(rtph264depay STATIC gstrtph264depay.c)
+add_library(rtph264depay STATIC RtpH264Depay.cpp)

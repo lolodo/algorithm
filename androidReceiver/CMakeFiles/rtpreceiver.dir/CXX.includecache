@@ -6,6 +6,8 @@
 
 #IncludeRegexTransform: 
 
+/home/alex/workspace/github/algorithm/androidReceiver/./rtph264depay/RtpH264Depay.h
+
 /home/alex/workspace/github/algorithm/androidReceiver/rtpreceiver.cpp
 jrtplib3/rtpsession.h
 -
@@ -31,4 +33,6 @@ string
 -
 opencv2/opencv.hpp
 /home/alex/workspace/github/algorithm/androidReceiver/opencv2/opencv.hpp
+./rtph264depay/RtpH264Depay.h
+/home/alex/workspace/github/algorithm/androidReceiver/./rtph264depay/RtpH264Depay.h
 

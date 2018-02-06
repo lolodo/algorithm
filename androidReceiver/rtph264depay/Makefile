@@ -169,32 +169,32 @@ rtph264depay/fast:
 	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/build
 .PHONY : rtph264depay/fast
 
-gstrtph264depay.o: gstrtph264depay.c.o
+RtpH264Depay.o: RtpH264Depay.cpp.o
 
-.PHONY : gstrtph264depay.o
+.PHONY : RtpH264Depay.o
 
 # target to build an object file
-gstrtph264depay.c.o:
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o
-.PHONY : gstrtph264depay.c.o
+RtpH264Depay.cpp.o:
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o
+.PHONY : RtpH264Depay.cpp.o
 
-gstrtph264depay.i: gstrtph264depay.c.i
+RtpH264Depay.i: RtpH264Depay.cpp.i
 
-.PHONY : gstrtph264depay.i
+.PHONY : RtpH264Depay.i
 
 # target to preprocess a source file
-gstrtph264depay.c.i:
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.i
-.PHONY : gstrtph264depay.c.i
+RtpH264Depay.cpp.i:
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.i
+.PHONY : RtpH264Depay.cpp.i
 
-gstrtph264depay.s: gstrtph264depay.c.s
+RtpH264Depay.s: RtpH264Depay.cpp.s
 
-.PHONY : gstrtph264depay.s
+.PHONY : RtpH264Depay.s
 
 # target to generate assembly for a file
-gstrtph264depay.c.s:
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.s
-.PHONY : gstrtph264depay.c.s
+RtpH264Depay.cpp.s:
+	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.s
+.PHONY : RtpH264Depay.cpp.s
 
 # Help Target
 help:
@@ -209,9 +209,9 @@ help:
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... edit_cache"
-	@echo "... gstrtph264depay.o"
-	@echo "... gstrtph264depay.i"
-	@echo "... gstrtph264depay.s"
+	@echo "... RtpH264Depay.o"
+	@echo "... RtpH264Depay.i"
+	@echo "... RtpH264Depay.s"
 .PHONY : help
 
 

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/rtph264depay.c
+/home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/RtpH264Depay.cpp
 stdio.h
 -
 string.h

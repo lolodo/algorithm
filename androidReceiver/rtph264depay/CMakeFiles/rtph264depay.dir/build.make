@@ -57,41 +57,41 @@ include rtph264depay/CMakeFiles/rtph264depay.dir/progress.make
 # Include the compile flags for this target's objects.
 include rtph264depay/CMakeFiles/rtph264depay.dir/flags.make
 
-rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o: rtph264depay/CMakeFiles/rtph264depay.dir/flags.make
-rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o: rtph264depay/gstrtph264depay.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o"
-	cd /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay && /usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o   -c /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/gstrtph264depay.c
+rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o: rtph264depay/CMakeFiles/rtph264depay.dir/flags.make
+rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o: rtph264depay/RtpH264Depay.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o"
+	cd /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o -c /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/RtpH264Depay.cpp
 
-rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/rtph264depay.dir/gstrtph264depay.c.i"
-	cd /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay && /usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/gstrtph264depay.c > CMakeFiles/rtph264depay.dir/gstrtph264depay.c.i
+rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.i"
+	cd /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/RtpH264Depay.cpp > CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.i
 
-rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/rtph264depay.dir/gstrtph264depay.c.s"
-	cd /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay && /usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/gstrtph264depay.c -o CMakeFiles/rtph264depay.dir/gstrtph264depay.c.s
+rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.s"
+	cd /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/RtpH264Depay.cpp -o CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.s
 
-rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o.requires:
+rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o.requires:
 
-.PHONY : rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o.requires
+.PHONY : rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o.requires
 
-rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o.provides: rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o.requires
-	$(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o.provides.build
-.PHONY : rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o.provides
+rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o.provides: rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o.requires
+	$(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o.provides.build
+.PHONY : rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o.provides
 
-rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o.provides.build: rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o
+rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o.provides.build: rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o
 
 
 # Object files for target rtph264depay
 rtph264depay_OBJECTS = \
-"CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o"
+"CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o"
 
 # External object files for target rtph264depay
 rtph264depay_EXTERNAL_OBJECTS =
 
-rtph264depay/librtph264depay.a: rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o
+rtph264depay/librtph264depay.a: rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o
 rtph264depay/librtph264depay.a: rtph264depay/CMakeFiles/rtph264depay.dir/build.make
 rtph264depay/librtph264depay.a: rtph264depay/CMakeFiles/rtph264depay.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library librtph264depay.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library librtph264depay.a"
 	cd /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay && $(CMAKE_COMMAND) -P CMakeFiles/rtph264depay.dir/cmake_clean_target.cmake
 	cd /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/rtph264depay.dir/link.txt --verbose=$(VERBOSE)
 
@@ -100,7 +100,7 @@ rtph264depay/CMakeFiles/rtph264depay.dir/build: rtph264depay/librtph264depay.a
 
 .PHONY : rtph264depay/CMakeFiles/rtph264depay.dir/build
 
-rtph264depay/CMakeFiles/rtph264depay.dir/requires: rtph264depay/CMakeFiles/rtph264depay.dir/gstrtph264depay.c.o.requires
+rtph264depay/CMakeFiles/rtph264depay.dir/requires: rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o.requires
 
 .PHONY : rtph264depay/CMakeFiles/rtph264depay.dir/requires
 
