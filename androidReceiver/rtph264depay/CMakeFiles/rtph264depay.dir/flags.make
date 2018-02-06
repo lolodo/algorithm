@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/include/opencv 
+CXX_INCLUDES = -I/home/fangyuan/workspace/github/algorithm/androidReceiver/./rtph264depay -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/opencv 
 

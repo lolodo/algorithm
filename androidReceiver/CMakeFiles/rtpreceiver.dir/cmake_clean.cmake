@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o"
   "rtpreceiver.pdb"
   "rtpreceiver"
+  "rtpreceiver.pdb"
+  "CMakeFiles/CMakeRelink.dir/rtpreceiver"
 )
 
 # Per-language clean rules from dependency scanning.

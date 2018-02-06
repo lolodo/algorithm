@@ -4,18 +4,21 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/alex/workspace/github/algorithm/androidReceiver/rtpreceiver.cpp" "/home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o"
+  "/home/fangyuan/workspace/github/algorithm/androidReceiver/rtpreceiver.cpp" "/home/fangyuan/workspace/github/algorithm/androidReceiver/CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "./rtph264depay"
+  "/usr/include/glib-2.0"
+  "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
   "/usr/include/opencv"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/CMakeFiles/rtph264depay.dir/DependInfo.cmake"
+  "/home/fangyuan/workspace/github/algorithm/androidReceiver/rtph264depay/CMakeFiles/rtph264depay.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

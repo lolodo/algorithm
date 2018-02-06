@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/alex/workspace/github/algorithm/androidReceiver
+CMAKE_SOURCE_DIR = /home/fangyuan/workspace/github/algorithm/androidReceiver
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/alex/workspace/github/algorithm/androidReceiver
+CMAKE_BINARY_DIR = /home/fangyuan/workspace/github/algorithm/androidReceiver
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -78,28 +78,6 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -111,10 +89,21 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -124,14 +113,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(CMAKE_COMMAND) -E cmake_progress_start /home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles /home/alex/workspace/github/algorithm/androidReceiver/rtph264depay/CMakeFiles/progress.marks
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/workspace/github/algorithm/androidReceiver/CMakeFiles 0
+	cd /home/fangyuan/workspace/github/algorithm/androidReceiver && $(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/androidReceiver/CMakeFiles /home/fangyuan/workspace/github/algorithm/androidReceiver/rtph264depay/CMakeFiles/progress.marks
+	cd /home/fangyuan/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/androidReceiver/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/clean
+	cd /home/fangyuan/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,22 +130,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/preinstall
+	cd /home/fangyuan/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/preinstall
+	cd /home/fangyuan/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/fangyuan/workspace/github/algorithm/androidReceiver && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 rtph264depay/CMakeFiles/rtph264depay.dir/rule:
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/CMakeFiles/rtph264depay.dir/rule
+	cd /home/fangyuan/workspace/github/algorithm/androidReceiver && $(MAKE) -f CMakeFiles/Makefile2 rtph264depay/CMakeFiles/rtph264depay.dir/rule
 .PHONY : rtph264depay/CMakeFiles/rtph264depay.dir/rule
 
 # Convenience name for target.
@@ -166,7 +155,7 @@ rtph264depay: rtph264depay/CMakeFiles/rtph264depay.dir/rule
 
 # fast build rule for target.
 rtph264depay/fast:
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/build
+	cd /home/fangyuan/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/build
 .PHONY : rtph264depay/fast
 
 RtpH264Depay.o: RtpH264Depay.cpp.o
@@ -175,7 +164,7 @@ RtpH264Depay.o: RtpH264Depay.cpp.o
 
 # target to build an object file
 RtpH264Depay.cpp.o:
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o
+	cd /home/fangyuan/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.o
 .PHONY : RtpH264Depay.cpp.o
 
 RtpH264Depay.i: RtpH264Depay.cpp.i
@@ -184,7 +173,7 @@ RtpH264Depay.i: RtpH264Depay.cpp.i
 
 # target to preprocess a source file
 RtpH264Depay.cpp.i:
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.i
+	cd /home/fangyuan/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.i
 .PHONY : RtpH264Depay.cpp.i
 
 RtpH264Depay.s: RtpH264Depay.cpp.s
@@ -193,7 +182,7 @@ RtpH264Depay.s: RtpH264Depay.cpp.s
 
 # target to generate assembly for a file
 RtpH264Depay.cpp.s:
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.s
+	cd /home/fangyuan/workspace/github/algorithm/androidReceiver && $(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/RtpH264Depay.cpp.s
 .PHONY : RtpH264Depay.cpp.s
 
 # Help Target
@@ -204,10 +193,9 @@ help:
 	@echo "... depend"
 	@echo "... install"
 	@echo "... list_install_components"
-	@echo "... rebuild_cache"
 	@echo "... rtph264depay"
-	@echo "... install/strip"
 	@echo "... install/local"
+	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... RtpH264Depay.o"
 	@echo "... RtpH264Depay.i"
@@ -223,6 +211,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/alex/workspace/github/algorithm/androidReceiver && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/fangyuan/workspace/github/algorithm/androidReceiver && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
