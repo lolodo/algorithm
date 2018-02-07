@@ -19,6 +19,7 @@ class RtpH264Depay {
         gboolean getStreamMode();
         int getH264BufferNum();
         struct h264Buffer *getH264Buffer();
+        gboolean getStatus();
 
 	private:
         GQueue *stapQueue;

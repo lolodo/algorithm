@@ -54,6 +54,7 @@ class MyRTPSession : public RTPSession
 
     public: MyRTPSession();
     public: ~MyRTPSession();
+    public:RtpH264Depay h264info;
 
 protected:
 	void OnPollThreadStep();
@@ -112,8 +113,12 @@ void MyRTPSession::ProcessRTPPacket(const RTPSourceData &srcdat,const RTPPacket 
     unsigned int head = 0;
     unsigned char jpegtype = 0;
     unsigned int payloadlen;
-    RtpH264Depay h264info;
+    //RtpH264Depay h264info;
 
+    if (!h264info.getStatus()) {
+        std::cout << "get status failed!" << std::endl;
+        return;
+    }
 	// You can inspect the packet and the source's info here
 	std::cout << "Got packet " << rtppack.GetExtendedSequenceNumber() << " from SSRC " << srcdat.GetSSRC() << " payload len:"<< rtppack.GetPayloadLength() << " entire packet len:" << rtppack.GetPacketLength() << std::endl;
     buffer = rtppack.GetPayloadData();

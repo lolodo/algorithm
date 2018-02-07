@@ -8,6 +8,10 @@
 using namespace std;
 unsigned char sync_bytes[] = {0, 0, 0, 1 };
         
+gboolean RtpH264Depay::getStatus()
+{
+    return mEnable;
+}
 
 void cleanQueue(GQueue *queue)
 {
@@ -54,7 +58,7 @@ int RtpH264Depay::finishPackets(GQueue *queue)
         end = !!(info->end);
 
         cout << "begin is " << begin << ", end is " << end  << ", flag is " << flag << endl;
-        if (!begin) {
+        if (!begin && !flag) {
             cout << "trying to get the first one!" << endl;
             cout << "size is " << info->size << endl;
             delete [] buffer;
@@ -83,13 +87,15 @@ int RtpH264Depay::finishPackets(GQueue *queue)
             fuInfo = (struct h264Buffer *)head;
             fuInfo->buffer = outputBuffer;
             fuInfo->size = info->size; 
+            fuInfo->start = 1; 
 
             memcpy(fuInfo->buffer, info->buffer, info->size);
             outputBuffer += info->size;
             if (end) {
+                fuInfo->end = 1; 
                 count = 0;
                 cout << "be overall size is " << fuInfo->size << endl;
-                g_queue_push_tail(outputQueue, head);
+                g_queue_push_tail(outputQueue, fuInfo);
                 flag = false;
             }
         } else {
@@ -108,9 +114,10 @@ int RtpH264Depay::finishPackets(GQueue *queue)
             outputBuffer += info->size;
            
             if (end) {
+                fuInfo->end = 1; 
                 count = 0;
                 cout << "bf overall size is " << fuInfo->size << endl;
-                g_queue_push_tail(outputQueue, head);
+                g_queue_push_tail(outputQueue, fuInfo);
                 flag = false;
             } 
         }
@@ -262,6 +269,9 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
 
           info->buffer = outbuf;
           info->size = outsize;
+          info->start = 1;
+          info->end = 1;
+
           g_queue_push_tail(stapQueue, info);
           len = g_queue_get_length(stapQueue);
           cout << "stapQueue's length is " << len << endl;
