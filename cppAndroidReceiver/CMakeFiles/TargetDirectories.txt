@@ -1,0 +1,6 @@
+/home/fangyuan/workspace/github/algorithm/newandroidReceiver/CMakeFiles/install.dir
+/home/fangyuan/workspace/github/algorithm/newandroidReceiver/CMakeFiles/list_install_components.dir
+/home/fangyuan/workspace/github/algorithm/newandroidReceiver/CMakeFiles/rtpreceiver.dir
+/home/fangyuan/workspace/github/algorithm/newandroidReceiver/CMakeFiles/install/local.dir
+/home/fangyuan/workspace/github/algorithm/newandroidReceiver/CMakeFiles/rebuild_cache.dir
+/home/fangyuan/workspace/github/algorithm/newandroidReceiver/CMakeFiles/edit_cache.dir

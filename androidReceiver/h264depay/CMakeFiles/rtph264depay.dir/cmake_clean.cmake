@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/rtph264depay.dir/rtph264depay.c.o"
   "librtph264depay.pdb"
-  "librtph264depay.a"
+  "librtph264depay.so"
 )
 
 # Per-language clean rules from dependency scanning.

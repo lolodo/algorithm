@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fangyuan/workspace/github/algorithm/androidReceiver
+CMAKE_SOURCE_DIR = /home/fangyuan/workspace/github/algorithm/newandroidReceiver
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fangyuan/workspace/github/algorithm/androidReceiver
+CMAKE_BINARY_DIR = /home/fangyuan/workspace/github/algorithm/newandroidReceiver
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -113,9 +113,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/androidReceiver/CMakeFiles /home/fangyuan/workspace/github/algorithm/androidReceiver/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/newandroidReceiver/CMakeFiles /home/fangyuan/workspace/github/algorithm/newandroidReceiver/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/androidReceiver/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/newandroidReceiver/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -161,32 +161,32 @@ rtpreceiver/preinstall:
 	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/preinstall
 .PHONY : rtpreceiver/preinstall
 
-rtph264depay.o: rtph264depay.c.o
+RtpH264Depay.o: RtpH264Depay.cpp.o
 
-.PHONY : rtph264depay.o
+.PHONY : RtpH264Depay.o
 
 # target to build an object file
-rtph264depay.c.o:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/rtph264depay.c.o
-.PHONY : rtph264depay.c.o
+RtpH264Depay.cpp.o:
+	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o
+.PHONY : RtpH264Depay.cpp.o
 
-rtph264depay.i: rtph264depay.c.i
+RtpH264Depay.i: RtpH264Depay.cpp.i
 
-.PHONY : rtph264depay.i
+.PHONY : RtpH264Depay.i
 
 # target to preprocess a source file
-rtph264depay.c.i:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/rtph264depay.c.i
-.PHONY : rtph264depay.c.i
+RtpH264Depay.cpp.i:
+	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.i
+.PHONY : RtpH264Depay.cpp.i
 
-rtph264depay.s: rtph264depay.c.s
+RtpH264Depay.s: RtpH264Depay.cpp.s
 
-.PHONY : rtph264depay.s
+.PHONY : RtpH264Depay.s
 
 # target to generate assembly for a file
-rtph264depay.c.s:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/rtph264depay.c.s
-.PHONY : rtph264depay.c.s
+RtpH264Depay.cpp.s:
+	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.s
+.PHONY : RtpH264Depay.cpp.s
 
 rtpreceiver.o: rtpreceiver.cpp.o
 
@@ -227,9 +227,9 @@ help:
 	@echo "... install/local"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... rtph264depay.o"
-	@echo "... rtph264depay.i"
-	@echo "... rtph264depay.s"
+	@echo "... RtpH264Depay.o"
+	@echo "... RtpH264Depay.i"
+	@echo "... RtpH264Depay.s"
 	@echo "... rtpreceiver.o"
 	@echo "... rtpreceiver.i"
 	@echo "... rtpreceiver.s"

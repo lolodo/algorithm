@@ -1,2 +1,1 @@
-/usr/bin/ar qc librtph264depay.a  CMakeFiles/rtph264depay.dir/rtph264depay.c.o
-/usr/bin/ranlib librtph264depay.a
+/usr/bin/cc  -fPIC   -shared -Wl,-soname,librtph264depay.so -o librtph264depay.so CMakeFiles/rtph264depay.dir/rtph264depay.c.o 
