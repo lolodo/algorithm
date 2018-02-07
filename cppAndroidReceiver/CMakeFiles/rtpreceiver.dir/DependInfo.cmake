@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/fangyuan/workspace/github/algorithm/newandroidReceiver/RtpH264Depay.cpp" "/home/fangyuan/workspace/github/algorithm/newandroidReceiver/CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o"
-  "/home/fangyuan/workspace/github/algorithm/newandroidReceiver/rtpreceiver.cpp" "/home/fangyuan/workspace/github/algorithm/newandroidReceiver/CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o"
+  "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/RtpH264Depay.cpp" "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o"
+  "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/rtpreceiver.cpp" "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
