@@ -1,0 +1,65 @@
+Got packet 55972 from SSRC 80683622 payload len:2 entire packet len:14
+nal_ref_idc is 0, nal_unit_type is 9.
+default mode
+enter finishPackets!
+default count is 0
+Got packet 55973 from SSRC 80683622 payload len:1388 entire packet len:1400
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 1, E is 0
+start>>S is 1, E is 0, queue 1391bytes
+Got packet 55974 from SSRC 80683622 payload len:1388 entire packet len:1400
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 0, E is 0
+end>>S is 0, E is 0, queue 1386bytes
+Got packet 55975 from SSRC 80683622 payload len:1388 entire packet len:1400
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 0, E is 0
+end>>S is 0, E is 0, queue 1386bytes
+Got packet 55976 from SSRC 80683622 payload len:1388 entire packet len:1400
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 0, E is 0
+end>>S is 0, E is 0, queue 1386bytes
+Got packet 55977 from SSRC 80683622 payload len:1388 entire packet len:1400
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 0, E is 0
+end>>S is 0, E is 0, queue 1386bytes
+Got packet 55978 from SSRC 80683622 payload len:128 entire packet len:140
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 0, E is 1
+end>>S is 0, E is 1, queue 126bytes
+enter finishPackets!
+Got packet 55979 from SSRC 80683622 payload len:2 entire packet len:14
+nal_ref_idc is 0, nal_unit_type is 9.
+default mode
+enter finishPackets!
+default count is 0
+Got packet 55980 from SSRC 80683622 payload len:1388 entire packet len:1400
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 1, E is 0
+start>>S is 1, E is 0, queue 1391bytes
+Got packet 55981 from SSRC 80683622 payload len:1388 entire packet len:1400
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 0, E is 0
+end>>S is 0, E is 0, queue 1386bytes
+Got packet 55982 from SSRC 80683622 payload len:1388 entire packet len:1400
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 0, E is 0
+end>>S is 0, E is 0, queue 1386bytes
+Got packet 55983 from SSRC 80683622 payload len:1388 entire packet len:1400
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 0, E is 0
+end>>S is 0, E is 0, queue 1386bytes
+Got packet 55984 from SSRC 80683622 payload len:1388 entire packet len:1400
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 0, E is 0
+end>>S is 0, E is 0, queue 1386bytes
+Got packet 55985 from SSRC 80683622 payload len:1388 entire packet len:1400
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 0, E is 0
+end>>S is 0, E is 0, queue 1386bytes
+Got packet 55986 from SSRC 80683622 payload len:300 entire packet len:312
+nal_ref_idc is 2, nal_unit_type is 28.
+FU mode>>S is 0, E is 1
+end>>S is 0, E is 1, queue 298bytes
+enter finishPackets!
+

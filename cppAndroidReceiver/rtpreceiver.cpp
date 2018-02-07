@@ -188,7 +188,7 @@ int main(void)
 	std::string ipstr;
 	int status,num;
 
-        // First, we'll ask for the necessary information
+    // First, we'll ask for the necessary information
 		
 	std::cout << "Enter local portbase:" << std::endl;
 	std::cin >> portbase;

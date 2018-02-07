@@ -8,12 +8,22 @@
 using namespace std;
 unsigned char sync_bytes[] = {0, 0, 0, 1 };
         
+
 void cleanQueue(GQueue *queue)
 {
     char *buffer;
+    struct h264Buffer *info;
+    int out_idx = 0;
 
     while (!g_queue_is_empty(queue)) {
         buffer = (char *)g_queue_pop_head(queue);
+
+        //test
+        info = (struct h264Buffer *)buffer;
+        cout << "The " << out_idx << "th buffer is cleaned" << endl;
+        cout << "size is " << info->size << endl;
+
+        out_idx++;
         delete [] buffer;
     }
 
@@ -29,11 +39,27 @@ int RtpH264Depay::finishPackets(GQueue *queue)
     int count = 0;
     bool flag = false;
 
+        
+    cout << "enter finishPackets!" << endl;
+    //test
+    if (g_queue_get_length(outputQueue) >= 1) {
+        cout << "Start to clean outputQueue" << endl;
+        cleanQueue(outputQueue);
+    }
+
     while (!g_queue_is_empty(queue)) {
         buffer = (char *)g_queue_pop_head(queue);
         info = (struct h264Buffer *)buffer;
         begin = !!(info->start);
         end = !!(info->end);
+
+        cout << "begin is " << begin << ", end is " << end  << ", flag is " << flag << endl;
+        if (!begin) {
+            cout << "trying to get the first one!" << endl;
+            cout << "size is " << info->size << endl;
+            delete [] buffer;
+            continue;
+        }
 
         if (flag == false) {
             head = new unsigned char[BUFFER_LEN];
@@ -41,6 +67,7 @@ int RtpH264Depay::finishPackets(GQueue *queue)
         }
 
         if (begin) {
+            cout << "enter begin finish!" << endl;
             count += info->size + sizeof(struct h264Buffer);
             if (count >= BUFFER_LEN) {
                 cout << "begin fu overflow, clean all of it!" << endl;
@@ -61,10 +88,12 @@ int RtpH264Depay::finishPackets(GQueue *queue)
             outputBuffer += info->size;
             if (end) {
                 count = 0;
+                cout << "be overall size is " << fuInfo->size << endl;
                 g_queue_push_tail(outputQueue, head);
                 flag = false;
             }
         } else {
+            cout << "enter no begin finish!" << endl;
             count += info->size;
             if ((count >= BUFFER_LEN)) {
                 cout << "end fu overflow, clean all of it!" << endl;
@@ -80,6 +109,7 @@ int RtpH264Depay::finishPackets(GQueue *queue)
            
             if (end) {
                 count = 0;
+                cout << "bf overall size is " << fuInfo->size << endl;
                 g_queue_push_tail(outputQueue, head);
                 flag = false;
             } 
@@ -287,7 +317,13 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
            * Assume that the remote payloader is buggy (doesn't set the end
            * bit) and send out what we've gathered thusfar */
           if (current_fu_type != 0) {
-              finishPackets(fuQueue);
+             cout << "11111111 count is " << count << endl;
+             count = finishPackets(fuQueue);
+             if (count < 0) {
+                 cout << " sss failed!" << endl;
+             }
+          
+             cout << "sss send " << count << "buffers" << endl;
           }
 
           current_fu_type = nal_unit_type;
@@ -344,7 +380,9 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
 
         /* if NAL unit ends, flush the adapter */
         if (E) {
-            finishPackets(fuQueue);
+            cout << "FU queue start to wrap" << endl;
+            count = finishPackets(fuQueue);
+            cout << "fu fu count is " << count << endl;
         }
         break;
       }
