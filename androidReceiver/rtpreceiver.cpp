@@ -16,7 +16,7 @@
 #include <iostream>
 #include <string>
 #include "opencv2/opencv.hpp"
-#include "RtpH264Depay.h"
+#include "rtph264depay.h"
 
 using namespace jrtplib;
 
@@ -114,8 +114,12 @@ void MyRTPSession::ProcessRTPPacket(const RTPSourceData &srcdat,const RTPPacket 
     unsigned int payloadlen;
 
 	// You can inspect the packet and the source's info here
-//	std::cout << "Got packet " << rtppack.GetExtendedSequenceNumber() << " from SSRC " << srcdat.GetSSRC() << " payload len:"<< rtppack.GetPayloadLength() << " entire packet len:" << rtppack.GetPacketLength() << std::endl;
+	std::cout << "Got packet " << rtppack.GetExtendedSequenceNumber() << " from SSRC " << srcdat.GetSSRC() << " payload len:"<< rtppack.GetPayloadLength() << " entire packet len:" << rtppack.GetPacketLength() << std::endl;
     buffer = rtppack.GetPayloadData();
+    payloadlen = rtppack.GetPayloadLength();
+
+    DepayProcess(buffer, payloadlen, rtppack.HasMarker());
+#if 0
     offset = *(unsigned *)buffer;
     offset = ntohl(offset);
     offset = offset & 0x00ffffff;
@@ -164,7 +168,7 @@ void MyRTPSession::ProcessRTPPacket(const RTPSourceData &srcdat,const RTPPacket 
         cv::imshow("recv", frame);
         bufpos = 0;
     }
-
+#endif
 }
 
 //

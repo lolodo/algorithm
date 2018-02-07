@@ -97,7 +97,7 @@ rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_stitching.so.2.4.9
 rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_ocl.so.2.4.9
 rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_gpu.so.2.4.9
 rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_contrib.so.2.4.9
-rtpreceiver: rtph264depay/librtph264depay.a
+rtpreceiver: h264depay/librtph264depay.a
 rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.2.4.9
 rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_legacy.so.2.4.9
 rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_video.so.2.4.9
@@ -134,7 +134,7 @@ CMakeFiles/CMakeRelink.dir/rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_stit
 CMakeFiles/CMakeRelink.dir/rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_ocl.so.2.4.9
 CMakeFiles/CMakeRelink.dir/rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_gpu.so.2.4.9
 CMakeFiles/CMakeRelink.dir/rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_contrib.so.2.4.9
-CMakeFiles/CMakeRelink.dir/rtpreceiver: rtph264depay/librtph264depay.a
+CMakeFiles/CMakeRelink.dir/rtpreceiver: h264depay/librtph264depay.a
 CMakeFiles/CMakeRelink.dir/rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_photo.so.2.4.9
 CMakeFiles/CMakeRelink.dir/rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_legacy.so.2.4.9
 CMakeFiles/CMakeRelink.dir/rtpreceiver: /usr/lib/x86_64-linux-gnu/libopencv_video.so.2.4.9

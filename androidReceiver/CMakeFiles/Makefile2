@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/fangyuan/workspace/github/algorithm/androidReceiver
 # Target rules for target CMakeFiles/rtpreceiver.dir
 
 # All Build rule for target.
-CMakeFiles/rtpreceiver.dir/all: rtph264depay/CMakeFiles/rtph264depay.dir/all
+CMakeFiles/rtpreceiver.dir/all: h264depay/CMakeFiles/rtph264depay.dir/all
 	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/depend
 	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangyuan/workspace/github/algorithm/androidReceiver/CMakeFiles --progress-num=3,4,5 "Built target rtpreceiver"
@@ -107,57 +107,57 @@ clean: CMakeFiles/rtpreceiver.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory rtph264depay
+# Directory level rules for directory h264depay
 
 # Convenience name for "all" pass in the directory.
-rtph264depay/all: rtph264depay/CMakeFiles/rtph264depay.dir/all
+h264depay/all: h264depay/CMakeFiles/rtph264depay.dir/all
 
-.PHONY : rtph264depay/all
+.PHONY : h264depay/all
 
 # Convenience name for "clean" pass in the directory.
-rtph264depay/clean: rtph264depay/CMakeFiles/rtph264depay.dir/clean
+h264depay/clean: h264depay/CMakeFiles/rtph264depay.dir/clean
 
-.PHONY : rtph264depay/clean
+.PHONY : h264depay/clean
 
 # Convenience name for "preinstall" pass in the directory.
-rtph264depay/preinstall:
+h264depay/preinstall:
 
-.PHONY : rtph264depay/preinstall
+.PHONY : h264depay/preinstall
 
 #=============================================================================
-# Target rules for target rtph264depay/CMakeFiles/rtph264depay.dir
+# Target rules for target h264depay/CMakeFiles/rtph264depay.dir
 
 # All Build rule for target.
-rtph264depay/CMakeFiles/rtph264depay.dir/all:
-	$(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/depend
-	$(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/build
+h264depay/CMakeFiles/rtph264depay.dir/all:
+	$(MAKE) -f h264depay/CMakeFiles/rtph264depay.dir/build.make h264depay/CMakeFiles/rtph264depay.dir/depend
+	$(MAKE) -f h264depay/CMakeFiles/rtph264depay.dir/build.make h264depay/CMakeFiles/rtph264depay.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fangyuan/workspace/github/algorithm/androidReceiver/CMakeFiles --progress-num=1,2 "Built target rtph264depay"
-.PHONY : rtph264depay/CMakeFiles/rtph264depay.dir/all
+.PHONY : h264depay/CMakeFiles/rtph264depay.dir/all
 
 # Include target in all.
-all: rtph264depay/CMakeFiles/rtph264depay.dir/all
+all: h264depay/CMakeFiles/rtph264depay.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-rtph264depay/CMakeFiles/rtph264depay.dir/rule: cmake_check_build_system
+h264depay/CMakeFiles/rtph264depay.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/androidReceiver/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 rtph264depay/CMakeFiles/rtph264depay.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 h264depay/CMakeFiles/rtph264depay.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/androidReceiver/CMakeFiles 0
-.PHONY : rtph264depay/CMakeFiles/rtph264depay.dir/rule
+.PHONY : h264depay/CMakeFiles/rtph264depay.dir/rule
 
 # Convenience name for target.
-rtph264depay: rtph264depay/CMakeFiles/rtph264depay.dir/rule
+rtph264depay: h264depay/CMakeFiles/rtph264depay.dir/rule
 
 .PHONY : rtph264depay
 
 # clean rule for target.
-rtph264depay/CMakeFiles/rtph264depay.dir/clean:
-	$(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/clean
-.PHONY : rtph264depay/CMakeFiles/rtph264depay.dir/clean
+h264depay/CMakeFiles/rtph264depay.dir/clean:
+	$(MAKE) -f h264depay/CMakeFiles/rtph264depay.dir/build.make h264depay/CMakeFiles/rtph264depay.dir/clean
+.PHONY : h264depay/CMakeFiles/rtph264depay.dir/clean
 
 # clean rule for target.
-clean: rtph264depay/CMakeFiles/rtph264depay.dir/clean
+clean: h264depay/CMakeFiles/rtph264depay.dir/clean
 
 .PHONY : clean
 

@@ -1,0 +1,3 @@
+/home/fangyuan/workspace/github/algorithm/udp-image-streaming/CMakeFiles/edit_cache.dir
+/home/fangyuan/workspace/github/algorithm/udp-image-streaming/CMakeFiles/rebuild_cache.dir
+/home/fangyuan/workspace/github/algorithm/udp-image-streaming/CMakeFiles/server.dir

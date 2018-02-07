@@ -1,13 +1,63 @@
-#include <stdio.h>
 #include <string.h>
-#include <glib.h>
-#include "RtpH264Depay.h"
 #include <iostream>
+#include "RtpH264Depay.h"
+#include "queue.h"
 
 using namespace std;
 unsigned char sync_bytes[] = {0, 0, 0, 1 };
+        
+int RtpH264Depay::sendSingleBuffer()
+{
+    char *buffer;
+    int count = 0;
 
-RtpH264Depay::RtpH264Depay(void):stapQueue(NULL), byte_stream(false), wait_start(false), fuQueue(NULL), mEnable(false)
+    while (!g_queue_is_empty(singleQueue)) {
+        buffer = (char *)g_queue_pop_head(singleQueue);
+        delete [] buffer;
+        count++;
+    }
+
+    return count;
+}
+              
+void RtpH264Depay::finishFragmentation_unit()
+{
+    char *buffer;
+
+    while (!g_queue_is_empty(fuQueue)) {
+        buffer = (char *)g_queue_pop_head(fuQueue);
+        delete [] buffer;
+    }
+    
+    current_fu_type = 0;
+}
+
+int RtpH264Depay::sendStapBuffer()
+{
+    char *buffer;
+    int count = 0;
+
+    while (!g_queue_is_empty(stapQueue)) {
+        buffer = (char *)g_queue_pop_head(stapQueue);
+        delete [] buffer;
+        count++;
+    }
+    
+    return count;
+}
+
+void RtpH264Depay::setStreamMode(gboolean mode)
+{
+    byte_stream = mode;
+
+}
+
+gboolean RtpH264Depay::getStreamMode()
+{
+    return byte_stream;
+}
+
+RtpH264Depay::RtpH264Depay(void):stapQueue(NULL), byte_stream(true), wait_start(false), fuQueue(NULL), mEnable(false)
 {
     current_fu_type = 0;
 	stapQueue = g_queue_new();
@@ -23,7 +73,28 @@ RtpH264Depay::RtpH264Depay(void):stapQueue(NULL), byte_stream(false), wait_start
 
 RtpH264Depay::~RtpH264Depay(void)
 {
+    char *buffer;
+
+    while (!g_queue_is_empty(stapQueue)) {
+        buffer = (char *)g_queue_pop_head(stapQueue);
+        delete [] buffer;
+    }
+
 	g_queue_free(stapQueue);
+
+    while (!g_queue_is_empty(fuQueue)) {
+        buffer = (char *)g_queue_pop_head(fuQueue);
+        delete [] buffer;
+    }
+
+	g_queue_free(fuQueue);
+
+    while (!g_queue_is_empty(singleQueue)) {
+        buffer = (char *)g_queue_pop_head(singleQueue);
+        delete [] buffer;
+    }
+
+	g_queue_free(singleQueue);
 }
 
 void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int marker)
@@ -49,7 +120,7 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
      */
     nal_ref_idc = (payload[0] & 0x60) >> 5;
     nal_unit_type = payload[0] & 0x1f;
-	printf("[%s]line:%d, nal_ref_idc is %d, nal_unit_type is %d.\n", __func__, __LINE__, nal_ref_idc, nal_unit_type);
+	cout << "nal_ref_idc is "<< nal_ref_idc << ", nal_unit_type is " << nal_unit_type << endl;
 
     /* at least one byte header with type */
     header_len = 1;
@@ -70,6 +141,9 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
         /* fallthrough */
       case 24:
       {
+        int len;
+        int count;
+
         /* strip headers */
         payload += header_len;
         payload_len -= header_len;
@@ -83,7 +157,7 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
            * +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
            */
           nalu_size = (payload[0] << 8) | payload[1];
-		  cout << "nalu_size is " << nalu_size << endl;
+		  cout << "stap mode>>nalu_size is " << nalu_size << endl;
 
           /* dont include nalu_size */
           if (nalu_size > (payload_len - 2))
@@ -92,9 +166,10 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
           outsize = nalu_size + sizeof (sync_bytes);
           outbuf = new unsigned char[outsize + sizeof(struct h264Buffer)];
           info = (struct h264Buffer *)outbuf;
+          outbuf += sizeof(struct h264Buffer);
 
           if (byte_stream) {
-            memcpy (outbuf + sizeof(struct h264Buffer), sync_bytes, sizeof (sync_bytes));
+            memcpy (outbuf, sync_bytes, sizeof (sync_bytes));
           } else {
             outbuf[0] = outbuf[1] = 0;
             outbuf[2] = payload[0];
@@ -105,11 +180,18 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
           payload += 2;
           payload_len -= 2;
 
-          memcpy(outbuf + sizeof(struct h264Buffer) + sizeof (sync_bytes), payload, nalu_size);
+          memcpy(outbuf + sizeof (sync_bytes), payload, nalu_size);
 
-          info->buffer = outbuf + sizeof(struct h264Buffer);
+          info->buffer = outbuf;
           info->size = outsize;
           g_queue_push_tail(stapQueue, info);
+          len = g_queue_get_length(stapQueue);
+          cout << "stapQueue's length is " << len << endl;
+          count = sendStapBuffer();
+          cout << "send " << count << "buffers" << endl;
+          if (len != count) {
+            cout << "failed!" << endl;
+          }
 
           payload += nalu_size;
           payload_len -= nalu_size;
@@ -142,7 +224,7 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
          */
         S = (payload[1] & 0x80) == 0x80;
         E = (payload[1] & 0x40) == 0x40;
-        cout << "S is " << S << ", E is " << E << endl;
+        cout << "FU mode>>S is " << S << ", E is " << E << endl;
 
         if (!S) {
             goto waiting_start;
@@ -184,16 +266,21 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
           info->buffer = outbuf; 
           info->size = outsize;
           g_queue_push_tail(fuQueue, info);
-          cout << "S is " << S << ", queue " << outsize << "bytes" << endl;
+          cout << "start>>S is " << S << ", queue " << outsize << "bytes" << endl;
         } else {
           /* strip off FU indicator and FU header bytes */
           payload += 2;
           payload_len -= 2;
 
           outsize = payload_len;
-          outbuf = (unsigned char *)malloc(outsize);
+          outbuf = new unsigned char[outsize + sizeof(struct h264Buffer)];
+          info = (struct h264Buffer *)outbuf;
+          outbuf += sizeof(struct h264Buffer);
           memcpy(outbuf, payload, outsize);
-          cout << "S is " << S << ", queue " << outsize << "bytes" << endl;
+          info->buffer = outbuf; 
+          info->size = outsize;
+          g_queue_push_tail(fuQueue, info);
+          cout << "end>>S is " << S << ", queue " << outsize << "bytes" << endl;
         }
 
         fu_marker = marker;
@@ -207,7 +294,10 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
 
       default:
       {
+          
+        cout << "default mode" << endl;
         wait_start = false;
+        int count;
 
         /* 1-23   NAL unit  Single NAL unit packet per H.264   5.6 */
         /* the entire payload is the output buffer */
@@ -226,9 +316,12 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
         }
 
         memcpy (outbuf + sizeof (sync_bytes), payload, nalu_size);
-        info->buffer = outbuf + sizeof(struct h264Buffer);
+        info->buffer = outbuf;
         info->size = outsize;
         g_queue_push_tail(singleQueue, info);
+        count = sendSingleBuffer();
+        cout << "default count is " << count << endl;
+
         break;
       }
     }

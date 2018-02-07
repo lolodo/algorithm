@@ -1,22 +1,23 @@
 #ifndef __RTP_H264DEPAY_H__
 #define __RTP_H264DEPAY_H__
 
-#include <glib.h>
+#include "queue.h"
 
 struct h264Buffer {
     unsigned char *buffer;
     unsigned long size;
-}
+};
 
 class RtpH264Depay {
 	public:
 		RtpH264Depay();
 		~RtpH264Depay();
 		void *DepayProcess(void *buffer, unsigned int payload_len, int marker);
+        void setStreamMode(gboolean mode);
+        gboolean getStreamMode();
 
 	private:
-    fu_marker
-        GQueue *stapQueue
+        GQueue *stapQueue;
 		GQueue *fuQueue;
 		GQueue *singleQueue;
         gboolean byte_stream;
@@ -25,5 +26,7 @@ class RtpH264Depay {
         gboolean fu_marker;
         unsigned char current_fu_type;
         void finishFragmentation_unit();
+        int sendStapBuffer();
+        int sendSingleBuffer();
 };
 #endif /* __RTP_H264DEPAY_H__*/

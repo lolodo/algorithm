@@ -171,7 +171,7 @@ rtph264depay: cmake_check_build_system
 
 # fast build rule for target.
 rtph264depay/fast:
-	$(MAKE) -f rtph264depay/CMakeFiles/rtph264depay.dir/build.make rtph264depay/CMakeFiles/rtph264depay.dir/build
+	$(MAKE) -f h264depay/CMakeFiles/rtph264depay.dir/build.make h264depay/CMakeFiles/rtph264depay.dir/build
 .PHONY : rtph264depay/fast
 
 rtpreceiver.o: rtpreceiver.cpp.o

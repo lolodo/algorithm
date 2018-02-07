@@ -38,7 +38,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/fangyuan/workspace/github/algorithm/androidReceiver/rtph264depay/cmake_install.cmake")
+  include("/home/fangyuan/workspace/github/algorithm/androidReceiver/h264depay/cmake_install.cmake")
 
 endif()
 
