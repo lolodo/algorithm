@@ -164,6 +164,9 @@ rtph264_BINARY_DIR:STATIC=/home/fangyuan/workspace/github/algorithm/cppAndroidRe
 //Value Computed by CMake
 rtph264_SOURCE_DIR:STATIC=/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver
 
+//Dependencies for target
+socket_LIB_DEPENDS:STATIC=
+
 
 ########################
 # INTERNAL cache entries
@@ -245,7 +248,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
 //Path to CMake installation.
 CMAKE_ROOT:INTERNAL=/usr/share/cmake-3.5
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS

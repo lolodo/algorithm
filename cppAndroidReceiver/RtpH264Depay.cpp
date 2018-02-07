@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <iostream>
 #include "RtpH264Depay.h"
+#include "PracticalSocket.h"
 
 #define BUFFER_LEN  (1024 * 1024)
 using namespace std;
@@ -11,6 +12,19 @@ unsigned char sync_bytes[] = {0, 0, 0, 1 };
 gboolean RtpH264Depay::getStatus()
 {
     return mEnable;
+}
+
+void RtpH264Depay::sendQueue(GQueue *queue) 
+{
+    struct h264Buffer *info;
+
+    while (!g_queue_is_empty(queue)) {
+        info= (struct h264Buffer *)g_queue_pop_head(queue);
+        cout << "size is " << info->size << endl;
+        sock.sendTo(info->buffer, info->size, "127.0.0.1", 8890);
+    }
+
+
 }
 
 void cleanQueue(GQueue *queue)
@@ -48,6 +62,7 @@ int RtpH264Depay::finishPackets(GQueue *queue)
     //test
     if (g_queue_get_length(outputQueue) >= 1) {
         cout << "Start to clean outputQueue" << endl;
+        sendQueue(outputQueue);
         cleanQueue(outputQueue);
     }
 

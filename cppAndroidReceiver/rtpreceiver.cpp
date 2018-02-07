@@ -194,11 +194,13 @@ int main(void)
 	int status,num;
 
     // First, we'll ask for the necessary information
-		
+#if 0	
 	std::cout << "Enter local portbase:" << std::endl;
 	std::cin >> portbase;
 	std::cout << std::endl;
+#endif
 	
+    portbase = 8888;
 	std::cout << std::endl;
 	std::cout << "Number of seconds you wish to wait:" << std::endl;
 	std::cin >> num;

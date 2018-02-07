@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+./socket/PracticalSocket.h
+cstdlib
+-
+exception
+-
+string
+-
+
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/RtpH264Depay.cpp
 string.h
 -
@@ -17,10 +25,14 @@ iostream
 -
 RtpH264Depay.h
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/RtpH264Depay.h
+PracticalSocket.h
+/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/PracticalSocket.h
 
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/RtpH264Depay.h
 glib.h
 -
+PracticalSocket.h
+/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/PracticalSocket.h
 
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/rtpreceiver.cpp
 jrtplib3/rtpsession.h

@@ -4,3 +4,9 @@
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles/install/local.dir
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles/rebuild_cache.dir
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles/edit_cache.dir
+/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/CMakeFiles/install.dir
+/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/CMakeFiles/list_install_components.dir
+/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/CMakeFiles/install/local.dir
+/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/CMakeFiles/rebuild_cache.dir
+/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/CMakeFiles/socket.dir
+/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/CMakeFiles/edit_cache.dir

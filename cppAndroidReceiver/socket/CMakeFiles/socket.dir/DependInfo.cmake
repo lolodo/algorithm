@@ -4,8 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/RtpH264Depay.cpp" "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o"
-  "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/rtpreceiver.cpp" "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o"
+  "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/PracticalSocket.cpp" "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -19,7 +18,6 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/CMakeFiles/socket.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

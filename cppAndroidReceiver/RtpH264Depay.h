@@ -2,6 +2,7 @@
 #define __RTP_H264DEPAY_H__
 
 #include <glib.h>
+#include "PracticalSocket.h"
 
 struct h264Buffer {
     unsigned char *buffer;
@@ -22,6 +23,7 @@ class RtpH264Depay {
         gboolean getStatus();
 
 	private:
+        UDPSocket sock;
         GQueue *stapQueue;
 		GQueue *fuQueue;
 		GQueue *singleQueue;
@@ -32,5 +34,6 @@ class RtpH264Depay {
         gboolean fu_marker;
         unsigned char current_fu_type;
         int finishPackets(GQueue *queue);
+        void sendQueue(GQueue *queue);
 };
 #endif /* __RTP_H264DEPAY_H__*/

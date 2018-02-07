@@ -113,14 +113,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
+	cd /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver && $(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/CMakeFiles/progress.marks
+	cd /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver && $(MAKE) -f CMakeFiles/Makefile2 socket/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) -f CMakeFiles/Makefile2 clean
+	cd /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver && $(MAKE) -f CMakeFiles/Makefile2 socket/clean
 .PHONY : clean
 
 # The main clean target
@@ -130,103 +130,60 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver && $(MAKE) -f CMakeFiles/Makefile2 socket/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) -f CMakeFiles/Makefile2 preinstall
+	cd /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver && $(MAKE) -f CMakeFiles/Makefile2 socket/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named rtpreceiver
+# Convenience name for target.
+socket/CMakeFiles/socket.dir/rule:
+	cd /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver && $(MAKE) -f CMakeFiles/Makefile2 socket/CMakeFiles/socket.dir/rule
+.PHONY : socket/CMakeFiles/socket.dir/rule
 
-# Build rule for target.
-rtpreceiver: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rtpreceiver
-.PHONY : rtpreceiver
+# Convenience name for target.
+socket: socket/CMakeFiles/socket.dir/rule
 
-# fast build rule for target.
-rtpreceiver/fast:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/build
-.PHONY : rtpreceiver/fast
-
-# Manual pre-install relink rule for target.
-rtpreceiver/preinstall:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/preinstall
-.PHONY : rtpreceiver/preinstall
-
-#=============================================================================
-# Target rules for targets named socket
-
-# Build rule for target.
-socket: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 socket
 .PHONY : socket
 
 # fast build rule for target.
 socket/fast:
-	$(MAKE) -f socket/CMakeFiles/socket.dir/build.make socket/CMakeFiles/socket.dir/build
+	cd /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver && $(MAKE) -f socket/CMakeFiles/socket.dir/build.make socket/CMakeFiles/socket.dir/build
 .PHONY : socket/fast
 
-RtpH264Depay.o: RtpH264Depay.cpp.o
+PracticalSocket.o: PracticalSocket.cpp.o
 
-.PHONY : RtpH264Depay.o
-
-# target to build an object file
-RtpH264Depay.cpp.o:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o
-.PHONY : RtpH264Depay.cpp.o
-
-RtpH264Depay.i: RtpH264Depay.cpp.i
-
-.PHONY : RtpH264Depay.i
-
-# target to preprocess a source file
-RtpH264Depay.cpp.i:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.i
-.PHONY : RtpH264Depay.cpp.i
-
-RtpH264Depay.s: RtpH264Depay.cpp.s
-
-.PHONY : RtpH264Depay.s
-
-# target to generate assembly for a file
-RtpH264Depay.cpp.s:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.s
-.PHONY : RtpH264Depay.cpp.s
-
-rtpreceiver.o: rtpreceiver.cpp.o
-
-.PHONY : rtpreceiver.o
+.PHONY : PracticalSocket.o
 
 # target to build an object file
-rtpreceiver.cpp.o:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o
-.PHONY : rtpreceiver.cpp.o
+PracticalSocket.cpp.o:
+	cd /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver && $(MAKE) -f socket/CMakeFiles/socket.dir/build.make socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o
+.PHONY : PracticalSocket.cpp.o
 
-rtpreceiver.i: rtpreceiver.cpp.i
+PracticalSocket.i: PracticalSocket.cpp.i
 
-.PHONY : rtpreceiver.i
+.PHONY : PracticalSocket.i
 
 # target to preprocess a source file
-rtpreceiver.cpp.i:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.i
-.PHONY : rtpreceiver.cpp.i
+PracticalSocket.cpp.i:
+	cd /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver && $(MAKE) -f socket/CMakeFiles/socket.dir/build.make socket/CMakeFiles/socket.dir/PracticalSocket.cpp.i
+.PHONY : PracticalSocket.cpp.i
 
-rtpreceiver.s: rtpreceiver.cpp.s
+PracticalSocket.s: PracticalSocket.cpp.s
 
-.PHONY : rtpreceiver.s
+.PHONY : PracticalSocket.s
 
 # target to generate assembly for a file
-rtpreceiver.cpp.s:
-	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.s
-.PHONY : rtpreceiver.cpp.s
+PracticalSocket.cpp.s:
+	cd /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver && $(MAKE) -f socket/CMakeFiles/socket.dir/build.make socket/CMakeFiles/socket.dir/PracticalSocket.cpp.s
+.PHONY : PracticalSocket.cpp.s
 
 # Help Target
 help:
@@ -236,17 +193,13 @@ help:
 	@echo "... depend"
 	@echo "... install"
 	@echo "... list_install_components"
-	@echo "... rtpreceiver"
 	@echo "... install/local"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
 	@echo "... socket"
-	@echo "... RtpH264Depay.o"
-	@echo "... RtpH264Depay.i"
-	@echo "... RtpH264Depay.s"
-	@echo "... rtpreceiver.o"
-	@echo "... rtpreceiver.i"
-	@echo "... rtpreceiver.s"
+	@echo "... edit_cache"
+	@echo "... PracticalSocket.o"
+	@echo "... PracticalSocket.i"
+	@echo "... PracticalSocket.s"
 .PHONY : help
 
 
@@ -258,6 +211,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
