@@ -7,7 +7,9 @@
 
 #define BUFFER_LEN  (1024 * 1024)
 using namespace std;
-unsigned char sync_bytes[] = {0, 0, 0, 1 };
+//unsigned char sync_bytes[] = {0, 0, 0, 1 };
+unsigned char sync_bytes[] = {0, 0, 0, 2 };
+unsigned char pps[] = {9, 0x30, 0, 0 };
         
 gboolean RtpH264Depay::getStatus()
 {
@@ -20,14 +22,14 @@ void RtpH264Depay::sendQueue(GQueue *queue)
 
     while (!g_queue_is_empty(queue)) {
         info= (struct h264Buffer *)g_queue_pop_head(queue);
-        cout << "size is " << info->size << endl;
+        printf("sendTo:0x%08x 0x%08x 0x%08x 0x%08x\n", *(unsigned int *)info->buffer, 
+                *(unsigned int *)(info->buffer + 4), *(unsigned int *)(info->buffer + 8), 
+                *(unsigned int *)(info->buffer + 12));
         sock.sendTo(info->buffer, info->size, "127.0.0.1", 8890);
     }
-
-
 }
 
-void cleanQueue(GQueue *queue)
+void RtpH264Depay::cleanQueue(GQueue *queue)
 {
     char *buffer;
     struct h264Buffer *info;
@@ -36,7 +38,6 @@ void cleanQueue(GQueue *queue)
     while (!g_queue_is_empty(queue)) {
         buffer = (char *)g_queue_pop_head(queue);
 
-        //test
         info = (struct h264Buffer *)buffer;
         cout << "The " << out_idx << "th buffer is cleaned" << endl;
         cout << "size is " << info->size << endl;
@@ -46,7 +47,7 @@ void cleanQueue(GQueue *queue)
     }
 
 }
-              
+
 int RtpH264Depay::finishPackets(GQueue *queue)
 {
     char *buffer;
@@ -57,11 +58,7 @@ int RtpH264Depay::finishPackets(GQueue *queue)
     int count = 0;
     bool flag = false;
 
-        
-    cout << "enter finishPackets!" << endl;
-    //test
     if (g_queue_get_length(outputQueue) >= 1) {
-        cout << "Start to clean outputQueue" << endl;
         sendQueue(outputQueue);
         cleanQueue(outputQueue);
     }
@@ -72,10 +69,8 @@ int RtpH264Depay::finishPackets(GQueue *queue)
         begin = !!(info->start);
         end = !!(info->end);
 
-        cout << "begin is " << begin << ", end is " << end  << ", flag is " << flag << endl;
         if (!begin && !flag) {
             cout << "trying to get the first one!" << endl;
-            cout << "size is " << info->size << endl;
             delete [] buffer;
             continue;
         }
@@ -86,7 +81,6 @@ int RtpH264Depay::finishPackets(GQueue *queue)
         }
 
         if (begin) {
-            cout << "enter begin finish!" << endl;
             count += info->size + sizeof(struct h264Buffer);
             if (count >= BUFFER_LEN) {
                 cout << "begin fu overflow, clean all of it!" << endl;
@@ -107,17 +101,17 @@ int RtpH264Depay::finishPackets(GQueue *queue)
             memcpy(fuInfo->buffer, info->buffer, info->size);
             outputBuffer += info->size;
             if (end) {
+                fuInfo->buffer[4] = 9;
+                fuInfo->buffer[8] = ((fuInfo->size - 10) & 0xff00) >> 8;
+                fuInfo->buffer[9] = (fuInfo->size - 10) & 0xff;
+                fuInfo->buffer[10] = 0x41;
                 fuInfo->end = 1; 
-                count = 0;
-                cout << "be overall size is " << fuInfo->size << endl;
                 g_queue_push_tail(outputQueue, fuInfo);
                 flag = false;
             }
         } else {
-            cout << "enter no begin finish!" << endl;
             count += info->size;
             if ((count >= BUFFER_LEN)) {
-                cout << "end fu overflow, clean all of it!" << endl;
                 delete [] buffer;
                 cleanQueue(queue);
                 delete [] head;
@@ -129,9 +123,11 @@ int RtpH264Depay::finishPackets(GQueue *queue)
             outputBuffer += info->size;
            
             if (end) {
+                fuInfo->buffer[4] = 9;
+                fuInfo->buffer[8] = ((fuInfo->size - 10) & 0xff00) >> 8;
+                fuInfo->buffer[9] = (fuInfo->size - 10) & 0xff;
+                fuInfo->buffer[10] = 0x41;
                 fuInfo->end = 1; 
-                count = 0;
-                cout << "bf overall size is " << fuInfo->size << endl;
                 g_queue_push_tail(outputQueue, fuInfo);
                 flag = false;
             } 
@@ -206,6 +202,7 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
 	unsigned int nalu_size;
 	unsigned int outsize;
     unsigned char *outbuf;
+    unsigned char *tmp;
     struct h264Buffer *info;
     int count;
 
@@ -280,7 +277,14 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
           payload += 2;
           payload_len -= 2;
 
-          memcpy(outbuf + sizeof (sync_bytes), payload, nalu_size);
+          tmp = outbuf + sizeof(sync_bytes);
+          memcpy(tmp, pps, 4);
+          tmp += 4;
+          tmp[0] = ((nalu_size - 10) & 0xff00) >> 8;
+          tmp[1] = (nalu_size - 10) & 0xff;
+          tmp += 2;
+
+          memcpy(tmp, payload, nalu_size);
 
           info->buffer = outbuf;
           info->size = outsize;
@@ -291,7 +295,7 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
           len = g_queue_get_length(stapQueue);
           cout << "stapQueue's length is " << len << endl;
           count = finishPackets(stapQueue);
-          cout << "send " << count << "buffers" << endl;
+          cout << "send " << count << " bytes" << endl;
           if (len != count) {
             cout << "failed!" << endl;
           }
@@ -327,7 +331,6 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
          */
         S = (payload[1] & 0x80) == 0x80;
         E = (payload[1] & 0x40) == 0x40;
-        cout << "FU mode>>S is " << S << ", E is " << E << endl;
 
 #if 0
         if (!S && wait_start) {
@@ -342,19 +345,14 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
            * Assume that the remote payloader is buggy (doesn't set the end
            * bit) and send out what we've gathered thusfar */
           if (current_fu_type != 0) {
-             cout << "11111111 count is " << count << endl;
              count = finishPackets(fuQueue);
+             cout << "send " << count << " bytes" << endl;
              if (count < 0) {
                  cout << " sss failed!" << endl;
              }
-          
-             cout << "sss send " << count << "buffers" << endl;
           }
 
           current_fu_type = nal_unit_type;
-         // fu_timestamp = timestamp;
-
-//          wait_start = false;
 
           /* reconstruct NAL header */
           nal_header = (payload[0] & 0xe0) | (payload[1] & 0x1f);
@@ -365,13 +363,20 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
           payload_len -= 1;
 
           nalu_size = payload_len;
-          outsize = nalu_size + sizeof (sync_bytes);
+          outsize = nalu_size + sizeof (sync_bytes) + 6;
           outbuf = new unsigned char[outsize + sizeof(struct h264Buffer)];
           info = (struct h264Buffer *)outbuf;
           outbuf += sizeof(struct h264Buffer);
 
           memcpy(outbuf, sync_bytes, sizeof(sync_bytes));
-          memcpy(outbuf + sizeof (sync_bytes), payload, nalu_size);
+          tmp = outbuf + sizeof(sync_bytes);
+          memcpy(tmp, pps, 4);
+          tmp += 4;
+          tmp[0] = ((nalu_size - 10) & 0xff00) >> 8;
+          tmp[1] = (nalu_size - 10) & 0xff;
+          tmp += 2;
+
+          memcpy(tmp, payload, nalu_size);
           outbuf[sizeof (sync_bytes)] = nal_header;
 
           info->buffer = outbuf; 
@@ -380,7 +385,6 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
           info->end = E;
 
           g_queue_push_tail(fuQueue, info);
-          cout << "start>>S is " << S << ", E is " << E << ", queue " << outsize << "bytes" << endl;
         } else {
           /* strip off FU indicator and FU header bytes */
           payload += 2;
@@ -398,23 +402,23 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
           info->end = E;
           
           g_queue_push_tail(fuQueue, info);
-          cout << "end>>S is " << S << ", E is " << E << ", queue " << outsize << "bytes" << endl;
         }
 
+        cout << "S is " << S << ", E is " << E << ", queue " << outsize << "bytes" << endl;
         fu_marker = marker;
 
         /* if NAL unit ends, flush the adapter */
         if (E) {
-            cout << "FU queue start to wrap" << endl;
             count = finishPackets(fuQueue);
-            cout << "fu fu count is " << count << endl;
+            cout << "send " << count << " bytes" << endl;
         }
         break;
       }
 
       default:
       {
-          
+          break;
+#if 0 
         cout << "default mode" << endl;
         /* 1-23   NAL unit  Single NAL unit packet per H.264   5.6 */
         /* the entire payload is the output buffer */
@@ -440,12 +444,13 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
         g_queue_push_tail(singleQueue, info);
 
         count = finishPackets(singleQueue);
-        cout << "default count is " << count << endl;
+        cout << "send " << count << " bytes" << endl;
         if (count < 0) {
             cout << "singleQueue failed!" << endl;
         }
 
         break;
+#endif
       }
     }
 

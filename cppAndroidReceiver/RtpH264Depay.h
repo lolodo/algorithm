@@ -35,5 +35,6 @@ class RtpH264Depay {
         unsigned char current_fu_type;
         int finishPackets(GQueue *queue);
         void sendQueue(GQueue *queue);
+        void cleanQueue(GQueue *queue);
 };
 #endif /* __RTP_H264DEPAY_H__*/

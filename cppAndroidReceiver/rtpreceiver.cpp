@@ -119,8 +119,11 @@ void MyRTPSession::ProcessRTPPacket(const RTPSourceData &srcdat,const RTPPacket 
         std::cout << "get status failed!" << std::endl;
         return;
     }
+
 	// You can inspect the packet and the source's info here
+#if 0 
 	std::cout << "Got packet " << rtppack.GetExtendedSequenceNumber() << " from SSRC " << srcdat.GetSSRC() << " payload len:"<< rtppack.GetPayloadLength() << " entire packet len:" << rtppack.GetPacketLength() << std::endl;
+#endif
     buffer = rtppack.GetPayloadData();
     payloadlen = rtppack.GetPayloadLength();
 
