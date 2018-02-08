@@ -1,0 +1,6 @@
+/home/fangyuan/workspace/github/algorithm/gst_camera/CMakeFiles/install.dir
+/home/fangyuan/workspace/github/algorithm/gst_camera/CMakeFiles/list_install_components.dir
+/home/fangyuan/workspace/github/algorithm/gst_camera/CMakeFiles/camera.dir
+/home/fangyuan/workspace/github/algorithm/gst_camera/CMakeFiles/install/local.dir
+/home/fangyuan/workspace/github/algorithm/gst_camera/CMakeFiles/rebuild_cache.dir
+/home/fangyuan/workspace/github/algorithm/gst_camera/CMakeFiles/edit_cache.dir
