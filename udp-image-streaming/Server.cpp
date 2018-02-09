@@ -68,17 +68,17 @@ int main(int argc, char * argv[]) {
                 cerr << "count is " << count << endl;
             }
 
-            printf("msgsize is %08d\t", recvMsgSize);
-            printf("0x%08x\t", *(unsigned *)(buffer));
-            printf("0x%08x\t", *(unsigned *)(buffer + 4));
-            printf("0x%08x\t", *(unsigned *)(buffer + 8));
-            printf("0x%08x\t", *(unsigned *)(buffer + 12));
+            printf("msgsize is %-6d ", recvMsgSize);
+            printf("0x%08x ", *(unsigned *)(buffer));
+            printf("0x%08x ", *(unsigned *)(buffer + 4));
+            printf("0x%08x ", *(unsigned *)(buffer + 8));
+            printf("0x%08x ", *(unsigned *)(buffer + 12));
 
-            printf("end>>>>");
+            printf("end:");
 
-            printf("0x%08x\t", *(unsigned *)(buffer + recvMsgSize -12));
-            printf("0x%08x\t", *(unsigned *)(buffer + recvMsgSize - 8));
-            printf("0x%08x\t", *(unsigned *)(buffer + recvMsgSize - 4));
+            printf("0x%08x ", *(unsigned *)(buffer + recvMsgSize -12));
+            printf("0x%08x ", *(unsigned *)(buffer + recvMsgSize - 8));
+            printf("0x%08x ", *(unsigned *)(buffer + recvMsgSize - 4));
             printf("0x%08x\n", *(unsigned *)(buffer + recvMsgSize - 0));
           //  lseek(image_fd, 0, SEEK_SET);
            // write(image_fd, buffer, recvMsgSize);

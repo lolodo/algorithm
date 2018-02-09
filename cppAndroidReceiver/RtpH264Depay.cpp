@@ -7,8 +7,8 @@
 
 #define BUFFER_LEN  (1024 * 1024)
 using namespace std;
-//unsigned char sync_bytes[] = {0, 0, 0, 1 };
-unsigned char sync_bytes[] = {0, 0, 0, 2 };
+unsigned char sync_bytes[] = {0, 0, 0, 1 };
+//unsigned char sync_bytes[] = {0, 0, 0, 2 };
 unsigned char pps[] = {9, 0x30, 0, 0 };
         
 gboolean RtpH264Depay::getStatus()
@@ -48,6 +48,7 @@ void RtpH264Depay::cleanQueue(GQueue *queue)
 
 }
 
+#define NAL_TYPE_IS_KEY(nt) (((nt) == 5) || ((nt) == 7) || ((nt) == 8)) 
 int RtpH264Depay::finishPackets(GQueue *queue)
 {
     char *buffer;
@@ -55,12 +56,33 @@ int RtpH264Depay::finishPackets(GQueue *queue)
     unsigned char *outputBuffer, *head;
     bool begin = false;
     bool end = false;
+    gboolean keyFrame, outKeyframe;
     int count = 0;
+    int nalType;
     bool flag = false;
 
     if (g_queue_get_length(outputQueue) >= 1) {
         sendQueue(outputQueue);
         cleanQueue(outputQueue);
+    }
+
+    /*pps/sps*/
+    while(!g_queue_is_empty(singleQueue))
+    {
+        buffer = (char *)g_queue_pop_head(singleQueue);
+        info = (struct h264Buffer *)buffer;
+        if (info->size < 5) {
+            cout << "too short!" << endl;
+            return -1;
+        }
+
+        nalType = info->buffer[4] & 0x1f;
+        cout << "handle nal type " << nalType << endl;
+        printf("0x%08x 0x%08x 0x%08x 0x%08x\n", *(unsigned int *)info->buffer, *(unsigned int *)(info->buffer + 4),
+                *(unsigned int *)(info->buffer + 8), *(unsigned int *)(info->buffer + 12)); 
+        keyFrame = NAL_TYPE_IS_KEY(nalType);
+        outKeyframe = keyFrame;
+        delete [] buffer;
     }
 
     while (!g_queue_is_empty(queue)) {
@@ -218,7 +240,7 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
      */
     nal_ref_idc = (payload[0] & 0x60) >> 5;
     nal_unit_type = payload[0] & 0x1f;
-    printf("nal_ref_idc is %d, nal_unit_type is %d.\n", nal_ref_idc, nal_unit_type);
+    printf("nal_ref_idc:%d, nal_unit_type:%d, len:%d.\n", nal_ref_idc, nal_unit_type, payload_len);
 
     /* at least one byte header with type */
     header_len = 1;
@@ -363,19 +385,20 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
           payload_len -= 1;
 
           nalu_size = payload_len;
-          outsize = nalu_size + sizeof (sync_bytes) + 6;
+         // outsize = nalu_size + sizeof (sync_bytes) + 6;
+          outsize = nalu_size + sizeof (sync_bytes);
           outbuf = new unsigned char[outsize + sizeof(struct h264Buffer)];
           info = (struct h264Buffer *)outbuf;
           outbuf += sizeof(struct h264Buffer);
 
           memcpy(outbuf, sync_bytes, sizeof(sync_bytes));
           tmp = outbuf + sizeof(sync_bytes);
-          memcpy(tmp, pps, 4);
-          tmp += 4;
-          tmp[0] = ((nalu_size - 10) & 0xff00) >> 8;
-          tmp[1] = (nalu_size - 10) & 0xff;
-          tmp += 2;
-
+          //memcpy(tmp, pps, 4);
+       //   tmp += 4;
+        //  tmp[0] = ((nalu_size - 10) & 0xff00) >> 8;
+         // tmp[1] = (nalu_size - 10) & 0xff;
+         // tmp += 2;
+         
           memcpy(tmp, payload, nalu_size);
           outbuf[sizeof (sync_bytes)] = nal_header;
 
@@ -417,11 +440,9 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
 
       default:
       {
-          break;
-#if 0 
-        cout << "default mode" << endl;
-        /* 1-23   NAL unit  Single NAL unit packet per H.264   5.6 */
-        /* the entire payload is the output buffer */
+          cout << "default mode" << endl;
+          /* 1-23   NAL unit  Single NAL unit packet per H.264   5.6 */
+          /* the entire payload is the output buffer */
         nalu_size = payload_len;
         outsize = nalu_size + sizeof (sync_bytes);
         outbuf = new unsigned char[outsize + sizeof(struct h264Buffer)];
@@ -442,15 +463,15 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
         info->start = true;
         info->end = true;
         g_queue_push_tail(singleQueue, info);
-
+#if 0
         count = finishPackets(singleQueue);
         cout << "send " << count << " bytes" << endl;
         if (count < 0) {
             cout << "singleQueue failed!" << endl;
         }
 
-        break;
 #endif
+        break;
       }
     }
 
