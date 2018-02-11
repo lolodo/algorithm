@@ -1,4 +1,4 @@
-# Install script for directory: /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket
+# Install script for directory: /home/alex/workspace/github/algorithm/cppAndroidReceiver/socket
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

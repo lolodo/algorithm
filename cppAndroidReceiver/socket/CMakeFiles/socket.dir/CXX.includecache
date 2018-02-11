@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/PracticalSocket.cpp
+/home/alex/workspace/github/algorithm/cppAndroidReceiver/socket/PracticalSocket.cpp
 PracticalSocket.h
-/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/PracticalSocket.h
+/home/alex/workspace/github/algorithm/cppAndroidReceiver/socket/PracticalSocket.h
 winsock.h
 -
 sys/types.h
@@ -28,7 +28,7 @@ errno.h
 string.h
 -
 
-/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/PracticalSocket.h
+/home/alex/workspace/github/algorithm/cppAndroidReceiver/socket/PracticalSocket.h
 cstdlib
 -
 exception

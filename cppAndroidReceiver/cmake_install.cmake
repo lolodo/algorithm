@@ -1,4 +1,4 @@
-# Install script for directory: /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver
+# Install script for directory: /home/alex/workspace/github/algorithm/cppAndroidReceiver
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,12 +33,12 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles/CMakeRelink.dir/rtpreceiver")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/alex/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles/CMakeRelink.dir/rtpreceiver")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/cmake_install.cmake")
+  include("/home/alex/workspace/github/algorithm/cppAndroidReceiver/socket/cmake_install.cmake")
 
 endif()
 
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/alex/workspace/github/algorithm/cppAndroidReceiver/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
