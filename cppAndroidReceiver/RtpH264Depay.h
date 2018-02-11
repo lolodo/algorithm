@@ -3,6 +3,7 @@
 
 #include <glib.h>
 #include "PracticalSocket.h"
+#include "H264Decoder.h"
 
 struct h264Buffer {
     unsigned char *buffer;
@@ -21,6 +22,7 @@ class RtpH264Depay {
         int getH264BufferNum();
         struct h264Buffer *getH264Buffer();
         gboolean getStatus();
+        void registerDecodeFunc(h264DecodeFunc decode);
 
 	private:
         UDPSocket sock;
@@ -36,5 +38,6 @@ class RtpH264Depay {
         int finishPackets(GQueue *queue);
         void sendQueue(GQueue *queue);
         void cleanQueue(GQueue *queue);
+        H264Decoder decoder;
 };
 #endif /* __RTP_H264DEPAY_H__*/

@@ -3,4 +3,24 @@
 
 socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: socket/PracticalSocket.cpp
 socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: socket/PracticalSocket.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/asm/socket.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/select.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/select2.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/sigset.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/sockaddr.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/socket.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/socket2.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/socket_type.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/time.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/timex.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/types.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/typesizes.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/uio.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/bits/wordsize.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/sys/select.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/sys/socket.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/sys/types.h
+socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o: /usr/include/x86_64-linux-gnu/sys/uio.h
 

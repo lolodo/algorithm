@@ -4,11 +4,11 @@
 #include <iostream>
 #include "RtpH264Depay.h"
 #include "PracticalSocket.h"
+#include "H264Decoder.h"
 
 #define BUFFER_LEN  (1024 * 1024)
 using namespace std;
 unsigned char sync_bytes[] = {0, 0, 0, 1 };
-//unsigned char sync_bytes[] = {0, 0, 0, 2 };
 unsigned char pps[] = {9, 0x30, 0, 0 };
         
 gboolean RtpH264Depay::getStatus()
@@ -25,7 +25,9 @@ void RtpH264Depay::sendQueue(GQueue *queue)
         printf("sendTo:0x%08x 0x%08x 0x%08x 0x%08x\n", *(unsigned int *)info->buffer, 
                 *(unsigned int *)(info->buffer + 4), *(unsigned int *)(info->buffer + 8), 
                 *(unsigned int *)(info->buffer + 12));
-        sock.sendTo(info->buffer, info->size, "127.0.0.1", 8890);
+       // sock.sendTo(info->buffer, info->size, "127.0.0.1", 8890);
+       
+        decoder.decode(info->buffer, info->size);
     }
 }
 
@@ -174,7 +176,7 @@ gboolean RtpH264Depay::getStreamMode()
     return byte_stream;
 }
 
-RtpH264Depay::RtpH264Depay(void):stapQueue(NULL), byte_stream(true), wait_start(true), fuQueue(NULL), mEnable(false)
+RtpH264Depay::RtpH264Depay(void):stapQueue(NULL), byte_stream(true), wait_start(true), fuQueue(NULL), mEnable(false) 
 {
     current_fu_type = 0;
 	stapQueue = g_queue_new();

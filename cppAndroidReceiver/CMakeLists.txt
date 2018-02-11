@@ -18,7 +18,7 @@ if (NOT OpenCV_FOUND)
 	message (FATAL_ERROR "OpenCV not found!")
 endif (NOT OpenCV_FOUND)
 
-add_executable(rtpreceiver rtpreceiver.cpp RtpH264Depay.cpp)
+add_executable(rtpreceiver rtpreceiver.cpp RtpH264Depay.cpp H264Decoder.cpp)
 target_link_libraries(rtpreceiver jrtp ${OpenCV_LIBS} glib-2.0 avformat avcodec avutil m z socket)
 
 install (TARGETS rtpreceiver DESTINATION bin)

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/alex/workspace/github/algorithm/cppAndroidReceiver
+CMAKE_SOURCE_DIR = /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/alex/workspace/github/algorithm/cppAndroidReceiver
+CMAKE_BINARY_DIR = /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -102,8 +102,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -113,9 +113,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles /home/alex/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -173,6 +173,33 @@ socket: cmake_check_build_system
 socket/fast:
 	$(MAKE) -f socket/CMakeFiles/socket.dir/build.make socket/CMakeFiles/socket.dir/build
 .PHONY : socket/fast
+
+H264Decoder.o: H264Decoder.cpp.o
+
+.PHONY : H264Decoder.o
+
+# target to build an object file
+H264Decoder.cpp.o:
+	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/H264Decoder.cpp.o
+.PHONY : H264Decoder.cpp.o
+
+H264Decoder.i: H264Decoder.cpp.i
+
+.PHONY : H264Decoder.i
+
+# target to preprocess a source file
+H264Decoder.cpp.i:
+	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/H264Decoder.cpp.i
+.PHONY : H264Decoder.cpp.i
+
+H264Decoder.s: H264Decoder.cpp.s
+
+.PHONY : H264Decoder.s
+
+# target to generate assembly for a file
+H264Decoder.cpp.s:
+	$(MAKE) -f CMakeFiles/rtpreceiver.dir/build.make CMakeFiles/rtpreceiver.dir/H264Decoder.cpp.s
+.PHONY : H264Decoder.cpp.s
 
 RtpH264Depay.o: RtpH264Depay.cpp.o
 
@@ -241,6 +268,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... socket"
+	@echo "... H264Decoder.o"
+	@echo "... H264Decoder.i"
+	@echo "... H264Decoder.s"
 	@echo "... RtpH264Depay.o"
 	@echo "... RtpH264Depay.i"
 	@echo "... RtpH264Depay.s"

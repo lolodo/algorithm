@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/include/glib-2.0 -I/usr/local/include -I/home/alex/workspace/github/algorithm/cppAndroidReceiver/./socket -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/opencv 
+CXX_INCLUDES = -I/usr/include/glib-2.0 -I/usr/local/include -I/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/./socket -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/x86_64-linux-gnu -I/usr/include/opencv 
 

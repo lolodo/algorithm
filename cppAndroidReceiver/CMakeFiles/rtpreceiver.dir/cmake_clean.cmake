@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o"
   "CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o"
+  "CMakeFiles/rtpreceiver.dir/H264Decoder.cpp.o"
   "rtpreceiver.pdb"
   "rtpreceiver"
   "rtpreceiver.pdb"

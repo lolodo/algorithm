@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/alex/workspace/github/algorithm/cppAndroidReceiver/socket/PracticalSocket.cpp" "/home/alex/workspace/github/algorithm/cppAndroidReceiver/socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o"
+  "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/PracticalSocket.cpp" "/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/socket/CMakeFiles/socket.dir/PracticalSocket.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -14,6 +14,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/include"
   "./socket"
   "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+  "/usr/include/x86_64-linux-gnu"
   "/usr/include/opencv"
   )
 

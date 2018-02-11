@@ -54,7 +54,9 @@ class MyRTPSession : public RTPSession
 
     public: MyRTPSession();
     public: ~MyRTPSession();
-    public:RtpH264Depay h264info;
+
+    private:
+            RtpH264Depay h264info;
 
 protected:
 	void OnPollThreadStep();
@@ -126,58 +128,7 @@ void MyRTPSession::ProcessRTPPacket(const RTPSourceData &srcdat,const RTPPacket 
 #endif
     buffer = rtppack.GetPayloadData();
     payloadlen = rtppack.GetPayloadLength();
-
     h264info.DepayProcess(buffer, payloadlen, rtppack.HasMarker());
-#if 0
-    offset = *(unsigned *)buffer;
-    offset = ntohl(offset);
-    offset = offset & 0x00ffffff;
-    //std::cout << std::hex << "offset is:" << offset << std::endl;
-//    offset = ntohl(*(unsigned int *)buffer) & 0x00ffffff;
- 
-    /* Jpeg */
-    if (rtppack.GetPayloadType() != 26) {
-        std::cout << "payload type is :" << rtppack.GetPayloadType() << std::endl;
-        return;
-    }
-
-    head += JPEG_HEAD_LEN;
-    payloadlen = rtppack.GetPayloadLength() - JPEG_HEAD_LEN;
-    jpegtype = *(buffer + 4);
-    if ((jpegtype >= 0x40) && (jpegtype < 0x80 )) {
-        std::cout << "jpeg type is :" << jpegtype << std::endl;
-        payloadlen -= 4;
-        head += 4;
-    }
-    
-    if (offset == 0) {
-        //Initialize JPEG header
-        
-        head += 132;
-        width = *(buffer + 6) * 8;
-        height = *(buffer + 7) * 8;
-        payloadlen = rtppack.GetPayloadLength() - JPEG_HEAD_LEN;
-        std::cout << "offset is 0 ====bufpos:" << bufpos << " width:" << width << " height:" << height << std::endl;
-        memcpy(longbuf + offset, rtppack.GetPayloadData() + JPEG_HEAD_LEN + 132, rtppack.GetPayloadLength() - JPEG_HEAD_LEN - 132);
-    } else {
-        memcpy(longbuf + offset, rtppack.GetPayloadData() + JPEG_HEAD_LEN, rtppack.GetPayloadLength() - JPEG_HEAD_LEN);
-    }
-   
-    bufpos += rtppack.GetPayloadLength() - JPEG_HEAD_LEN;
-    if (rtppack.HasMarker()) {
-        std::cout << "show img bufpos:" << bufpos << std::endl;
-        cv::Mat rawdata = cv::Mat(1, bufpos, CV_8UC1, longbuf);
-        cv::Mat frame = cv::imdecode(rawdata, CV_LOAD_IMAGE_COLOR);
-        if (frame.size().width == 0) {
-            std::cerr << "decode failed!" << std::endl;
-            bufpos = 0;
-            return ;
-        }
-        
-        cv::imshow("recv", frame);
-        bufpos = 0;
-    }
-#endif
 }
 
 //

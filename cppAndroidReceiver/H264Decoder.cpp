@@ -19,6 +19,9 @@
  *
 */
 
+extern "C" {
+#include <stdio.h>
+#include <stdlib.h>
 #include <libavutil/opt.h>
 #include <libavcodec/avcodec.h>
 #include <libavutil/channel_layout.h>
@@ -26,47 +29,45 @@
 #include <libavutil/imgutils.h>
 #include <libavutil/mathematics.h>
 #include <libavutil/samplefmt.h>
+}
 
-H264Decoder::H264Decoder():bStop(0)
+#include "H264Decoder.h"
+
+H264Decoder::H264Decoder():bStop(0), context(NULL), codec(NULL), frame(NULL)
 {
   /* register all the codecs */
   avcodec_register_all();
   codec = avcodec_find_decoder(AV_CODEC_ID_H264);
   if (!codec) {
-	  printf("[%]find decoder failed!\n", __func__);
-	  return -1;
+	  printf("[%s]find decoder failed!\n", __func__);
+	  return;
   }
   
   context = avcodec_alloc_context3(codec);
   if (!context) {
-	  printf("[%]alloc context failed!\n", __func__);
-	  return -1;
+	  printf("[%s]alloc context failed!\n", __func__);
+	  return;
   }
 
-#if 0
-  /* put sample parameters */
- context->bit_rate = ; 
- context->sample_rate = ; 
- context->channels = ; 
- context->sample_fmt = ; 
-#endif
- 
   /* open it */
   if(avcodec_open2(context, codec, NULL) < 0) {
     fprintf(stderr, "could not open codec\n");
-    exit(EXIT_FAILURE);
+    return;
   }
 
+#if 0
   /* the codec gives us the frame size, in samples */
   
   Mp4mux_Init();
   Mp4mux_Open("/tmp/scv.mp4");
+#endif
 }
 
 H264Decoder::~H264Decoder()
 {
+#if 0
   Mp4mux_Close();
-
+#endif
   avcodec_close(context);
   av_free(context);
 }
@@ -78,20 +79,27 @@ void H264Decoder::stop()
 
 int H264Decoder::decode(unsigned char *buffer, int size)
 {
-  AVFrame *picture = avcodec_alloc_frame();
-  av_init_packet(&avpkt);
-  int frame_count = 0;
+  int ret = -1;
+  int len;
+  int got_picture;
 
-  avpkt->size = size;
-  avpkt->data = buffer;
+  picture = av_frame_alloc();
+  if (!picture) {
+      printf("alloc frame failed!\n");
+      return -1;
+  }
+
+  av_init_packet(&avpkt);
+  avpkt.size = size;
+  avpkt.data = buffer;
   if (avpkt.size > 0) {
-	  int len = avcodec_decode_video2(context, picture, &got_picture, &avpkt);
-      
-	  Mp4Mux_WriteVideo(&avpkt, timestamp);
+      printf("prepare to decode video\n");
+	  len = avcodec_decode_video2(context, picture, &got_picture, &avpkt);
 	  if(len < 0) {
 		  fprintf(stderr, "Error while decoding frame\n");
 		  av_init_packet(&avpkt);
-		  break;
+          ret = -1;
+          goto cleanup;
 	  }
       
 	  if(got_picture) {
@@ -99,12 +107,11 @@ int H264Decoder::decode(unsigned char *buffer, int size)
 		  printf("size:%d, width:%d, height:%d\n", picture->linesize[0], context->width, context->height);
 	  }
 
-		  av_init_packet(&avpkt);
-		  break;
-	  }
+    av_init_packet(&avpkt);
+    ret = 0;
   }
 
 cleanup:
   av_free(picture);
-  return;
+  return ret;
 }

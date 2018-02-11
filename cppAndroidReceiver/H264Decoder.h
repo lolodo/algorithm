@@ -19,26 +19,30 @@
  *
 */
 
-#ifndef AVCODEC_AVCODEC_H
-#define AVCODEC_AVCODEC_H
+#ifndef H264DECODER_H
+#define H264DECODER_H
 
+extern "C" {
 #include "libavcodec/avcodec.h"
 #include "libavutil/mathematics.h"
 #include "libavformat/avformat.h"
+}
 
 class H264Decoder {
 	public:
 		H264Decoder();
 		~H264Decoder();
-		int decode();
+        int decode(unsigned char *buffer, int size);
 		void stop();
 
 	private:
 		AVCodec *codec;
-		AVCodecContext *context;
 		AVFrame *frame;
-		AVPacket avpkt;
+        AVCodecContext *context;
+        AVFrame *picture;
+        AVPacket avpkt;
 		int bStop;
-}
+};
 
+typedef int (*h264DecodeFunc)(unsigned char *buffer, int size);
 #endif
