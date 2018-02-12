@@ -43,6 +43,8 @@ libavutil/mathematics.h
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/libavutil/mathematics.h
 libavformat/avformat.h
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/libavformat/avformat.h
+stdbool.h
+-
 
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/RtpH264Depay.cpp
 string.h

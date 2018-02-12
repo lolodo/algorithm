@@ -19,15 +19,24 @@ gboolean RtpH264Depay::getStatus()
 void RtpH264Depay::sendQueue(GQueue *queue) 
 {
     struct h264Buffer *info;
+    unsigned char *buffer;
+
+    if (decoder.getStatus() == false) {
+        printf("decoder is disabled!\n");
+        return;
+    }
 
     while (!g_queue_is_empty(queue)) {
-        info= (struct h264Buffer *)g_queue_pop_head(queue);
+        buffer = (unsigned char *)g_queue_pop_head(queue);
+        info= (struct h264Buffer *)buffer;
+        printf("buffer size:%lu\n", info->size);
         printf("sendTo:0x%08x 0x%08x 0x%08x 0x%08x\n", *(unsigned int *)info->buffer, 
                 *(unsigned int *)(info->buffer + 4), *(unsigned int *)(info->buffer + 8), 
                 *(unsigned int *)(info->buffer + 12));
        // sock.sendTo(info->buffer, info->size, "127.0.0.1", 8890);
        
         decoder.decode(info->buffer, info->size);
+        delete [] buffer; 
     }
 }
 
@@ -68,6 +77,7 @@ int RtpH264Depay::finishPackets(GQueue *queue)
         cleanQueue(outputQueue);
     }
 
+#if 0
     /*pps/sps*/
     while(!g_queue_is_empty(singleQueue))
     {
@@ -86,6 +96,7 @@ int RtpH264Depay::finishPackets(GQueue *queue)
         outKeyframe = keyFrame;
         delete [] buffer;
     }
+#endif
 
     while (!g_queue_is_empty(queue)) {
         buffer = (char *)g_queue_pop_head(queue);
@@ -125,10 +136,12 @@ int RtpH264Depay::finishPackets(GQueue *queue)
             memcpy(fuInfo->buffer, info->buffer, info->size);
             outputBuffer += info->size;
             if (end) {
+#if 0
                 fuInfo->buffer[4] = 9;
                 fuInfo->buffer[8] = ((fuInfo->size - 10) & 0xff00) >> 8;
                 fuInfo->buffer[9] = (fuInfo->size - 10) & 0xff;
                 fuInfo->buffer[10] = 0x41;
+#endif
                 fuInfo->end = 1; 
                 g_queue_push_tail(outputQueue, fuInfo);
                 flag = false;
@@ -147,10 +160,12 @@ int RtpH264Depay::finishPackets(GQueue *queue)
             outputBuffer += info->size;
            
             if (end) {
+#if 0
                 fuInfo->buffer[4] = 9;
                 fuInfo->buffer[8] = ((fuInfo->size - 10) & 0xff00) >> 8;
                 fuInfo->buffer[9] = (fuInfo->size - 10) & 0xff;
                 fuInfo->buffer[10] = 0x41;
+#endif
                 fuInfo->end = 1; 
                 g_queue_push_tail(outputQueue, fuInfo);
                 flag = false;
@@ -388,6 +403,8 @@ void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int ma
         info->start = true;
         info->end = true;
         g_queue_push_tail(singleQueue, info);
+        count = finishPackets(singleQueue);
+        cout << "singleQueue:send " << count << " bytes" << endl;
         break;
       }
     }

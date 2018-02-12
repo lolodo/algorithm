@@ -26,6 +26,7 @@ extern "C" {
 #include "libavcodec/avcodec.h"
 #include "libavutil/mathematics.h"
 #include "libavformat/avformat.h"
+#include <stdbool.h>
 }
 
 class H264Decoder {
@@ -34,6 +35,7 @@ class H264Decoder {
 		~H264Decoder();
         int decode(unsigned char *buffer, int size);
 		void stop();
+        bool getStatus();
 
 	private:
 		AVCodec *codec;
@@ -42,6 +44,7 @@ class H264Decoder {
         AVFrame *picture;
         AVPacket avpkt;
 		int bStop;
+        bool mEnable;
 };
 
 typedef int (*h264DecodeFunc)(unsigned char *buffer, int size);

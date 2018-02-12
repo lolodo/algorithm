@@ -33,7 +33,13 @@ extern "C" {
 
 #include "H264Decoder.h"
 
-H264Decoder::H264Decoder():bStop(0), context(NULL), codec(NULL), frame(NULL)
+
+bool H264Decoder::getStatus()
+{
+    return mEnable;
+}
+
+H264Decoder::H264Decoder():bStop(0), context(NULL), codec(NULL), frame(NULL), mEnable(false)
 {
   /* register all the codecs */
   avcodec_register_all();
@@ -55,6 +61,7 @@ H264Decoder::H264Decoder():bStop(0), context(NULL), codec(NULL), frame(NULL)
     return;
   }
 
+  mEnable = true;
 #if 0
   /* the codec gives us the frame size, in samples */
   
@@ -93,7 +100,7 @@ int H264Decoder::decode(unsigned char *buffer, int size)
   avpkt.size = size;
   avpkt.data = buffer;
   if (avpkt.size > 0) {
-      printf("prepare to decode video\n");
+      printf("prepare to decode video, size:%d\n", avpkt.size);
 	  len = avcodec_decode_video2(context, picture, &got_picture, &avpkt);
 	  if(len < 0) {
 		  fprintf(stderr, "Error while decoding frame\n");
