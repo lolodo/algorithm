@@ -19,7 +19,7 @@ if (NOT OpenCV_FOUND)
 endif (NOT OpenCV_FOUND)
 
 add_executable(rtpreceiver rtpreceiver.cpp RtpH264Depay.cpp H264Decoder.cpp)
-target_link_libraries(rtpreceiver jrtp ${OpenCV_LIBS} glib-2.0 avformat avcodec avutil m z socket)
+target_link_libraries(rtpreceiver jrtp ${OpenCV_LIBS} glib-2.0 swscale avformat avcodec avutil m z socket)
 
 install (TARGETS rtpreceiver DESTINATION bin)
 add_subdirectory(socket)

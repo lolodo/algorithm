@@ -26,6 +26,8 @@ extern "C" {
 #include "libavcodec/avcodec.h"
 #include "libavutil/mathematics.h"
 #include "libavformat/avformat.h"
+#include "libavformat/avformat.h"
+#include <libswscale/swscale.h> 
 #include <stdbool.h>
 }
 
@@ -45,6 +47,7 @@ class H264Decoder {
         AVPacket avpkt;
 		int bStop;
         bool mEnable;
+        SwsContext *swsContext;
 };
 
 typedef int (*h264DecodeFunc)(unsigned char *buffer, int size);

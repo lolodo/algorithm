@@ -77,27 +77,6 @@ int RtpH264Depay::finishPackets(GQueue *queue)
         cleanQueue(outputQueue);
     }
 
-#if 0
-    /*pps/sps*/
-    while(!g_queue_is_empty(singleQueue))
-    {
-        buffer = (char *)g_queue_pop_head(singleQueue);
-        info = (struct h264Buffer *)buffer;
-        if (info->size < 5) {
-            cout << "too short!" << endl;
-            return -1;
-        }
-
-        nalType = info->buffer[4] & 0x1f;
-        cout << "handle nal type " << nalType << endl;
-        printf("0x%08x 0x%08x 0x%08x 0x%08x\n", *(unsigned int *)info->buffer, *(unsigned int *)(info->buffer + 4),
-                *(unsigned int *)(info->buffer + 8), *(unsigned int *)(info->buffer + 12)); 
-        keyFrame = NAL_TYPE_IS_KEY(nalType);
-        outKeyframe = keyFrame;
-        delete [] buffer;
-    }
-#endif
-
     while (!g_queue_is_empty(queue)) {
         buffer = (char *)g_queue_pop_head(queue);
         info = (struct h264Buffer *)buffer;

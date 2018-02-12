@@ -32,6 +32,7 @@ CMakeFiles/rtpreceiver.dir/H264Decoder.cpp.o
  /usr/include/x86_64-linux-gnu/libavutil/rational.h
  /usr/include/x86_64-linux-gnu/libavutil/samplefmt.h
  /usr/include/x86_64-linux-gnu/libavutil/version.h
+ /usr/include/x86_64-linux-gnu/libswscale/swscale.h
 CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o
  ./socket/PracticalSocket.h
  /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/H264Decoder.h
@@ -148,6 +149,7 @@ CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o
  /usr/include/x86_64-linux-gnu/libavutil/rational.h
  /usr/include/x86_64-linux-gnu/libavutil/samplefmt.h
  /usr/include/x86_64-linux-gnu/libavutil/version.h
+ /usr/include/x86_64-linux-gnu/libswscale/swscale.h
  /usr/include/x86_64-linux-gnu/sys/select.h
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h
  /usr/include/x86_64-linux-gnu/sys/types.h
@@ -274,6 +276,7 @@ CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o
  /usr/include/x86_64-linux-gnu/libavutil/rational.h
  /usr/include/x86_64-linux-gnu/libavutil/samplefmt.h
  /usr/include/x86_64-linux-gnu/libavutil/version.h
+ /usr/include/x86_64-linux-gnu/libswscale/swscale.h
  /usr/include/x86_64-linux-gnu/sys/select.h
  /usr/include/x86_64-linux-gnu/sys/socket.h
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h

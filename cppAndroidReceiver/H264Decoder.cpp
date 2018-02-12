@@ -29,17 +29,19 @@ extern "C" {
 #include <libavutil/imgutils.h>
 #include <libavutil/mathematics.h>
 #include <libavutil/samplefmt.h>
+#include <libswscale/swscale.h>
 }
 
+#include "opencv2/opencv.hpp"
 #include "H264Decoder.h"
 
-
+using namespace cv;
 bool H264Decoder::getStatus()
 {
     return mEnable;
 }
 
-H264Decoder::H264Decoder():bStop(0), context(NULL), codec(NULL), frame(NULL), mEnable(false)
+H264Decoder::H264Decoder():bStop(0), context(NULL), codec(NULL), frame(NULL), mEnable(false), swsContext(NULL), picture(NULL)
 {
   /* register all the codecs */
   avcodec_register_all();
@@ -89,6 +91,9 @@ int H264Decoder::decode(unsigned char *buffer, int size)
   int ret = -1;
   int len;
   int got_picture;
+  AVFrame *pFrameRGB = NULL;
+  uint8_t *out_bufferRGB = NULL;
+  IplImage* pCVFrame = NULL; 
 
   picture = av_frame_alloc();
   if (!picture) {
@@ -112,6 +117,37 @@ int H264Decoder::decode(unsigned char *buffer, int size)
 	  if(got_picture) {
 		  /* the picture is allocated by the decoder. no need to free it */
 		  printf("size:%d, width:%d, height:%d\n", picture->linesize[0], context->width, context->height);
+
+          pFrameRGB = av_frame_alloc();
+          if (!pFrameRGB) {
+            printf("alloc rgb frame failed!\n");
+            ret = -1;
+            goto cleanup;
+          }
+
+          out_bufferRGB = new uint8_t[avpicture_get_size(PIX_FMT_BGR24, context->width, context->height)];
+          if (!out_bufferRGB) {
+              printf("alloc out_bufferRGB failed!\n");
+              ret = -1;
+              goto cleanup;
+          }
+
+          avpicture_fill((AVPicture *)pFrameRGB, out_bufferRGB, PIX_FMT_BGR24, context->width, context->height);
+          swsContext = sws_getContext(context->width, context->height, context->pix_fmt, context->width, context->height, PIX_FMT_BGR24, SWS_BICUBIC, NULL, NULL, NULL); 
+          if(swsContext == NULL)  
+          {
+              ret = -1;
+              printf("swsContext is null!\n");
+              goto cleanup;
+          }
+              
+          sws_scale(swsContext, (const uint8_t* const*)picture->data, picture->linesize, 0, context->height, pFrameRGB->data, pFrameRGB->linesize);
+          pCVFrame = cvCreateImage(cvSize(context->width, context->height),8,3); 
+          memcpy(pCVFrame->imageData,out_bufferRGB,context->width * context->height * 24 / 8);
+          pCVFrame->widthStep=context->width*3; //4096
+          pCVFrame->origin=0;
+          cvShowImage("decode",pCVFrame);//显示  
+          cvWaitKey(20);
 	  }
 
     av_init_packet(&avpkt);
@@ -119,6 +155,22 @@ int H264Decoder::decode(unsigned char *buffer, int size)
   }
 
 cleanup:
-  av_free(picture);
+  if (pCVFrame) {
+      cvReleaseImage(&pCVFrame);
+  }
+
+  if (picture){
+      av_free(picture);
+      picture = NULL;
+  }
+
+  if (out_bufferRGB) {
+      delete[] out_bufferRGB;
+  }
+
+  if (pFrameRGB) {
+      av_free(pFrameRGB);
+  }
+
   return ret;
 }

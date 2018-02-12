@@ -31,6 +31,7 @@ CMakeFiles/rtpreceiver.dir/H264Decoder.cpp.o: /usr/include/x86_64-linux-gnu/liba
 CMakeFiles/rtpreceiver.dir/H264Decoder.cpp.o: /usr/include/x86_64-linux-gnu/libavutil/rational.h
 CMakeFiles/rtpreceiver.dir/H264Decoder.cpp.o: /usr/include/x86_64-linux-gnu/libavutil/samplefmt.h
 CMakeFiles/rtpreceiver.dir/H264Decoder.cpp.o: /usr/include/x86_64-linux-gnu/libavutil/version.h
+CMakeFiles/rtpreceiver.dir/H264Decoder.cpp.o: /usr/include/x86_64-linux-gnu/libswscale/swscale.h
 
 CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o: ./socket/PracticalSocket.h
 CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o: H264Decoder.h
@@ -147,6 +148,7 @@ CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o: /usr/include/x86_64-linux-gnu/lib
 CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o: /usr/include/x86_64-linux-gnu/libavutil/rational.h
 CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o: /usr/include/x86_64-linux-gnu/libavutil/samplefmt.h
 CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o: /usr/include/x86_64-linux-gnu/libavutil/version.h
+CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o: /usr/include/x86_64-linux-gnu/libswscale/swscale.h
 CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o: /usr/include/x86_64-linux-gnu/sys/select.h
 CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h
 CMakeFiles/rtpreceiver.dir/RtpH264Depay.cpp.o: /usr/include/x86_64-linux-gnu/sys/types.h
@@ -273,6 +275,7 @@ CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o: /usr/include/x86_64-linux-gnu/liba
 CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o: /usr/include/x86_64-linux-gnu/libavutil/rational.h
 CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o: /usr/include/x86_64-linux-gnu/libavutil/samplefmt.h
 CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o: /usr/include/x86_64-linux-gnu/libavutil/version.h
+CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o: /usr/include/x86_64-linux-gnu/libswscale/swscale.h
 CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o: /usr/include/x86_64-linux-gnu/sys/select.h
 CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o: /usr/include/x86_64-linux-gnu/sys/socket.h
 CMakeFiles/rtpreceiver.dir/rtpreceiver.cpp.o: /usr/include/x86_64-linux-gnu/sys/sysmacros.h

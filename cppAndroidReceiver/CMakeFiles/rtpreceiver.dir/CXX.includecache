@@ -33,6 +33,10 @@ libavutil/mathematics.h
 -
 libavutil/samplefmt.h
 -
+libswscale/swscale.h
+-
+opencv2/opencv.hpp
+/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/opencv2/opencv.hpp
 H264Decoder.h
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/H264Decoder.h
 
@@ -43,6 +47,10 @@ libavutil/mathematics.h
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/libavutil/mathematics.h
 libavformat/avformat.h
 /home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/libavformat/avformat.h
+libavformat/avformat.h
+/home/fangyuan/workspace/github/algorithm/cppAndroidReceiver/libavformat/avformat.h
+libswscale/swscale.h
+-
 stdbool.h
 -
 
@@ -973,6 +981,18 @@ attributes.h
 /usr/include/x86_64-linux-gnu/libavutil/version.h
 macros.h
 /usr/include/x86_64-linux-gnu/libavutil/macros.h
+
+/usr/include/x86_64-linux-gnu/libswscale/swscale.h
+stdint.h
+-
+libavutil/avutil.h
+/usr/include/x86_64-linux-gnu/libswscale/libavutil/avutil.h
+libavutil/log.h
+/usr/include/x86_64-linux-gnu/libswscale/libavutil/log.h
+libavutil/pixfmt.h
+/usr/include/x86_64-linux-gnu/libswscale/libavutil/pixfmt.h
+version.h
+/usr/include/x86_64-linux-gnu/libswscale/version.h
 
 /usr/include/x86_64-linux-gnu/sys/select.h
 features.h
