@@ -1,0 +1,177 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+APP_ABI	jni/Application.mk	/^APP_ABI := arm64-v8a$/;"	m
+APP_CPPFLAGS	jni/Application.mk	/^APP_CPPFLAGS := -frtti -fexceptions -std=c++0x$/;"	m
+APP_PLATFORM	jni/Application.mk	/^APP_PLATFORM := android-26$/;"	m
+APP_STL	jni/Application.mk	/^APP_STL := gnustl_static$/;"	m
+BUFFER_LEN	jni/RtpH264Depay.cpp	9;"	d	file:
+BUFFER_SIZE	jni/rtpreceiver.cpp	25;"	d	file:
+CommunicatingSocket	jni/PracticalSocket.cpp	/^CommunicatingSocket::CommunicatingSocket(int newConnSD) : Socket(newConnSD) {$/;"	f	class:CommunicatingSocket
+CommunicatingSocket	jni/PracticalSocket.cpp	/^CommunicatingSocket::CommunicatingSocket(int type, int protocol)  $/;"	f	class:CommunicatingSocket
+CommunicatingSocket	jni/PracticalSocket.h	/^class CommunicatingSocket : public Socket {$/;"	c
+DepayProcess	jni/RtpH264Depay.cpp	/^void *RtpH264Depay::DepayProcess (void *buffer, unsigned int payload_len, int marker)$/;"	f	class:RtpH264Depay
+H264DECODER_H	jni/H264Decoder.h	23;"	d
+H264Decoder	jni/H264Decoder.cpp	/^H264Decoder::H264Decoder():bStop(0), context(NULL), codec(NULL), frame(NULL), mEnable(false), swsContext(NULL), picture(NULL)$/;"	f	class:H264Decoder
+H264Decoder	jni/H264Decoder.h	/^class H264Decoder {$/;"	c
+HAVE_AV_CONFIG_H	jni/mp4mux.h	23;"	d
+INBUF_SIZE	jni/rtph264.c	86;"	d	file:
+JPEG_HEAD_LEN	jni/rtpreceiver.cpp	24;"	d	file:
+LOCAL_MODULE	jni/Android.mk	/^LOCAL_MODULE:=main$/;"	m
+LOCAL_MODULE_TAGS	jni/Android.mk	/^LOCAL_MODULE_TAGS := optional$/;"	m
+LOCAL_PATH	jni/Android.mk	/^LOCAL_PATH:= $(call my-dir)$/;"	m
+LOCAL_SRC_FILES	jni/Android.mk	/^LOCAL_SRC_FILES:= H264Decoder.cpp PracticalSocket.cpp RtpH264Depay.cpp rtpreceiver.cpp   $/;"	m
+Mp4Mux_WriteVideo	jni/mp4mux.c	/^void Mp4Mux_WriteVideo(AVPacket *pkt, unsigned int timestamp)$/;"	f
+Mp4mux_Close	jni/mp4mux.c	/^void Mp4mux_Close()$/;"	f
+Mp4mux_Init	jni/mp4mux.c	/^void Mp4mux_Init()$/;"	f
+Mp4mux_Open	jni/mp4mux.c	/^void Mp4mux_Open(const char *filename)$/;"	f
+MyRTPSession	jni/rtpreceiver.cpp	/^MyRTPSession::MyRTPSession()$/;"	f	class:MyRTPSession
+MyRTPSession	jni/rtpreceiver.cpp	/^class MyRTPSession : public RTPSession$/;"	c	file:
+NAL_TYPE_IS_KEY	jni/RtpH264Depay.cpp	62;"	d	file:
+OnPollThreadStep	jni/rtpreceiver.cpp	/^void MyRTPSession::OnPollThreadStep()$/;"	f	class:MyRTPSession
+PACK_SIZE	jni/rtpreceiver.cpp	23;"	d	file:
+ProcessRTPPacket	jni/rtpreceiver.cpp	/^void MyRTPSession::ProcessRTPPacket(const RTPSourceData &srcdat,const RTPPacket &rtppack)$/;"	f	class:MyRTPSession
+RTPDATAHEADER_H	jni/rtpdataheader.h	2;"	d
+RTP_BIG_ENDIAN	jni/rtpdataheader.h	10;"	d
+RTP_LITTLE_ENDIAN	jni/rtpdataheader.h	11;"	d
+RtpH264Depay	jni/RtpH264Depay.cpp	/^RtpH264Depay::RtpH264Depay(void):stapQueue(NULL), byte_stream(true), wait_start(true), fuQueue(NULL), mEnable(false) $/;"	f	class:RtpH264Depay
+RtpH264Depay	jni/RtpH264Depay.h	/^class RtpH264Depay {$/;"	c
+RtpH264_Deinit	jni/rtph264.c	/^void RtpH264_Deinit()$/;"	f
+RtpH264_Init	jni/rtph264.c	/^int RtpH264_Init()$/;"	f
+RtpH264_Run	jni/rtph264.c	/^void RtpH264_Run(int sfd, RtpH264_OnPicture onPicture)$/;"	f
+RtpH264_Stop	jni/rtph264.c	/^void RtpH264_Stop()$/;"	f
+STREAM_FRAME_RATE	jni/mp4mux.c	120;"	d	file:
+STREAM_PIX_FMT	jni/mp4mux.c	121;"	d	file:
+Socket	jni/PracticalSocket.cpp	/^Socket::Socket(int sockDesc) {$/;"	f	class:Socket
+Socket	jni/PracticalSocket.cpp	/^Socket::Socket(int type, int protocol) throw(SocketException) {$/;"	f	class:Socket
+Socket	jni/PracticalSocket.h	/^class Socket {$/;"	c
+SocketException	jni/PracticalSocket.cpp	/^SocketException::SocketException(const string &message, bool inclSysMsg)$/;"	f	class:SocketException
+SocketException	jni/PracticalSocket.h	/^class SocketException : public exception {$/;"	c
+TCPServerSocket	jni/PracticalSocket.cpp	/^TCPServerSocket::TCPServerSocket(const string &localAddress, $/;"	f	class:TCPServerSocket
+TCPServerSocket	jni/PracticalSocket.cpp	/^TCPServerSocket::TCPServerSocket(unsigned short localPort, int queueLen) $/;"	f	class:TCPServerSocket
+TCPServerSocket	jni/PracticalSocket.h	/^class TCPServerSocket : public Socket {$/;"	c
+TCPSocket	jni/PracticalSocket.cpp	/^TCPSocket::TCPSocket() $/;"	f	class:TCPSocket
+TCPSocket	jni/PracticalSocket.cpp	/^TCPSocket::TCPSocket(const string &foreignAddress, unsigned short foreignPort)$/;"	f	class:TCPSocket
+TCPSocket	jni/PracticalSocket.cpp	/^TCPSocket::TCPSocket(int newConnSD) : CommunicatingSocket(newConnSD) {$/;"	f	class:TCPSocket
+TCPSocket	jni/PracticalSocket.h	/^class TCPSocket : public CommunicatingSocket {$/;"	c
+UDPSocket	jni/PracticalSocket.cpp	/^UDPSocket::UDPSocket() throw(SocketException) : CommunicatingSocket(SOCK_DGRAM,$/;"	f	class:UDPSocket
+UDPSocket	jni/PracticalSocket.cpp	/^UDPSocket::UDPSocket(const string &localAddress, unsigned short localPort) $/;"	f	class:UDPSocket
+UDPSocket	jni/PracticalSocket.cpp	/^UDPSocket::UDPSocket(unsigned short localPort)  throw(SocketException) : $/;"	f	class:UDPSocket
+UDPSocket	jni/PracticalSocket.h	/^class UDPSocket : public CommunicatingSocket {$/;"	c
+__PRACTICALSOCKET_INCLUDED__	jni/PracticalSocket.h	24;"	d
+__RTP_H264DEPAY_H__	jni/RtpH264Depay.h	2;"	d
+accept	jni/PracticalSocket.cpp	/^TCPSocket *TCPServerSocket::accept() throw(SocketException) {$/;"	f	class:TCPServerSocket
+add_audio_stream	jni/mp4mux.c	/^static AVStream *add_audio_stream(AVFormatContext *oc, enum CodecID codec_id)$/;"	f	file:
+add_video_stream	jni/mp4mux.c	/^static AVStream *add_video_stream(AVFormatContext *oc, enum CodecID codec_id)$/;"	f	file:
+audio_input_frame_size	jni/mp4mux.c	/^int audio_input_frame_size;$/;"	v
+audio_outbuf	jni/mp4mux.c	/^uint8_t *audio_outbuf;$/;"	v
+audio_outbuf_size	jni/mp4mux.c	/^int audio_outbuf_size;$/;"	v
+avpkt	jni/H264Decoder.h	/^        AVPacket avpkt;$/;"	m	class:H264Decoder
+bStop	jni/H264Decoder.h	/^		int bStop;$/;"	m	class:H264Decoder
+bStop	jni/rtph264.c	/^static int bStop = 0;$/;"	v	file:
+buffer	jni/RtpH264Depay.h	/^    unsigned char *buffer;$/;"	m	struct:h264Buffer
+buffer	jni/rtpreceiver.cpp	/^    unsigned char *buffer;$/;"	m	class:MyRTPSession	file:
+bufpos	jni/rtpreceiver.cpp	/^    unsigned bufpos;$/;"	m	class:MyRTPSession	file:
+byte_stream	jni/RtpH264Depay.h	/^        gboolean byte_stream;$/;"	m	class:RtpH264Depay
+cc	jni/rtpdataheader.h	/^	unsigned int cc:4;              \/\/ CSRC count$/;"	m	struct:__anon1
+checkerror	jni/rtpreceiver.cpp	/^void checkerror(int rtperr)$/;"	f
+cleanQueue	jni/RtpH264Depay.cpp	/^void RtpH264Depay::cleanQueue(GQueue *queue)$/;"	f	class:RtpH264Depay
+cleanUp	jni/PracticalSocket.cpp	/^void Socket::cleanUp() throw(SocketException) {$/;"	f	class:Socket
+close_audio	jni/mp4mux.c	/^static void close_audio(AVFormatContext *oc, AVStream *st)$/;"	f	file:
+close_video	jni/mp4mux.c	/^static void close_video(AVFormatContext *oc, AVStream *st)$/;"	f	file:
+codec	jni/H264Decoder.h	/^		AVCodec *codec;$/;"	m	class:H264Decoder
+codec	jni/rtph264.c	/^AVCodec *codec = NULL;$/;"	v
+connect	jni/PracticalSocket.cpp	/^void CommunicatingSocket::connect(const string &foreignAddress,$/;"	f	class:CommunicatingSocket
+context	jni/H264Decoder.h	/^        AVCodecContext *context;$/;"	m	class:H264Decoder
+context	jni/mp4mux.c	/^static AVFormatContext *context = 0;$/;"	v	file:
+context	jni/rtph264.c	/^AVCodecContext *context;$/;"	v
+current_fu_type	jni/RtpH264Depay.h	/^        unsigned char current_fu_type;$/;"	m	class:RtpH264Depay
+decode	jni/H264Decoder.cpp	/^int H264Decoder::decode(unsigned char *buffer, int size)$/;"	f	class:H264Decoder
+decoder	jni/RtpH264Depay.h	/^        H264Decoder decoder;$/;"	m	class:RtpH264Depay
+disconnect	jni/PracticalSocket.cpp	/^void UDPSocket::disconnect() throw(SocketException) {$/;"	f	class:UDPSocket
+end	jni/RtpH264Depay.h	/^    unsigned long end;$/;"	m	struct:h264Buffer
+fillAddr	jni/PracticalSocket.cpp	/^static void fillAddr(const string &address, unsigned short port, $/;"	f	file:
+finishPackets	jni/RtpH264Depay.cpp	/^int RtpH264Depay::finishPackets(GQueue *queue)$/;"	f	class:RtpH264Depay
+frame	jni/H264Decoder.h	/^		AVFrame *frame;$/;"	m	class:H264Decoder
+frame	jni/rtph264.c	/^AVFrame *frame;$/;"	v
+fuQueue	jni/RtpH264Depay.h	/^		GQueue *fuQueue;$/;"	m	class:RtpH264Depay
+fu_marker	jni/RtpH264Depay.h	/^        gboolean fu_marker;$/;"	m	class:RtpH264Depay
+getForeignAddress	jni/PracticalSocket.cpp	/^string CommunicatingSocket::getForeignAddress() $/;"	f	class:CommunicatingSocket
+getForeignPort	jni/PracticalSocket.cpp	/^unsigned short CommunicatingSocket::getForeignPort() throw(SocketException) {$/;"	f	class:CommunicatingSocket
+getLocalAddress	jni/PracticalSocket.cpp	/^string Socket::getLocalAddress() throw(SocketException) {$/;"	f	class:Socket
+getLocalPort	jni/PracticalSocket.cpp	/^unsigned short Socket::getLocalPort() throw(SocketException) {$/;"	f	class:Socket
+getStatus	jni/H264Decoder.cpp	/^bool H264Decoder::getStatus()$/;"	f	class:H264Decoder
+getStatus	jni/RtpH264Depay.cpp	/^gboolean RtpH264Depay::getStatus()$/;"	f	class:RtpH264Depay
+getStreamMode	jni/RtpH264Depay.cpp	/^gboolean RtpH264Depay::getStreamMode()$/;"	f	class:RtpH264Depay
+h264Buffer	jni/RtpH264Depay.h	/^struct h264Buffer {$/;"	s
+h264DecodeFunc	jni/H264Decoder.h	/^typedef int (*h264DecodeFunc)(unsigned char *buffer, int size);$/;"	t
+h264info	jni/rtpreceiver.cpp	/^            RtpH264Depay h264info;$/;"	m	class:MyRTPSession	file:
+height	jni/rtpreceiver.cpp	/^    unsigned height;$/;"	m	class:MyRTPSession	file:
+initialized	jni/PracticalSocket.cpp	/^static bool initialized = false;$/;"	v	file:
+int16	jni/rtpdataheader.h	/^typedef short int16;$/;"	t
+int32	jni/rtpdataheader.h	/^typedef int   int32;$/;"	t
+joinGroup	jni/PracticalSocket.cpp	/^void UDPSocket::joinGroup(const string &multicastGroup) throw(SocketException) {$/;"	f	class:UDPSocket
+leaveGroup	jni/PracticalSocket.cpp	/^void UDPSocket::leaveGroup(const string &multicastGroup) throw(SocketException) {$/;"	f	class:UDPSocket
+longbuf	jni/rtpreceiver.cpp	/^    char *longbuf;$/;"	m	class:MyRTPSession	file:
+m	jni/rtpdataheader.h	/^	unsigned int m:1;               \/\/ marker bit$/;"	m	struct:__anon1
+mEnable	jni/H264Decoder.h	/^        bool mEnable;$/;"	m	class:H264Decoder
+mEnable	jni/RtpH264Depay.h	/^        gboolean mEnable;$/;"	m	class:RtpH264Depay
+main	jni/rtpreceiver.cpp	/^int main(void)$/;"	f
+open_audio	jni/mp4mux.c	/^static void open_audio(AVFormatContext *oc, AVStream *st)$/;"	f	file:
+open_video	jni/mp4mux.c	/^static void open_video(AVFormatContext *oc, AVStream *st)$/;"	f	file:
+outputQueue	jni/RtpH264Depay.h	/^        GQueue *outputQueue;$/;"	m	class:RtpH264Depay
+p	jni/rtpdataheader.h	/^	unsigned int p:1;               \/\/ padding flag$/;"	m	struct:__anon1
+picture	jni/H264Decoder.h	/^        AVFrame *picture;$/;"	m	class:H264Decoder
+pkt	jni/rtph264.c	/^AVPacket pkt;$/;"	v
+pps	jni/RtpH264Depay.cpp	/^unsigned char pps[] = {9, 0x30, 0, 0 };$/;"	v
+print_error	jni/mp4mux.c	/^void print_error(const char *filename, int err)$/;"	f
+pt	jni/rtpdataheader.h	/^	unsigned int pt:7;              \/\/ payload type$/;"	m	struct:__anon1
+raw_type	jni/PracticalSocket.cpp	/^  typedef char raw_type;       \/\/ Type used for raw data on this platform$/;"	t	file:
+raw_type	jni/PracticalSocket.cpp	/^  typedef void raw_type;       \/\/ Type used for raw data on this platform$/;"	t	file:
+recv	jni/PracticalSocket.cpp	/^int CommunicatingSocket::recv(void *buffer, int bufferLen) $/;"	f	class:CommunicatingSocket
+recvFrom	jni/PracticalSocket.cpp	/^int UDPSocket::recvFrom(void *buffer, int bufferLen, string &sourceAddress,$/;"	f	class:UDPSocket
+resolveService	jni/PracticalSocket.cpp	/^unsigned short Socket::resolveService(const string &service,$/;"	f	class:Socket
+rtp_hdr_t	jni/rtpdataheader.h	/^} rtp_hdr_t;$/;"	t	typeref:struct:__anon1
+samples	jni/mp4mux.c	/^int16_t *samples;$/;"	v
+send	jni/PracticalSocket.cpp	/^void CommunicatingSocket::send(const void *buffer, int bufferLen) $/;"	f	class:CommunicatingSocket
+sendQueue	jni/RtpH264Depay.cpp	/^void RtpH264Depay::sendQueue(GQueue *queue) $/;"	f	class:RtpH264Depay
+sendTo	jni/PracticalSocket.cpp	/^void UDPSocket::sendTo(const void *buffer, int bufferLen, $/;"	f	class:UDPSocket
+seq	jni/rtpdataheader.h	/^	unsigned int seq:16;            \/\/ sequence number$/;"	m	struct:__anon1
+setBroadcast	jni/PracticalSocket.cpp	/^void UDPSocket::setBroadcast() {$/;"	f	class:UDPSocket
+setListen	jni/PracticalSocket.cpp	/^void TCPServerSocket::setListen(int queueLen) throw(SocketException) {$/;"	f	class:TCPServerSocket
+setLocalAddressAndPort	jni/PracticalSocket.cpp	/^void Socket::setLocalAddressAndPort(const string &localAddress,$/;"	f	class:Socket
+setLocalPort	jni/PracticalSocket.cpp	/^void Socket::setLocalPort(unsigned short localPort) throw(SocketException) {$/;"	f	class:Socket
+setMulticastTTL	jni/PracticalSocket.cpp	/^void UDPSocket::setMulticastTTL(unsigned char multicastTTL) throw(SocketException) {$/;"	f	class:UDPSocket
+setStreamMode	jni/RtpH264Depay.cpp	/^void RtpH264Depay::setStreamMode(gboolean mode)$/;"	f	class:RtpH264Depay
+singleQueue	jni/RtpH264Depay.h	/^		GQueue *singleQueue;$/;"	m	class:RtpH264Depay
+size	jni/RtpH264Depay.h	/^    unsigned long size;$/;"	m	struct:h264Buffer
+sock	jni/RtpH264Depay.h	/^        UDPSocket sock;$/;"	m	class:RtpH264Depay
+sockDesc	jni/PracticalSocket.h	/^  int sockDesc;              \/\/ Socket descriptor$/;"	m	class:Socket
+socklen_t	jni/PracticalSocket.cpp	/^  typedef int socklen_t;$/;"	t	file:
+ssrc	jni/rtpdataheader.h	/^	u_int32 ssrc;                   \/\/ synchronization source$/;"	m	struct:__anon1
+stapQueue	jni/RtpH264Depay.h	/^        GQueue *stapQueue;$/;"	m	class:RtpH264Depay
+start	jni/RtpH264Depay.h	/^    unsigned long start;$/;"	m	struct:h264Buffer
+stop	jni/H264Decoder.cpp	/^void H264Decoder::stop()$/;"	f	class:H264Decoder
+swsContext	jni/H264Decoder.h	/^        SwsContext *swsContext;$/;"	m	class:H264Decoder
+sync_bytes	jni/RtpH264Depay.cpp	/^unsigned char sync_bytes[] = {0, 0, 0, 1 };$/;"	v
+t	jni/mp4mux.c	/^float t, tincr, tincr2;$/;"	v
+tincr	jni/mp4mux.c	/^float t, tincr, tincr2;$/;"	v
+tincr2	jni/mp4mux.c	/^float t, tincr, tincr2;$/;"	v
+ts	jni/rtpdataheader.h	/^	u_int32 ts;                     \/\/ timestamp 32bits$/;"	m	struct:__anon1
+u_int16	jni/rtpdataheader.h	/^typedef unsigned short u_int16;$/;"	t
+u_int32	jni/rtpdataheader.h	/^typedef unsigned int u_int32;$/;"	t
+userMessage	jni/PracticalSocket.h	/^  string userMessage;  \/\/ Exception message$/;"	m	class:SocketException
+version	jni/rtpdataheader.h	/^	unsigned int version:2;         \/\/ protocol version$/;"	m	struct:__anon1
+video_stream	jni/mp4mux.c	/^static AVStream *video_stream = NULL;$/;"	v	file:
+wait_start	jni/RtpH264Depay.h	/^        gboolean wait_start;$/;"	m	class:RtpH264Depay
+what	jni/PracticalSocket.cpp	/^const char *SocketException::what() const throw() {$/;"	f	class:SocketException
+width	jni/rtpreceiver.cpp	/^    unsigned width;$/;"	m	class:MyRTPSession	file:
+x	jni/rtpdataheader.h	/^	unsigned int x:1;               \/\/ header extension flag$/;"	m	struct:__anon1
+~H264Decoder	jni/H264Decoder.cpp	/^H264Decoder::~H264Decoder()$/;"	f	class:H264Decoder
+~MyRTPSession	jni/rtpreceiver.cpp	/^MyRTPSession::~MyRTPSession()$/;"	f	class:MyRTPSession
+~RtpH264Depay	jni/RtpH264Depay.cpp	/^RtpH264Depay::~RtpH264Depay(void)$/;"	f	class:RtpH264Depay
+~Socket	jni/PracticalSocket.cpp	/^Socket::~Socket() {$/;"	f	class:Socket
+~SocketException	jni/PracticalSocket.cpp	/^SocketException::~SocketException() throw() {$/;"	f	class:SocketException
