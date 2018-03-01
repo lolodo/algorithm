@@ -30,82 +30,24 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
+#ifndef RTPTYPES_WIN_H
 
-#define RTPCONFIG_UNIX_H
+#define RTPTYPES_WIN_H
 
-#ifndef JRTPLIB_UNUSED
-/**
- * Provide a macro to use for marking method parameters as unused.
- */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
+#ifndef INTTYPES_DEFINED
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+#define INTTYPES_DEFINED
 
-// Don't have <sys/filio.h>
+typedef char int8_t;
+typedef unsigned char uint8_t;
+typedef short int16_t;
+typedef unsigned short uint16_t;
+typedef int int32_t;
+typedef unsigned int uint32_t;
+typedef __int64 int64_t;
+typedef unsigned __int64 uint64_t;
 
-// Don't have <sys/sockio.h>
+#endif // INTTYPES_DEFINED
 
-
-
-#define RTP_SOCKLENTYPE_UINT
-
-// No sa_len member in struct sockaddr
-
-#define RTP_SUPPORT_IPV4MULTICAST
-
-#define RTP_SUPPORT_THREAD
-
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+#endif // RTPTYPES_WIN_H
 

@@ -30,82 +30,78 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
+#if defined(WIN32) && !defined(_WIN32_WCE)
+	#define _CRT_RAND_S
+#endif // WIN32 || _WIN32_WCE
 
-#define RTPCONFIG_UNIX_H
-
-#ifndef JRTPLIB_UNUSED
-/**
- * Provide a macro to use for marking method parameters as unused.
- */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
-
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
+#include "rtprandom.h"
+#include "rtprandomrands.h"
+#include "rtprandomurandom.h"
+#include "rtprandomrand48.h"
+#include <time.h>
+#ifndef WIN32
+	#include <unistd.h>
 #else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+	#ifndef _WIN32_WCE
+		#include <process.h>
+	#else
+		#include <windows.h>
+		#include <kfuncs.h>
+	#endif // _WIN32_WINCE
+	#include <stdlib.h>
+#endif // WIN32
 
-// Don't have <sys/filio.h>
+#include "rtpdebug.h"
 
-// Don't have <sys/sockio.h>
+namespace jrtplib
+{
 
+uint32_t RTPRandom::PickSeed()
+{
+	uint32_t x;
+#if defined(WIN32) || defined(_WIN32_WINCE)
+#ifndef _WIN32_WCE
+	x = (uint32_t)_getpid();
+	x += (uint32_t)time(0);
+	x += (uint32_t)clock();
+#else
+	x = (uint32_t)GetCurrentProcessId();
 
+	FILETIME ft;
+	SYSTEMTIME st;
+	
+	GetSystemTime(&st);
+	SystemTimeToFileTime(&st,&ft);
+	
+	x += ft.dwLowDateTime;
+#endif // _WIN32_WCE
+	x ^= (uint32_t)((uint8_t *)this - (uint8_t *)0);
+#else
+	x = (uint32_t)getpid();
+	x += (uint32_t)time(0);
+	x += (uint32_t)clock();
+	x ^= (uint32_t)((uint8_t *)this - (uint8_t *)0);
+#endif
+	return x;
+}
 
-#define RTP_SOCKLENTYPE_UINT
+RTPRandom *RTPRandom::CreateDefaultRandomNumberGenerator()
+{
+#ifdef RTP_HAVE_RAND_S
+	RTPRandomRandS *r = new RTPRandomRandS();
+#else
+	RTPRandomURandom *r = new RTPRandomURandom();
+#endif // RTP_HAVE_RAND_S
+	RTPRandom *rRet = r;
 
-// No sa_len member in struct sockaddr
+	if (r->Init() < 0) // fall back to rand48
+	{
+		delete r;
+		rRet = new RTPRandomRand48();
+	}
+	
+	return rRet;
+}
 
-#define RTP_SUPPORT_IPV4MULTICAST
-
-#define RTP_SUPPORT_THREAD
-
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+} // end namespace
 

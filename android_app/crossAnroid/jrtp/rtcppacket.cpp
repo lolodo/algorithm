@@ -30,82 +30,47 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
+#include "rtcppacket.h"
+#ifdef RTPDEBUG
+	#include <iostream>
+#endif // RTPDEBUG
 
-#define RTPCONFIG_UNIX_H
+#include "rtpdebug.h"
 
-#ifndef JRTPLIB_UNUSED
-/**
- * Provide a macro to use for marking method parameters as unused.
- */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
+#ifdef RTPDEBUG
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+namespace jrtplib
+{
 
-// Don't have <sys/filio.h>
+void RTCPPacket::Dump()
+{
+	switch(packettype)
+	{
+	case SR:
+		std::cout << "RTCP Sender Report      ";
+		break;
+	case RR:
+		std::cout << "RTCP Receiver Report    ";
+		break;
+	case SDES:
+		std::cout << "RTCP Source Description ";
+		break;
+	case APP:
+		std::cout << "RTCP APP Packet         ";
+		break;
+	case BYE:
+		std::cout << "RTCP Bye Packet         ";
+		break;
+	case Unknown:
+		std::cout << "Unknown RTCP Packet     ";
+		break;
+	default:
+		std::cout << "ERROR: Invalid packet type!" << std::endl;		
+	}
+	std::cout << "Length: " << datalen;
+	std::cout << std::endl;
+}
 
-// Don't have <sys/sockio.h>
+} // end namespace
 
-
-
-#define RTP_SOCKLENTYPE_UINT
-
-// No sa_len member in struct sockaddr
-
-#define RTP_SUPPORT_IPV4MULTICAST
-
-#define RTP_SUPPORT_THREAD
-
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
-
+#endif // RTPDEBUG

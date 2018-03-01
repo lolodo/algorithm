@@ -1,7 +1,7 @@
 /*
 
   This file is a part of JRTPLIB
-  Copyright (c) 1999-2017 Jori Liesenborgs
+  Copyright (c) 1999-2011 Jori Liesenborgs
 
   Contact: jori.liesenborgs@gmail.com
 
@@ -30,82 +30,32 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
+#include "rtpipv6destination.h"
 
-#define RTPCONFIG_UNIX_H
+#ifdef RTP_SUPPORT_IPV6
 
-#ifndef JRTPLIB_UNUSED
-/**
- * Provide a macro to use for marking method parameters as unused.
- */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
+#include "rtpinternalutils.h"
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+namespace jrtplib
+{
 
-// Don't have <sys/filio.h>
+std::string RTPIPv6Destination::GetDestinationString() const
+{
+	uint16_t ip16[8];
+	char str[48];
+	uint16_t portbase = ntohs(rtpaddr.sin6_port);
+	int i,j;
+	for (i = 0,j = 0 ; j < 8 ; j++,i += 2)	
+	{ 
+		ip16[j] = (((uint16_t)rtpaddr.sin6_addr.s6_addr[i])<<8); 
+		ip16[j] |= ((uint16_t)rtpaddr.sin6_addr.s6_addr[i+1]); 
+	}
+	RTP_SNPRINTF(str,48,"%04X:%04X:%04X:%04X:%04X:%04X:%04X:%04X/%d",(int)ip16[0],(int)ip16[1],(int)ip16[2],(int)ip16[3],(int)ip16[4],(int)ip16[5],(int)ip16[6],(int)ip16[7],(int)portbase);
+	return std::string(str);
+}
 
-// Don't have <sys/sockio.h>
+} // end namespace
 
+#endif // RTP_SUPPORT_IPV6
 
-
-#define RTP_SOCKLENTYPE_UINT
-
-// No sa_len member in struct sockaddr
-
-#define RTP_SUPPORT_IPV4MULTICAST
-
-#define RTP_SUPPORT_THREAD
-
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
 

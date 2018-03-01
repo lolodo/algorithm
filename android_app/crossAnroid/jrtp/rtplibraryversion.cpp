@@ -30,82 +30,28 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
+#include "rtplibraryversion.h"
+#include "rtpdefines.h"
+#include "rtplibraryversioninternal.h"
+#include "rtpinternalutils.h"
+#include <stdio.h>
 
-#define RTPCONFIG_UNIX_H
+namespace jrtplib
+{
 
-#ifndef JRTPLIB_UNUSED
-/**
- * Provide a macro to use for marking method parameters as unused.
- */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
+RTPLibraryVersion RTPLibraryVersion::GetVersion()
+{
+	return RTPLibraryVersion(JRTPLIB_VERSION_MAJOR, JRTPLIB_VERSION_MINOR, JRTPLIB_VERSION_DEBUG);
+}
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+std::string RTPLibraryVersion::GetVersionString() const
+{
+	char str[16];
+	
+	RTP_SNPRINTF(str,16,"%d.%d.%d",majornr,minornr,debugnr);
+	
+	return std::string(str);
+}
 
-// Don't have <sys/filio.h>
-
-// Don't have <sys/sockio.h>
-
-
-
-#define RTP_SOCKLENTYPE_UINT
-
-// No sa_len member in struct sockaddr
-
-#define RTP_SUPPORT_IPV4MULTICAST
-
-#define RTP_SUPPORT_THREAD
-
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+} // end namespace
 

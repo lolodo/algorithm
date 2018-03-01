@@ -30,82 +30,53 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
+#include "rtptcpaddress.h"
+#include "rtpmemorymanager.h"
+#ifdef RTPDEBUG
+	#include "rtpinternalutils.h" 
+	#include <stdio.h>
+#endif // RTPDEBUG
 
-#define RTPCONFIG_UNIX_H
+#include "rtpdebug.h"
 
-#ifndef JRTPLIB_UNUSED
-/**
- * Provide a macro to use for marking method parameters as unused.
- */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
+namespace jrtplib
+{
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+bool RTPTCPAddress::IsSameAddress(const RTPAddress *addr) const
+{
+	if (addr == 0)
+		return false;
+	if (addr->GetAddressType() != TCPAddress)
+		return false;
 
-// Don't have <sys/filio.h>
+	const RTPTCPAddress *a = static_cast<const RTPTCPAddress *>(addr);
 
-// Don't have <sys/sockio.h>
+	// We're using a socket to identify connections
+	if (a->m_socket == m_socket)
+		return true;
 
+	return false;
+}
 
+bool RTPTCPAddress::IsFromSameHost(const RTPAddress *addr) const
+{
+	return IsSameAddress(addr);
+}
 
-#define RTP_SOCKLENTYPE_UINT
+RTPAddress *RTPTCPAddress::CreateCopy(RTPMemoryManager *mgr) const
+{
+	JRTPLIB_UNUSED(mgr); // possibly unused
+	RTPTCPAddress *a = RTPNew(mgr,RTPMEM_TYPE_CLASS_RTPADDRESS) RTPTCPAddress(m_socket);
+	return a;
+}
 
-// No sa_len member in struct sockaddr
+#ifdef RTPDEBUG
+std::string RTPTCPAddress::GetAddressString() const
+{
+	// TODO
+	return "RTPTCPAddress::GetAddressString: TODO";
+}
+#endif // RTPDEBUG
 
-#define RTP_SUPPORT_IPV4MULTICAST
-
-#define RTP_SUPPORT_THREAD
-
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+} // end namespace
 

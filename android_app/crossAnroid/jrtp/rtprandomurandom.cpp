@@ -30,82 +30,94 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
+#include "rtprandomurandom.h"
+#include "rtperrors.h"
 
-#define RTPCONFIG_UNIX_H
+#include "rtpdebug.h"
 
-#ifndef JRTPLIB_UNUSED
-/**
- * Provide a macro to use for marking method parameters as unused.
- */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
+namespace jrtplib
+{
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
+RTPRandomURandom::RTPRandomURandom()
+{
+	device = 0;
+}
+
+RTPRandomURandom::~RTPRandomURandom()
+{
+	if (device)
+		fclose(device);
+}
+
+int RTPRandomURandom::Init()
+{
+	if (device)
+		return ERR_RTP_RTPRANDOMURANDOM_ALREADYOPEN;
+
+	device = fopen("/dev/urandom","rb");
+	if (device == 0)
+		return ERR_RTP_RTPRANDOMURANDOM_CANTOPEN;
+
+	return 0;
+}
+
+uint8_t RTPRandomURandom::GetRandom8()
+{
+	if (!device)
+		return 0;
+
+	uint8_t value;
+
+	fread(&value, sizeof(uint8_t), 1, device);
+
+	return value;
+}
+
+uint16_t RTPRandomURandom::GetRandom16()
+{
+	if (!device)
+		return 0;
+
+	uint16_t value;
+
+	fread(&value, sizeof(uint16_t), 1, device);
+
+	return value;
+}
+
+uint32_t RTPRandomURandom::GetRandom32()
+{
+	if (!device)
+		return 0;
+
+	uint32_t value;
+
+	fread(&value, sizeof(uint32_t), 1, device);
+
+	return value;
+}
+
+double RTPRandomURandom::GetRandomDouble()
+{
+	if (!device)
+		return 0;
+
+	uint64_t value;
+
+	fread(&value, sizeof(uint64_t), 1, device);
+
+#ifdef RTP_HAVE_VSUINT64SUFFIX
+	value &= 0x7fffffffffffffffui64;
 #else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+	value &= 0x7fffffffffffffffULL;
+#endif // RTP_HAVE_VSUINT64SUFFIX
 
-// Don't have <sys/filio.h>
+	int64_t value2 = (int64_t)value;
+	double x = RTPRANDOM_2POWMIN63*(double)value2;
 
-// Don't have <sys/sockio.h>
+	return x;
 
+}
 
-
-#define RTP_SOCKLENTYPE_UINT
-
-// No sa_len member in struct sockaddr
-
-#define RTP_SUPPORT_IPV4MULTICAST
-
-#define RTP_SUPPORT_THREAD
-
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+} // end namespace
 

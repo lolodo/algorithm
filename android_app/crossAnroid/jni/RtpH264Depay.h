@@ -1,7 +1,7 @@
 #ifndef __RTP_H264DEPAY_H__
 #define __RTP_H264DEPAY_H__
 
-#include "PracticalSocket.h"
+//#include "PracticalSocket.h"
 #include <stdbool.h>
 #include "BufferQueue.h"
 
@@ -25,7 +25,7 @@ class RtpH264Depay {
         //void registerDecodeFunc(h264DecodeFunc decode);
 
 	private:
-        UDPSocket sock;
+//        UDPSocket sock;
         BufferQueue *fuQueue;
         BufferQueue *singleQueue;
         BufferQueue *outputQueue;

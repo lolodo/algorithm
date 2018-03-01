@@ -30,82 +30,50 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
-
-#define RTPCONFIG_UNIX_H
-
-#ifndef JRTPLIB_UNUSED
 /**
- * Provide a macro to use for marking method parameters as unused.
+ * \file rtppollthread.h
  */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+#ifndef RTPPOLLTHREAD_H
 
-// Don't have <sys/filio.h>
+#define RTPPOLLTHREAD_H
 
-// Don't have <sys/sockio.h>
+#include "rtpconfig.h"
 
+#ifdef RTP_SUPPORT_THREAD
 
+#include "rtptransmitter.h"
 
-#define RTP_SOCKLENTYPE_UINT
+#include <jthread/jthread.h>
+#include <jthread/jmutex.h>
+#include <list>
 
-// No sa_len member in struct sockaddr
+namespace jrtplib
+{
 
-#define RTP_SUPPORT_IPV4MULTICAST
+class RTPSession;
+class RTCPScheduler;
 
-#define RTP_SUPPORT_THREAD
+class JRTPLIB_IMPORTEXPORT RTPPollThread : private jthread::JThread
+{
+public:
+	RTPPollThread(RTPSession &session,RTCPScheduler &rtcpsched);
+	~RTPPollThread();
+	int Start(RTPTransmitter *trans);
+	void Stop();
+private:
+	void *Thread();
+	
+	bool stop;
+	jthread::JMutex stopmutex;
+	RTPTransmitter *transmitter;
+	
+	RTPSession &rtpsession;
+	RTCPScheduler &rtcpsched;
+};
 
-#define RTP_SUPPORT_SDESPRIV
+} // end namespace
 
-#define RTP_SUPPORT_PROBATION
+#endif // RTP_SUPPORT_THREAD
 
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
-
+#endif // RTPPOLLTHREAD_H

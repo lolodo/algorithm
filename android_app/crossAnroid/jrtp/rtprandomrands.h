@@ -30,82 +30,41 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
-
-#define RTPCONFIG_UNIX_H
-
-#ifndef JRTPLIB_UNUSED
 /**
- * Provide a macro to use for marking method parameters as unused.
+ * \file rtprandomrands.h
  */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+#ifndef RTPRANDOMRANDS_H
 
-// Don't have <sys/filio.h>
+#define RTPRANDOMRANDS_H
 
-// Don't have <sys/sockio.h>
+#include "rtpconfig.h"
+#include "rtprandom.h"
 
+namespace jrtplib
+{
 
+/** A random number generator which tries to use the \c rand_s function on the
+ *  Win32 platform. 
+ */
+class JRTPLIB_IMPORTEXPORT RTPRandomRandS : public RTPRandom
+{
+public:
+	RTPRandomRandS();
+	~RTPRandomRandS();
 
-#define RTP_SOCKLENTYPE_UINT
+	/** Initialize the random number generator. */
+	int Init();
 
-// No sa_len member in struct sockaddr
+	uint8_t GetRandom8();
+	uint16_t GetRandom16();
+	uint32_t GetRandom32();
+	double GetRandomDouble();
+private:
+	bool initialized;
+};
 
-#define RTP_SUPPORT_IPV4MULTICAST
+} // end namespace
 
-#define RTP_SUPPORT_THREAD
-
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+#endif // RTPRANDOMRANDS_H
 

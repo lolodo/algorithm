@@ -30,82 +30,57 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
-
-#define RTPCONFIG_UNIX_H
-
-#ifndef JRTPLIB_UNUSED
 /**
- * Provide a macro to use for marking method parameters as unused.
+ * \file rtptcpaddress.h
  */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+#ifndef RTPTCPADDRESS_H
 
-// Don't have <sys/filio.h>
+#define RTPTCPADDRESS_H
 
-// Don't have <sys/sockio.h>
+#include "rtpconfig.h"
+#include "rtpaddress.h"
+#include "rtptypes.h"
+#include "rtpsocketutil.h"
 
+namespace jrtplib
+{
 
+class RTPMemoryManager;
 
-#define RTP_SOCKLENTYPE_UINT
+/** Represents a TCP 'address' and port.
+ *  This class is used by the TCP transmission component, to specify which sockets
+ *  should be used to send/receive data, and to know on which socket incoming data
+ *  was received.
+ */
+class JRTPLIB_IMPORTEXPORT RTPTCPAddress : public RTPAddress
+{
+public:
+	/** Creates an instance with which you can use a specific socket
+	 *  in the TCP transmitter (must be connected). */
+	RTPTCPAddress(SocketType sock):RTPAddress(TCPAddress)	
+	{ 
+		m_socket = sock;
+	}
 
-// No sa_len member in struct sockaddr
+	~RTPTCPAddress()																				{ }
 
-#define RTP_SUPPORT_IPV4MULTICAST
+	/** Returns the socket that was specified in the constructor. */
+	SocketType GetSocket() const																	{ return m_socket; }
 
-#define RTP_SUPPORT_THREAD
+	RTPAddress *CreateCopy(RTPMemoryManager *mgr) const;
 
-#define RTP_SUPPORT_SDESPRIV
+	// Note that these functions are only used for received packets
+	bool IsSameAddress(const RTPAddress *addr) const;
+	bool IsFromSameHost(const RTPAddress *addr) const;
+#ifdef RTPDEBUG
+	std::string GetAddressString() const;
+#endif // RTPDEBUG
+private:
+	SocketType m_socket;
+};
 
-#define RTP_SUPPORT_PROBATION
+} // end namespace
 
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+#endif // RTPTCPADDRESS_H
 

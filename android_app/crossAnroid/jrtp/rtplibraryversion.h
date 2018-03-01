@@ -30,82 +30,48 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
-
-#define RTPCONFIG_UNIX_H
-
-#ifndef JRTPLIB_UNUSED
 /**
- * Provide a macro to use for marking method parameters as unused.
+ * \file rtplibraryversion.h
  */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+#ifndef RTPLIBRARYVERSION_H
 
-// Don't have <sys/filio.h>
+#define RTPLIBRARYVERSION_H
 
-// Don't have <sys/sockio.h>
+#include "rtpconfig.h"
+#include <string>
+#include <stdio.h>
 
+namespace jrtplib
+{
 
+/** 
+ * Used to provide information about the version of the library. 
+ */
+class JRTPLIB_IMPORTEXPORT RTPLibraryVersion
+{
+public:
+	/** Returns an instance of RTPLibraryVersion describing the version of the library. */
+	static RTPLibraryVersion GetVersion();
+private:
+	RTPLibraryVersion(int major,int minor,int debug) 			{ majornr = major; minornr = minor; debugnr = debug; }
+public:
+	/** Returns the major version number. */
+	int GetMajorNumber() const						{ return majornr; }
 
-#define RTP_SOCKLENTYPE_UINT
+	/** Returns the minor version number. */
+	int GetMinorNumber() const						{ return minornr; }
 
-// No sa_len member in struct sockaddr
+	/** Returns the debug version number. */
+	int GetDebugNumber() const						{ return debugnr; }
 
-#define RTP_SUPPORT_IPV4MULTICAST
+	/** Returns a string describing the library version. */
+	std::string GetVersionString() const;
+private:
+	int debugnr,minornr,majornr;
+};
 
-#define RTP_SUPPORT_THREAD
+} // end namespace
 
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+#endif // RTPLIBRARYVERSION_H
 

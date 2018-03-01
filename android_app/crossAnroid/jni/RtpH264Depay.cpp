@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <iostream>
 #include "RtpH264Depay.h"
-#include "PracticalSocket.h"
+//#include "PracticalSocket.h"
 #include "BufferQueue.h"
 
 #define BUFFER_LEN  (1024 * 1024)
@@ -153,7 +153,7 @@ bool RtpH264Depay::getStreamMode()
     return byte_stream;
 }
 
-RtpH264Depay::RtpH264Depay(void):byte_stream(true), wait_start(true), mEnable(false), fuQueue(NULL), singleQueue(NULL), outputQueue(NULL)
+RtpH264Depay::RtpH264Depay(void):fuQueue(NULL), singleQueue(NULL), outputQueue(NULL)
 {
     current_fu_type = 0;
     fuQueue = new BufferQueue;

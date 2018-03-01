@@ -30,82 +30,44 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
-
-#define RTPCONFIG_UNIX_H
-
-#ifndef JRTPLIB_UNUSED
 /**
- * Provide a macro to use for marking method parameters as unused.
+ * \file rtcpunknownpacket.h
  */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+#ifndef RTCPUNKNOWNPACKET_H
 
-// Don't have <sys/filio.h>
+#define RTCPUNKNOWNPACKET_H
 
-// Don't have <sys/sockio.h>
+#include "rtpconfig.h"
+#include "rtcppacket.h"
 
+namespace jrtplib
+{
 
+class RTCPCompoundPacket;
 
-#define RTP_SOCKLENTYPE_UINT
+/** Describes an RTCP packet of unknown type.
+ *  Describes an RTCP packet of unknown type. This class doesn't have any extra member functions besides
+ *  the ones it inherited. Note that since an unknown packet type doesn't have any format to check
+ *  against, the IsKnownFormat function will trivially return \c true.
+ */
+class JRTPLIB_IMPORTEXPORT RTCPUnknownPacket : public RTCPPacket
+{
+public:
+	/** Creates an instance based on the data in \c data with length \c datalen. 
+	 *  Creates an instance based on the data in \c data with length \c datalen. Since the \c data pointer
+	 *  is referenced inside the class (no copy of the data is made) one must make sure that the memory it 
+	 *  points to is valid as long as the class instance exists.
+	 */
+	RTCPUnknownPacket(uint8_t *data,size_t datalen) : RTCPPacket(Unknown,data,datalen)                                         
+	{
+	       // Since we don't expect a format, we'll trivially put knownformat = true
+	       knownformat = true;	
+	}
+	~RTCPUnknownPacket()                                                                    { }
+};
 
-// No sa_len member in struct sockaddr
+} // end namespace
 
-#define RTP_SUPPORT_IPV4MULTICAST
-
-#define RTP_SUPPORT_THREAD
-
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+#endif // RTCPUNKNOWNPACKET_H
 

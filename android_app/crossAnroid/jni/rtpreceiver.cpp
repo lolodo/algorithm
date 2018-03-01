@@ -117,6 +117,7 @@ void MyRTPSession::ProcessRTPPacket(const RTPSourceData &srcdat,const RTPPacket 
     unsigned int payloadlen;
     //RtpH264Depay h264info;
 
+    std::cout << "SSR:" << srcdat.GetSSRC() << std::endl;
     if (!h264info.getStatus()) {
         std::cout << "get status failed!" << std::endl;
         return;

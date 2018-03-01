@@ -30,82 +30,99 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
-
-#define RTPCONFIG_UNIX_H
-
-#ifndef JRTPLIB_UNUSED
 /**
- * Provide a macro to use for marking method parameters as unused.
+ * \file rtpstructs.h
  */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+#ifndef RTPSTRUCTS_H
 
-// Don't have <sys/filio.h>
+#define RTPSTRUCTS_H
 
-// Don't have <sys/sockio.h>
+#include "rtpconfig.h"
+#include "rtptypes.h"
 
+namespace jrtplib
+{
 
+struct RTPHeader
+{
+#ifdef RTP_BIG_ENDIAN
+	uint8_t version:2;
+	uint8_t padding:1;
+	uint8_t extension:1;
+	uint8_t csrccount:4;
+	
+	uint8_t marker:1;
+	uint8_t payloadtype:7;
+#else // little endian
+	uint8_t csrccount:4;
+	uint8_t extension:1;
+	uint8_t padding:1;
+	uint8_t version:2;
+	
+	uint8_t payloadtype:7;
+	uint8_t marker:1;
+#endif // RTP_BIG_ENDIAN
+	
+	uint16_t sequencenumber;
+	uint32_t timestamp;
+	uint32_t ssrc;
+};
 
-#define RTP_SOCKLENTYPE_UINT
+struct RTPExtensionHeader
+{
+	uint16_t extid;
+	uint16_t length;
+};
 
-// No sa_len member in struct sockaddr
+struct RTPSourceIdentifier
+{
+	uint32_t ssrc;
+};
 
-#define RTP_SUPPORT_IPV4MULTICAST
+struct RTCPCommonHeader
+{
+#ifdef RTP_BIG_ENDIAN
+	uint8_t version:2;
+	uint8_t padding:1;
+	uint8_t count:5;
+#else // little endian
+	uint8_t count:5;
+	uint8_t padding:1;
+	uint8_t version:2;
+#endif // RTP_BIG_ENDIAN
 
-#define RTP_SUPPORT_THREAD
+	uint8_t packettype;
+	uint16_t length;
+};
 
-#define RTP_SUPPORT_SDESPRIV
+struct RTCPSenderReport
+{
+	uint32_t ntptime_msw;
+	uint32_t ntptime_lsw;
+	uint32_t rtptimestamp;
+	uint32_t packetcount;
+	uint32_t octetcount;
+};
 
-#define RTP_SUPPORT_PROBATION
+struct RTCPReceiverReport
+{
+	uint32_t ssrc; // Identifies about which SSRC's data this report is...
+	uint8_t fractionlost;
+	uint8_t packetslost[3];
+	uint32_t exthighseqnr;
+	uint32_t jitter;
+	uint32_t lsr;
+	uint32_t dlsr;
+};
 
-// Not using getlogin_r
+struct RTCPSDESHeader
+{
+	uint8_t sdesid;
+	uint8_t length;
+};
 
-#define RTP_SUPPORT_IPV6
+} // end namespace
 
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+#endif // RTPSTRUCTS
 

@@ -30,82 +30,47 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
+#ifndef RTPDEFINES_H
 
-#define RTPCONFIG_UNIX_H
+#define RTPDEFINES_H
 
-#ifndef JRTPLIB_UNUSED
-/**
- * Provide a macro to use for marking method parameters as unused.
- */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
+#define RTP_VERSION							2
+#define RTP_MAXCSRCS							15
+#define RTP_MINPACKETSIZE						600
+#define RTP_DEFAULTPACKETSIZE						1400
+#define RTP_PROBATIONCOUNT						2
+#define RTP_MAXPRIVITEMS						256
+#define RTP_SENDERTIMEOUTMULTIPLIER					2
+#define RTP_BYETIMEOUTMULTIPLIER					1
+#define RTP_MEMBERTIMEOUTMULTIPLIER					5
+#define RTP_COLLISIONTIMEOUTMULTIPLIER					10
+#define RTP_NOTETTIMEOUTMULTIPLIER					25
+#define RTP_DEFAULTSESSIONBANDWIDTH					10000.0
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+#define RTP_RTCPTYPE_SR							200
+#define RTP_RTCPTYPE_RR							201
+#define RTP_RTCPTYPE_SDES						202
+#define RTP_RTCPTYPE_BYE						203
+#define RTP_RTCPTYPE_APP						204
 
-// Don't have <sys/filio.h>
+#define RTCP_SDES_ID_CNAME						1
+#define RTCP_SDES_ID_NAME						2
+#define RTCP_SDES_ID_EMAIL						3
+#define RTCP_SDES_ID_PHONE						4
+#define RTCP_SDES_ID_LOCATION						5
+#define RTCP_SDES_ID_TOOL						6
+#define RTCP_SDES_ID_NOTE						7
+#define RTCP_SDES_ID_PRIVATE						8
+#define RTCP_SDES_NUMITEMS_NONPRIVATE					7
+#define RTCP_SDES_MAXITEMLENGTH						255
 
-// Don't have <sys/sockio.h>
+#define RTCP_BYE_MAXREASONLENGTH					255
+#define RTCP_DEFAULTMININTERVAL						5.0	
+#define RTCP_DEFAULTBANDWIDTHFRACTION					0.05
+#define RTCP_DEFAULTSENDERFRACTION					0.25
+#define RTCP_DEFAULTHALFATSTARTUP					true
+#define RTCP_DEFAULTIMMEDIATEBYE					true
+#define RTCP_DEFAULTSRBYE						true
 
-
-
-#define RTP_SOCKLENTYPE_UINT
-
-// No sa_len member in struct sockaddr
-
-#define RTP_SUPPORT_IPV4MULTICAST
-
-#define RTP_SUPPORT_THREAD
-
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+#endif // RTPDEFINES_H
 

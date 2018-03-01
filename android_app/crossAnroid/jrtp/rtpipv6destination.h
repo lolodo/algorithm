@@ -30,82 +30,62 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
-
-#define RTPCONFIG_UNIX_H
-
-#ifndef JRTPLIB_UNUSED
 /**
- * Provide a macro to use for marking method parameters as unused.
+ * \file rtpipv6destination.h
  */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+#ifndef RTPIPV6DESTINATION_H
 
-// Don't have <sys/filio.h>
+#define RTPIPV6DESTINATION_H
 
-// Don't have <sys/sockio.h>
+#include "rtpconfig.h"
 
+#ifdef RTP_SUPPORT_IPV6
 
+#include "rtptypes.h"
+#include <string.h>
+#include <string>
+#ifndef RTP_SOCKETTYPE_WINSOCK
+	#include <netinet/in.h>
+	#include <arpa/inet.h>
+	#include <sys/socket.h>
+#endif // RTP_SOCKETTYPE_WINSOCK
 
-#define RTP_SOCKLENTYPE_UINT
+namespace jrtplib
+{
 
-// No sa_len member in struct sockaddr
+class JRTPLIB_IMPORTEXPORT RTPIPv6Destination
+{
+public:
+	RTPIPv6Destination(in6_addr ip,uint16_t portbase)
+	{ 
+		memset(&rtpaddr,0,sizeof(struct sockaddr_in6));
+		memset(&rtcpaddr,0,sizeof(struct sockaddr_in6));
+		rtpaddr.sin6_family = AF_INET6;
+		rtpaddr.sin6_port = htons(portbase);
+		rtpaddr.sin6_addr = ip;
+		rtcpaddr.sin6_family = AF_INET6;
+		rtcpaddr.sin6_port = htons(portbase+1);
+		rtcpaddr.sin6_addr = ip;
+	}
+	in6_addr GetIP() const								{ return rtpaddr.sin6_addr; }
+	bool operator==(const RTPIPv6Destination &src) const				
+	{ 
+		if (rtpaddr.sin6_port == src.rtpaddr.sin6_port && (memcmp(&(src.rtpaddr.sin6_addr),&(rtpaddr.sin6_addr),sizeof(in6_addr)) == 0)) 
+			return true; 
+		return false; 
+	}
+	const struct sockaddr_in6 *GetRTPSockAddr() const				{ return &rtpaddr; }
+	const struct sockaddr_in6 *GetRTCPSockAddr() const				{ return &rtcpaddr; }
+	std::string GetDestinationString() const;
+private:
+	struct sockaddr_in6 rtpaddr;
+	struct sockaddr_in6 rtcpaddr;
+};
 
-#define RTP_SUPPORT_IPV4MULTICAST
+} // end namespace
 
-#define RTP_SUPPORT_THREAD
+#endif // RTP_SUPPORT_IPV6
 
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+#endif // RTPIPV6DESTINATION_H
 

@@ -30,82 +30,50 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
-
-#define RTPCONFIG_UNIX_H
-
-#ifndef JRTPLIB_UNUSED
 /**
- * Provide a macro to use for marking method parameters as unused.
+ * \file rtprandom.h
  */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+#ifndef RTPRANDOM_H
 
-// Don't have <sys/filio.h>
+#define RTPRANDOM_H
 
-// Don't have <sys/sockio.h>
+#include "rtpconfig.h"
+#include "rtptypes.h"
+#include <stdlib.h>
 
+#define RTPRANDOM_2POWMIN63										1.08420217248550443400745280086994171142578125e-19
 
+namespace jrtplib
+{
 
-#define RTP_SOCKLENTYPE_UINT
+/** Interface for generating random numbers. */
+class JRTPLIB_IMPORTEXPORT RTPRandom
+{
+public:
+	RTPRandom()											{ }
+	virtual ~RTPRandom()										{ }
 
-// No sa_len member in struct sockaddr
+	/** Returns a random eight bit value. */
+	virtual uint8_t GetRandom8() = 0;
 
-#define RTP_SUPPORT_IPV4MULTICAST
+	/** Returns a random sixteen bit value. */
+	virtual uint16_t GetRandom16() = 0;
 
-#define RTP_SUPPORT_THREAD
+	/** Returns a random thirty-two bit value. */
+	virtual uint32_t GetRandom32() = 0;
 
-#define RTP_SUPPORT_SDESPRIV
+	/** Returns a random number between $0.0$ and $1.0$. */
+	virtual double GetRandomDouble() = 0;
 
-#define RTP_SUPPORT_PROBATION
+	/** Can be used by subclasses to generate a seed for a random number generator. */
+	uint32_t PickSeed();
 
-// Not using getlogin_r
+	/** Allocate a default random number generator based on your platform. */
+	static RTPRandom *CreateDefaultRandomNumberGenerator();
+};
 
-#define RTP_SUPPORT_IPV6
+} // end namespace
 
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+#endif // RTPRANDOM_H
 

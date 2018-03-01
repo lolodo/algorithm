@@ -30,82 +30,75 @@
 
 */
 
-#ifndef RTPCONFIG_UNIX_H
+#include "rtcpbyepacket.h"
+#ifdef RTPDEBUG
+	#include <iostream>
+	#include <string.h>
+#endif // RTPDEBUG
 
-#define RTPCONFIG_UNIX_H
+#include "rtpdebug.h"
 
-#ifndef JRTPLIB_UNUSED
-/**
- * Provide a macro to use for marking method parameters as unused.
- */
-#define JRTPLIB_UNUSED(x) (void)(x)
-#endif // JRTPLIB_UNUSED
+namespace jrtplib
+{
 
-#define JRTPLIB_IMPORT 
-#define JRTPLIB_EXPORT 
-#ifdef JRTPLIB_COMPILING
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_EXPORT
-#else
-	#define JRTPLIB_IMPORTEXPORT JRTPLIB_IMPORT
-#endif // JRTPLIB_COMPILING
+RTCPBYEPacket::RTCPBYEPacket(uint8_t *data,size_t datalength)
+	: RTCPPacket(BYE,data,datalength)
+{
+	knownformat = false;
+	reasonoffset = 0;	
+	
+	RTCPCommonHeader *hdr;
+	size_t len = datalength;
+	
+	hdr = (RTCPCommonHeader *)data;
+	if (hdr->padding)
+	{
+		uint8_t padcount = data[datalength-1];
+		if ((padcount & 0x03) != 0) // not a multiple of four! (see rfc 3550 p 37)
+			return;
+		if (((size_t)padcount) >= len)
+			return;
+		len -= (size_t)padcount;
+	}
+	
+	size_t ssrclen = ((size_t)(hdr->count))*sizeof(uint32_t) + sizeof(RTCPCommonHeader);
+	if (ssrclen > len)
+		return;
+	if (ssrclen < len) // there's probably a reason for leaving
+	{
+		uint8_t *reasonlength = (data+ssrclen);
+		size_t reaslen = (size_t)(*reasonlength);
+		if (reaslen > (len-ssrclen-1))
+			return;
+		reasonoffset = ssrclen;
+	}
+	knownformat = true;
+}
 
-// Don't have <sys/filio.h>
+#ifdef RTPDEBUG
+void RTCPBYEPacket::Dump()
+{
+	RTCPPacket::Dump();
+	if (!IsKnownFormat())
+	{
+		std::cout << "    Unknown format" << std::endl;
+		return;	
+	}
 
-// Don't have <sys/sockio.h>
+	int num = GetSSRCCount();
+	int i;
 
+	for (i = 0 ; i < num ; i++)
+		std::cout << "    SSRC: " << GetSSRC(i) << std::endl;
+	if (HasReasonForLeaving())
+	{
+		char str[1024];
+		memcpy(str,GetReasonData(),GetReasonLength());
+		str[GetReasonLength()] = 0;
+		std::cout << "    Reason: " << str << std::endl;
+	}
+}
+#endif // RTPDEBUG
 
-
-#define RTP_SOCKLENTYPE_UINT
-
-// No sa_len member in struct sockaddr
-
-#define RTP_SUPPORT_IPV4MULTICAST
-
-#define RTP_SUPPORT_THREAD
-
-#define RTP_SUPPORT_SDESPRIV
-
-#define RTP_SUPPORT_PROBATION
-
-// Not using getlogin_r
-
-#define RTP_SUPPORT_IPV6
-
-#define RTP_SUPPORT_IPV6MULTICAST
-
-#define RTP_SUPPORT_IFADDRS
-
-#define RTP_SUPPORT_SENDAPP
-
-#define RTP_SUPPORT_MEMORYMANAGEMENT
-
-// No support for sending unknown RTCP packets
-
-#define RTP_SUPPORT_NETINET_IN
-
-// Not using winsock sockets
-
-// No QueryPerformanceCounter support
-
-// No ui64 suffix
-
-// Stdio snprintf version
-
-#define RTP_HAVE_ARRAYALLOC
-
-// No rand_s support
-
-// No strncpy_s support
-
-// No SRTP support
-
-#define RTP_HAVE_CLOCK_GETTIME
-
-#define RTP_HAVE_POLL
-
-// No 'WSAPoll' support
-
-#define RTP_HAVE_MSG_NOSIGNAL
-
-#endif // RTPCONFIG_UNIX_H
+} // end namespace
 
