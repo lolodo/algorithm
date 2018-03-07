@@ -56,13 +56,7 @@ static GstFlowReturn cb_new_sample(GstElement *sink, int *size)
             counter++;
             printf("size:%-6lu ", map.size);
             printf("0x%08x 0x%08x 0x%08x 0x%08x ", *(gst_buffer), *(gst_buffer + 1), *(gst_buffer + 2), *(gst_buffer + 3));
-#if 0
-            printf("0x%08x 0x%08x 0x%08x 0x%08x\n", *(gst_buffer + 4), *(gst_buffer + 5), *(gst_buffer + 6), *(gst_buffer + 7));
-#endif
             printf("end:");
-#if 0
-            printf("0x%08x 0x%08x 0x%08x 0x%08x\n", *(gst_buffer + (map.size / 4) - 7), *(gst_buffer + (map.size / 4) - 6), *(gst_buffer + (map.size / 4) - 5), *(gst_buffer + (map.size / 4) - 4));
-#endif
             printf("0x%08x 0x%08x 0x%08x 0x%08x\n", *(gst_buffer + (map.size / 4) - 3), *(gst_buffer + (map.size / 4) - 2), *(gst_buffer + (map.size / 4) - 1), *(gst_buffer + (map.size / 4) - 0));
             free_pull_buffer();
             return GST_FLOW_OK;
