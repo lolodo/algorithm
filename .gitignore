@@ -59,3 +59,8 @@ build/
 v4l2/avm/build
 cscope.*
 tags
+
+#cmake
+CMakeFiles
+*.cmake
+CMakeCache*
