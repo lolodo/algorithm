@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <string>
+#include <fcntl.h>
+#include <unistd.h>
 #include "H264Decoder.h"
 #include "PracticalSocket.h"
 using namespace std;
@@ -22,6 +24,8 @@ int main()
     unsigned char *buffer; // Buffer for echo string
     string sourceAddress;
     H264Decoder decoder;
+    int savefd = -1;
+    int ret = -1;
 
     std::cout << "Enter local portbase:" << std::endl;
     std::cin >> port; 
@@ -30,6 +34,12 @@ int main()
     buffer = new unsigned char[BUF_LEN];
     if (!decoder.getStatus()) {
         cerr << "init decoder failed!" << endl;
+        return -1;
+    }
+
+    savefd = open("video.data", O_RDWR | O_CREAT, 0644);
+    if (savefd < 0) {
+        cerr << "create video failed!" << endl;
         return -1;
     }
 
@@ -47,20 +57,19 @@ int main()
                 cout << "decode the " << counter << " buffer!" << endl;
                 decoder.decode(buffer, recvMsgSize);
                 counter++;
-//            } else if ((recvMsgSize > 20) && (recvMsgSize < 100)) {
-            } else if (recvMsgSize < 100) {
-                if (flag == 0) {
-                    flag = 1;
-                    cout << "decode the first!" << endl;
-                    decoder.decode(buffer, recvMsgSize);
-                    counter++;
-                } else {
-
-                }
+            } else if ((recvMsgSize >= 5) && ((buffer[4] == 0x67) || (buffer[4] == 0x68))) { //sps or pps
+                flag = 1;
+                cout << "decode the first!" << endl;
+                decoder.decode(buffer, recvMsgSize);
+                counter++;
             } else {
                 continue;
             }
 
+            ret = write(savefd, buffer, recvMsgSize);
+            if (ret < 0) {
+                cerr << "write failed!" << endl;
+            }
         } catch (SocketException & e){
             cerr<< "error happend!" << endl;
             cerr << e.what() << endl;

@@ -64,3 +64,4 @@ tags
 CMakeFiles
 *.cmake
 CMakeCache*
+*.data
