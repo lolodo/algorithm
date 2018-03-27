@@ -116,7 +116,7 @@ int H264Decoder::decode(unsigned char *buffer, int size)
       
 	  if(got_picture) {
 		  /* the picture is allocated by the decoder. no need to free it */
-		  printf("size:%d, width:%d, height:%d\n", picture->linesize[0], context->width, context->height);
+		  printf("line size:%d, width:%d, height:%d\n", picture->linesize[0], context->width, context->height);
 
           pFrameRGB = av_frame_alloc();
           if (!pFrameRGB) {
