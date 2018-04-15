@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
 
 		private void intToLH(int n, int val) {
 			buffer[n] = (byte)(val & 0xff);
-			buffer[n + 1] = (byte)(val >> 8 & 0xff)
+			buffer[n + 1] = (byte)(val >> 8 & 0xff);
 			buffer[n + 2] = (byte)(val >> 16 & 0xff);
 			buffer[n + 3] = (byte)(val >> 24 & 0xff);
 		}
