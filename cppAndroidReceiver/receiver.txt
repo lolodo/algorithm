@@ -1,0 +1,2371 @@
+
+Number of seconds you wish to wait:
+nal_ref_idc:3, nal_unit_type:7, len:11.
+default mode
+singleQueue:send 47 bytes
+nal_ref_idc:3, nal_unit_type:8, len:4.
+default mode
+buffer size:15
+sendTo:0x01000000 0x28006467 0xc01a1bac 0x00590650
+prepare to decode video, size:15
+singleQueue:send 40 bytes
+nal_ref_idc:3, nal_unit_type:7, len:12.
+default mode
+buffer size:8
+sendTo:0x01000000 0xcb43ea68 0x00000000 0x00000000
+prepare to decode video, size:8
+singleQueue:send 48 bytes
+nal_ref_idc:3, nal_unit_type:8, len:4.
+default mode
+buffer size:16
+sendTo:0x01000000 0x28006467 0xc01a1bac 0x00590650
+prepare to decode video, size:16
+singleQueue:send 40 bytes
+nal_ref_idc:3, nal_unit_type:5, len:227.
+default mode
+buffer size:8
+sendTo:0x01000000 0xcb43ea68 0x00000000 0x00000000
+prepare to decode video, size:8
+singleQueue:send 263 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:290.
+S is 0, E is 1, queue 288bytes
+buffer size:231
+sendTo:0x01000000 0x00808865 0xb7000040 0x057ee0f3
+prepare to decode video, size:231
+size:1280, width:1280, height:800
+send 5869 bytes
+nal_ref_idc:3, nal_unit_type:7, len:12.
+default mode
+buffer size:5837
+sendTo:0x01000000 0x02009a41 0x1f910500 0xb1119dfd
+prepare to decode video, size:5837
+size:1280, width:1280, height:800
+singleQueue:send 48 bytes
+nal_ref_idc:3, nal_unit_type:8, len:4.
+default mode
+buffer size:16
+sendTo:0x01000000 0x28006467 0xc01a1bac 0x00590650
+prepare to decode video, size:16
+singleQueue:send 40 bytes
+nal_ref_idc:3, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:3, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:3, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:3, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:3, nal_unit_type:28, len:146.
+S is 0, E is 1, queue 144bytes
+buffer size:8
+sendTo:0x01000000 0xcb43ea68 0xc01a1bac 0x00590650
+prepare to decode video, size:8
+send 5725 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1148.
+S is 0, E is 1, queue 1146bytes
+buffer size:5693
+sendTo:0x01000000 0x00808865 0x2d000020 0x0ddff3ff
+prepare to decode video, size:5693
+size:1280, width:1280, height:800
+send 9499 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:998.
+S is 0, E is 1, queue 996bytes
+buffer size:9467
+sendTo:0x01000000 0x02009a41 0x97900500 0xc307b1da
+prepare to decode video, size:9467
+size:1280, width:1280, height:800
+send 5191 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1152.
+default mode
+buffer size:5159
+sendTo:0x01000000 0x04009a41 0xc7900900 0xf90882de
+prepare to decode video, size:5159
+size:1280, width:1280, height:800
+singleQueue:send 1188 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:243.
+S is 0, E is 1, queue 241bytes
+buffer size:1156
+sendTo:0x01000000 0x06009a41 0xc7900d00 0x2c55867c
+prepare to decode video, size:1156
+size:1280, width:1280, height:800
+send 3050 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:868.
+S is 0, E is 1, queue 866bytes
+buffer size:3018
+sendTo:0x01000000 0x08009a41 0xc7901100 0x426485de
+prepare to decode video, size:3018
+size:1280, width:1280, height:800
+send 2289 bytes
+nal_ref_idc:2, nal_unit_type:1, len:865.
+default mode
+buffer size:2257
+sendTo:0x01000000 0x0a009a41 0xc7901500 0x00030000
+prepare to decode video, size:2257
+size:1280, width:1280, height:800
+singleQueue:send 901 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1114.
+S is 0, E is 1, queue 1112bytes
+buffer size:869
+sendTo:0x01000000 0x0c009a41 0xc7901900 0xc06d2800
+prepare to decode video, size:869
+size:1280, width:1280, height:800
+send 2535 bytes
+nal_ref_idc:2, nal_unit_type:1, len:906.
+default mode
+buffer size:2503
+sendTo:0x01000000 0x0e009a41 0xc7901d00 0x0ca00d2c
+prepare to decode video, size:2503
+size:1280, width:1280, height:800
+singleQueue:send 942 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:207.
+S is 0, E is 1, queue 205bytes
+buffer size:910
+sendTo:0x01000000 0x10009a41 0xc7902100 0xa374896d
+prepare to decode video, size:910
+size:1280, width:1280, height:800
+send 3014 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1104.
+default mode
+buffer size:2982
+sendTo:0x01000000 0x12009a41 0xc7902500 0xf90882de
+prepare to decode video, size:2982
+size:1280, width:1280, height:800
+singleQueue:send 1140 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:86.
+S is 0, E is 1, queue 84bytes
+buffer size:1108
+sendTo:0x01000000 0x14009a41 0xc7902900 0xfa40e545
+prepare to decode video, size:1108
+size:1280, width:1280, height:800
+send 2893 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:262.
+S is 0, E is 1, queue 260bytes
+buffer size:2861
+sendTo:0x01000000 0x16009a41 0xc7902d00 0xcab23418
+prepare to decode video, size:2861
+size:1280, width:1280, height:800
+send 3069 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1012.
+default mode
+buffer size:3037
+sendTo:0x01000000 0x18009a41 0xc7903100 0xac21e960
+prepare to decode video, size:3037
+size:1280, width:1280, height:800
+singleQueue:send 1048 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:386.
+S is 0, E is 1, queue 384bytes
+buffer size:1016
+sendTo:0x01000000 0x1a009a41 0xc7903500 0x3232746d
+prepare to decode video, size:1016
+size:1280, width:1280, height:800
+send 1807 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1059.
+default mode
+buffer size:1775
+sendTo:0x01000000 0x1c009a41 0xc7903900 0x49631716
+prepare to decode video, size:1775
+size:1280, width:1280, height:800
+singleQueue:send 1095 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:376.
+S is 0, E is 1, queue 374bytes
+buffer size:1063
+sendTo:0x01000000 0x1e009a41 0xc7903d00 0x3588dc13
+prepare to decode video, size:1063
+size:1280, width:1280, height:800
+send 1797 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1308.
+default mode
+buffer size:1765
+sendTo:0x01000000 0x20009a41 0xc7904100 0x4538cb16
+prepare to decode video, size:1765
+size:1280, width:1280, height:800
+singleQueue:send 1344 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:459.
+S is 0, E is 1, queue 457bytes
+buffer size:1312
+sendTo:0x01000000 0x22009a41 0xc7904500 0xe5631716
+prepare to decode video, size:1312
+size:1280, width:1280, height:800
+send 1880 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:123.
+S is 0, E is 1, queue 121bytes
+buffer size:1848
+sendTo:0x01000000 0x24009a41 0xc7904900 0x8030ff08
+prepare to decode video, size:1848
+size:1280, width:1280, height:800
+send 1544 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:892.
+S is 0, E is 1, queue 890bytes
+buffer size:1512
+sendTo:0x01000000 0x26009a41 0xc7904d00 0xe65e5b04
+prepare to decode video, size:1512
+size:1280, width:1280, height:800
+send 2313 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:137.
+S is 0, E is 1, queue 135bytes
+buffer size:2281
+sendTo:0x01000000 0x28009a41 0xc7905100 0x3f0e3dfe
+prepare to decode video, size:2281
+size:1280, width:1280, height:800
+send 1558 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1265.
+default mode
+buffer size:1526
+sendTo:0x01000000 0x2a009a41 0xc7905500 0x0b09603d
+prepare to decode video, size:1526
+size:1280, width:1280, height:800
+singleQueue:send 1301 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:242.
+S is 0, E is 1, queue 240bytes
+buffer size:1269
+sendTo:0x01000000 0x2c009a41 0xc7905900 0x3f3fdb17
+prepare to decode video, size:1269
+size:1280, width:1280, height:800
+send 1663 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:11.
+S is 0, E is 1, queue 9bytes
+buffer size:1631
+sendTo:0x01000000 0x2e009a41 0xc7905d00 0xdd9a3b03
+prepare to decode video, size:1631
+size:1280, width:1280, height:800
+send 1432 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:386.
+S is 0, E is 1, queue 384bytes
+buffer size:1400
+sendTo:0x01000000 0x30009a41 0xc7906100 0xbad34e22
+prepare to decode video, size:1400
+size:1280, width:1280, height:800
+send 1807 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:76.
+S is 0, E is 1, queue 74bytes
+buffer size:1775
+sendTo:0x01000000 0x32009a41 0xc7906500 0x726bad2e
+prepare to decode video, size:1775
+size:1280, width:1280, height:800
+send 1497 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1257.
+default mode
+buffer size:1465
+sendTo:0x01000000 0x34009a41 0xc7906900 0xc46e2314
+prepare to decode video, size:1465
+size:1280, width:1280, height:800
+singleQueue:send 1293 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:33.
+S is 0, E is 1, queue 31bytes
+buffer size:1261
+sendTo:0x01000000 0x36009a41 0xc7906d00 0x74a7fd37
+prepare to decode video, size:1261
+size:1280, width:1280, height:800
+send 1454 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:63.
+S is 0, E is 1, queue 61bytes
+buffer size:1422
+sendTo:0x01000000 0x38009a41 0xc7907100 0x6be0f60f
+prepare to decode video, size:1422
+size:1280, width:1280, height:800
+send 1484 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:192.
+S is 0, E is 1, queue 190bytes
+buffer size:1452
+sendTo:0x01000000 0x3a009a41 0xc7907500 0x5ab30500
+prepare to decode video, size:1452
+size:1280, width:1280, height:800
+send 1613 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:844.
+S is 0, E is 1, queue 842bytes
+buffer size:1581
+sendTo:0x01000000 0x3c009a41 0xc7907900 0x27843518
+prepare to decode video, size:1581
+size:1280, width:1280, height:800
+send 2265 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:536.
+S is 0, E is 1, queue 534bytes
+buffer size:2233
+sendTo:0x01000000 0x3e009a41 0xb7907d00 0x75d1860a
+prepare to decode video, size:2233
+size:1280, width:1280, height:800
+send 1957 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1162.
+S is 0, E is 1, queue 1160bytes
+buffer size:1925
+sendTo:0x01000000 0x40009a41 0xb7908100 0xa4654822
+prepare to decode video, size:1925
+size:1280, width:1280, height:800
+send 2583 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:333.
+S is 0, E is 1, queue 331bytes
+buffer size:2551
+sendTo:0x01000000 0x42009a41 0xa7908500 0x62893b24
+prepare to decode video, size:2551
+size:1280, width:1280, height:800
+send 1754 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:460.
+S is 0, E is 1, queue 458bytes
+buffer size:1722
+sendTo:0x01000000 0x44009a41 0xc7908900 0x00030000
+prepare to decode video, size:1722
+size:1280, width:1280, height:800
+send 1881 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1100.
+S is 0, E is 1, queue 1098bytes
+buffer size:1849
+sendTo:0x01000000 0x46009a41 0xb7908d00 0x7e59d705
+prepare to decode video, size:1849
+size:1280, width:1280, height:800
+send 2521 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1084.
+default mode
+buffer size:2489
+sendTo:0x01000000 0x48009a41 0xa7909100 0x43ece60a
+prepare to decode video, size:2489
+size:1280, width:1280, height:800
+singleQueue:send 1120 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:586.
+S is 0, E is 1, queue 584bytes
+buffer size:1088
+sendTo:0x01000000 0x4a009a41 0xc7909500 0x00030000
+prepare to decode video, size:1088
+size:1280, width:1280, height:800
+send 3393 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1210.
+default mode
+buffer size:3361
+sendTo:0x01000000 0x4c009a41 0xdf919900 0xc74c4f23
+prepare to decode video, size:3361
+size:1280, width:1280, height:800
+singleQueue:send 1246 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:50.
+S is 0, E is 1, queue 48bytes
+buffer size:1214
+sendTo:0x01000000 0x4e009a41 0xc7909d00 0x00030000
+prepare to decode video, size:1214
+size:1280, width:1280, height:800
+send 1471 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:819.
+S is 0, E is 1, queue 817bytes
+buffer size:1439
+sendTo:0x01000000 0x50009a41 0xb790a100 0x00030000
+prepare to decode video, size:1439
+size:1280, width:1280, height:800
+send 2240 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:279.
+S is 0, E is 1, queue 277bytes
+buffer size:2208
+sendTo:0x01000000 0x52009a41 0x9790a500 0x766b2800
+prepare to decode video, size:2208
+size:1280, width:1280, height:800
+send 1700 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:944.
+S is 0, E is 1, queue 942bytes
+buffer size:1668
+sendTo:0x01000000 0x54009a41 0x9790a900 0x1ddff00c
+prepare to decode video, size:1668
+size:1280, width:1280, height:800
+send 2365 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1042.
+default mode
+buffer size:2333
+sendTo:0x01000000 0x56009a41 0x8790ad00 0xb4323803
+prepare to decode video, size:2333
+size:1280, width:1280, height:800
+singleQueue:send 1078 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:560.
+S is 0, E is 1, queue 558bytes
+buffer size:1046
+sendTo:0x01000000 0x58009a41 0xa790b100 0x00030000
+prepare to decode video, size:1046
+size:1280, width:1280, height:800
+send 3367 bytes
+nal_ref_idc:2, nal_unit_type:1, len:969.
+default mode
+buffer size:3335
+sendTo:0x01000000 0x5a009a41 0x5f91b500 0x30107e1d
+prepare to decode video, size:3335
+size:1280, width:1280, height:800
+singleQueue:send 1005 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:103.
+S is 0, E is 1, queue 101bytes
+buffer size:973
+sendTo:0x01000000 0x5c009a41 0xa790b900 0x00030000
+prepare to decode video, size:973
+size:1280, width:1280, height:800
+send 1524 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1259.
+S is 0, E is 1, queue 1257bytes
+buffer size:1492
+sendTo:0x01000000 0x5e009a41 0x8790bd00 0x8d570000
+prepare to decode video, size:1492
+size:1280, width:1280, height:800
+send 2680 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:13.
+S is 0, E is 1, queue 11bytes
+buffer size:2648
+sendTo:0x01000000 0x60009a41 0x9f91c100 0x9731c003
+prepare to decode video, size:2648
+size:1280, width:1280, height:800
+send 1434 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:386.
+S is 0, E is 1, queue 384bytes
+buffer size:1402
+sendTo:0x01000000 0x62009a41 0x9790c500 0x00030000
+prepare to decode video, size:1402
+size:1280, width:1280, height:800
+send 1807 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1183.
+S is 0, E is 1, queue 1181bytes
+buffer size:1775
+sendTo:0x01000000 0x64009a41 0x8790c900 0x00030000
+prepare to decode video, size:1775
+size:1280, width:1280, height:800
+send 2604 bytes
+nal_ref_idc:2, nal_unit_type:1, len:872.
+default mode
+buffer size:2572
+sendTo:0x01000000 0x66009a41 0xdf91cd00 0x1a97a100
+prepare to decode video, size:2572
+size:1280, width:1280, height:800
+singleQueue:send 908 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:49.
+S is 0, E is 1, queue 47bytes
+buffer size:876
+sendTo:0x01000000 0x68009a41 0xa790d100 0x00030000
+prepare to decode video, size:876
+size:1280, width:1280, height:800
+send 1470 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:990.
+S is 0, E is 1, queue 988bytes
+buffer size:1438
+sendTo:0x01000000 0x6a009a41 0x9790d500 0x00030000
+prepare to decode video, size:1438
+size:1280, width:1280, height:800
+send 2411 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:530.
+S is 0, E is 1, queue 528bytes
+buffer size:2379
+sendTo:0x01000000 0x6c009a41 0xdf91d900 0x01030000
+prepare to decode video, size:2379
+size:1280, width:1280, height:800
+send 1951 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:516.
+S is 0, E is 1, queue 514bytes
+buffer size:1919
+sendTo:0x01000000 0x6e009a41 0x8790dd00 0x00030000
+prepare to decode video, size:1919
+size:1280, width:1280, height:800
+send 1937 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:495.
+S is 0, E is 1, queue 493bytes
+buffer size:1905
+sendTo:0x01000000 0x70009a41 0xa790e100 0x00030000
+prepare to decode video, size:1905
+size:1280, width:1280, height:800
+send 1916 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:722.
+S is 0, E is 1, queue 720bytes
+buffer size:1884
+sendTo:0x01000000 0x72009a41 0xc790e500 0x00030000
+prepare to decode video, size:1884
+size:1280, width:1280, height:800
+send 2143 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:334.
+S is 0, E is 1, queue 332bytes
+buffer size:2111
+sendTo:0x01000000 0x74009a41 0xc790e900 0x00030000
+prepare to decode video, size:2111
+size:1280, width:1280, height:800
+send 3141 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:959.
+S is 0, E is 1, queue 957bytes
+buffer size:3109
+sendTo:0x01000000 0x76009a41 0xc790ed00 0x00030000
+prepare to decode video, size:3109
+size:1280, width:1280, height:800
+send 2380 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:940.
+S is 0, E is 1, queue 938bytes
+buffer size:2348
+sendTo:0x01000000 0x78009a41 0xc790f100 0x00030000
+prepare to decode video, size:2348
+size:1280, width:1280, height:800
+send 2361 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:993.
+S is 0, E is 1, queue 991bytes
+buffer size:2329
+sendTo:0x01000000 0x7a009a41 0xc790f500 0x00030000
+prepare to decode video, size:2329
+size:1280, width:1280, height:800
+send 2414 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1077.
+S is 0, E is 1, queue 1075bytes
+buffer size:2382
+sendTo:0x01000000 0x7c009a41 0xc790f900 0x00030000
+prepare to decode video, size:2382
+size:1280, width:1280, height:800
+send 2498 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:953.
+S is 0, E is 1, queue 951bytes
+buffer size:2466
+sendTo:0x01000000 0x7e009a41 0xc790fd00 0x00030000
+prepare to decode video, size:2466
+size:1280, width:1280, height:800
+send 2374 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1237.
+S is 0, E is 1, queue 1235bytes
+buffer size:2342
+sendTo:0x01000000 0x80009a41 0xc7900101 0x00030000
+prepare to decode video, size:2342
+size:1280, width:1280, height:800
+send 2658 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1321.
+S is 0, E is 1, queue 1319bytes
+buffer size:2626
+sendTo:0x01000000 0x82009a41 0xc7900501 0x00030000
+prepare to decode video, size:2626
+size:1280, width:1280, height:800
+send 2742 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:855.
+S is 0, E is 1, queue 853bytes
+buffer size:2710
+sendTo:0x01000000 0x84009a41 0xc7900901 0x00030000
+prepare to decode video, size:2710
+size:1280, width:1280, height:800
+send 3662 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:117.
+S is 0, E is 1, queue 115bytes
+buffer size:3630
+sendTo:0x01000000 0x86009a41 0xc7900d01 0x00030000
+prepare to decode video, size:3630
+size:1280, width:1280, height:800
+send 2924 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:277.
+S is 0, E is 1, queue 275bytes
+buffer size:2892
+sendTo:0x01000000 0x88009a41 0xc7901101 0x00030000
+prepare to decode video, size:2892
+size:1280, width:1280, height:800
+send 3084 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:79.
+S is 0, E is 1, queue 77bytes
+buffer size:3052
+sendTo:0x01000000 0x8a009a41 0xc7901501 0x00030000
+prepare to decode video, size:3052
+size:1280, width:1280, height:800
+send 2886 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:35.
+S is 0, E is 1, queue 33bytes
+buffer size:2854
+sendTo:0x01000000 0x8c009a41 0xc7901901 0x00030000
+prepare to decode video, size:2854
+size:1280, width:1280, height:800
+send 2842 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1186.
+S is 0, E is 1, queue 1184bytes
+buffer size:2810
+sendTo:0x01000000 0x8e009a41 0xc7901d01 0x00030000
+prepare to decode video, size:2810
+size:1280, width:1280, height:800
+send 2607 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:103.
+S is 0, E is 1, queue 101bytes
+buffer size:2575
+sendTo:0x01000000 0x90009a41 0xc7902101 0xed2c0000
+prepare to decode video, size:2575
+size:1280, width:1280, height:800
+send 2910 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1376.
+S is 0, E is 1, queue 1374bytes
+buffer size:2878
+sendTo:0x01000000 0x92009a41 0xc7902501 0x3f6c9d20
+prepare to decode video, size:2878
+size:1280, width:1280, height:800
+send 2797 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1205.
+default mode
+buffer size:2765
+sendTo:0x01000000 0x94009a41 0xc7902901 0xc06e1f00
+prepare to decode video, size:2765
+size:1280, width:1280, height:800
+singleQueue:send 1241 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1158.
+default mode
+buffer size:1209
+sendTo:0x01000000 0x96009a41 0xc7902d01 0xc1050000
+prepare to decode video, size:1209
+size:1280, width:1280, height:800
+singleQueue:send 1194 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1282.
+default mode
+buffer size:1162
+sendTo:0x01000000 0x98009a41 0xc7903101 0x346e9b0c
+prepare to decode video, size:1162
+size:1280, width:1280, height:800
+singleQueue:send 1318 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:730.
+S is 0, E is 1, queue 728bytes
+buffer size:1286
+sendTo:0x01000000 0x9a009a41 0xc7903501 0x5fb9cd06
+prepare to decode video, size:1286
+size:1280, width:1280, height:800
+send 2151 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:360.
+S is 0, E is 1, queue 358bytes
+buffer size:2119
+sendTo:0x01000000 0x9c009a41 0xc7903901 0xa9a50d2c
+prepare to decode video, size:2119
+size:1280, width:1280, height:800
+send 1781 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1170.
+S is 0, E is 1, queue 1168bytes
+buffer size:1749
+sendTo:0x01000000 0x9e009a41 0xc7903d01 0x3f121815
+prepare to decode video, size:1749
+size:1280, width:1280, height:800
+send 2591 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:484.
+S is 0, E is 1, queue 482bytes
+buffer size:2559
+sendTo:0x01000000 0xa0009a41 0xc7904101 0xdc6918a7
+prepare to decode video, size:2559
+size:1280, width:1280, height:800
+send 1905 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:46.
+S is 0, E is 1, queue 44bytes
+buffer size:1873
+sendTo:0x01000000 0xa2009a41 0xc7904501 0x02998a6d
+prepare to decode video, size:1873
+size:1280, width:1280, height:800
+send 2853 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:961.
+S is 0, E is 1, queue 959bytes
+buffer size:2821
+sendTo:0x01000000 0xa4009a41 0xc7904901 0x496485de
+prepare to decode video, size:2821
+size:1280, width:1280, height:800
+send 2382 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:400.
+S is 0, E is 1, queue 398bytes
+buffer size:2350
+sendTo:0x01000000 0xa6009a41 0xc7904d01 0x9637834d
+prepare to decode video, size:2350
+size:1280, width:1280, height:800
+send 1821 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:653.
+S is 0, E is 1, queue 651bytes
+buffer size:1789
+sendTo:0x01000000 0xa8009a41 0xc7905101 0x104be545
+prepare to decode video, size:1789
+size:1280, width:1280, height:800
+send 2074 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:117.
+S is 0, E is 1, queue 115bytes
+buffer size:2042
+sendTo:0x01000000 0xaa009a41 0xc7905501 0xfb51db3e
+prepare to decode video, size:2042
+size:1280, width:1280, height:800
+send 1538 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:251.
+S is 0, E is 1, queue 249bytes
+buffer size:1506
+sendTo:0x01000000 0xac009a41 0xc7905901 0x1926020a
+prepare to decode video, size:1506
+size:1280, width:1280, height:800
+send 1672 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1236.
+default mode
+buffer size:1640
+sendTo:0x01000000 0xae009a41 0xc7905d01 0xafb85d13
+prepare to decode video, size:1640
+size:1280, width:1280, height:800
+singleQueue:send 1272 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1347.
+default mode
+buffer size:1240
+sendTo:0x01000000 0xb0009a41 0xc7906101 0xa30a5402
+prepare to decode video, size:1240
+size:1280, width:1280, height:800
+singleQueue:send 1383 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:382.
+S is 0, E is 1, queue 380bytes
+buffer size:1351
+sendTo:0x01000000 0xb2009a41 0xc7906501 0xc86f4b0c
+prepare to decode video, size:1351
+size:1280, width:1280, height:800
+send 1803 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1202.
+default mode
+buffer size:1771
+sendTo:0x01000000 0xb4009a41 0xc7906901 0x6b688b19
+prepare to decode video, size:1771
+size:1280, width:1280, height:800
+singleQueue:send 1238 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1155.
+S is 0, E is 1, queue 1153bytes
+buffer size:1206
+sendTo:0x01000000 0xb6009a41 0xc7906d01 0xe9981816
+prepare to decode video, size:1206
+size:1280, width:1280, height:800
+send 2576 bytes
+nal_ref_idc:2, nal_unit_type:1, len:881.
+default mode
+buffer size:2544
+sendTo:0x01000000 0xb8009a41 0x87907101 0xee925f0a
+prepare to decode video, size:2544
+size:1280, width:1280, height:800
+singleQueue:send 917 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:445.
+S is 0, E is 1, queue 443bytes
+buffer size:885
+sendTo:0x01000000 0xba009a41 0xb7907501 0xdf870400
+prepare to decode video, size:885
+size:1280, width:1280, height:800
+send 3252 bytes
+nal_ref_idc:2, nal_unit_type:1, len:796.
+default mode
+buffer size:3220
+sendTo:0x01000000 0xbc009a41 0x5f917901 0xa486ed14
+prepare to decode video, size:3220
+size:1280, width:1280, height:800
+singleQueue:send 832 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1378.
+default mode
+buffer size:800
+sendTo:0x01000000 0xbe009a41 0xa7907d01 0x00030000
+prepare to decode video, size:800
+size:1280, width:1280, height:800
+singleQueue:send 1414 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:834.
+S is 0, E is 1, queue 832bytes
+buffer size:1382
+sendTo:0x01000000 0xc0009a41 0x87908101 0x00030000
+prepare to decode video, size:1382
+size:1280, width:1280, height:800
+send 2255 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:133.
+S is 0, E is 1, queue 131bytes
+buffer size:2223
+sendTo:0x01000000 0xc2009a41 0x9f918501 0xf6f5ec03
+prepare to decode video, size:2223
+size:1280, width:1280, height:800
+send 1554 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:542.
+S is 0, E is 1, queue 540bytes
+buffer size:1522
+sendTo:0x01000000 0xc4009a41 0xdf918901 0x5d6e9300
+prepare to decode video, size:1522
+size:1280, width:1280, height:800
+send 1963 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:347.
+S is 0, E is 1, queue 345bytes
+buffer size:1931
+sendTo:0x01000000 0xc6009a41 0x9f918d01 0x15c74906
+prepare to decode video, size:1931
+size:1280, width:1280, height:800
+send 1768 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:939.
+S is 0, E is 1, queue 937bytes
+buffer size:1736
+sendTo:0x01000000 0xc8009a41 0x9f919101 0x8b7cf002
+prepare to decode video, size:1736
+size:1280, width:1280, height:800
+send 2360 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:204.
+S is 0, E is 1, queue 202bytes
+buffer size:2328
+sendTo:0x01000000 0xca009a41 0x5f919501 0x2152b603
+prepare to decode video, size:2328
+size:1280, width:1280, height:800
+send 1625 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:166.
+S is 0, E is 1, queue 164bytes
+buffer size:1593
+sendTo:0x01000000 0xcc009a41 0x9f919901 0x44222b03
+prepare to decode video, size:1593
+size:1280, width:1280, height:800
+send 1587 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:589.
+S is 0, E is 1, queue 587bytes
+buffer size:1555
+sendTo:0x01000000 0xce009a41 0x9f919d01 0x6ae7f301
+prepare to decode video, size:1555
+size:1280, width:1280, height:800
+send 2010 bytes
+nal_ref_idc:2, nal_unit_type:1, len:927.
+default mode
+buffer size:1978
+sendTo:0x01000000 0xd0009a41 0x5f91a101 0xf83b9b01
+prepare to decode video, size:1978
+size:1280, width:1280, height:800
+singleQueue:send 963 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:242.
+S is 0, E is 1, queue 240bytes
+buffer size:931
+sendTo:0x01000000 0xd2009a41 0x9f91a501 0x8d349e18
+prepare to decode video, size:931
+size:1280, width:1280, height:800
+send 4435 bytes
+nal_ref_idc:2, nal_unit_type:1, len:817.
+default mode
+buffer size:4403
+sendTo:0x01000000 0xd4009a41 0xff95a901 0xfe3e8014
+prepare to decode video, size:4403
+size:1280, width:1280, height:800
+singleQueue:send 853 bytes
+nal_ref_idc:2, nal_unit_type:1, len:388.
+default mode
+buffer size:821
+sendTo:0x01000000 0xd6009a41 0x9f91ad01 0x844e0800
+prepare to decode video, size:821
+size:1280, width:1280, height:800
+singleQueue:send 424 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:928.
+S is 0, E is 1, queue 926bytes
+buffer size:392
+sendTo:0x01000000 0xd8009a41 0x8790b101 0x00030000
+prepare to decode video, size:392
+size:1280, width:1280, height:800
+send 2349 bytes
+nal_ref_idc:2, nal_unit_type:1, len:851.
+default mode
+buffer size:2317
+sendTo:0x01000000 0xda009a41 0x7f93b501 0x68243f00
+prepare to decode video, size:2317
+size:1280, width:1280, height:800
+singleQueue:send 887 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1196.
+default mode
+buffer size:855
+sendTo:0x01000000 0xdc009a41 0x9f91b901 0x00030000
+prepare to decode video, size:855
+size:1280, width:1280, height:800
+singleQueue:send 1232 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:731.
+S is 0, E is 1, queue 729bytes
+buffer size:1200
+sendTo:0x01000000 0xde009a41 0x5f91bd01 0x00030000
+prepare to decode video, size:1200
+size:1280, width:1280, height:800
+send 2152 bytes
+nal_ref_idc:2, nal_unit_type:1, len:899.
+default mode
+buffer size:2120
+sendTo:0x01000000 0xe0009a41 0x7f93c101 0x96e3a200
+prepare to decode video, size:2120
+size:1280, width:1280, height:800
+singleQueue:send 935 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1008.
+default mode
+buffer size:903
+sendTo:0x01000000 0xe2009a41 0x9f91c501 0x00030000
+prepare to decode video, size:903
+size:1280, width:1280, height:800
+singleQueue:send 1044 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1175.
+S is 0, E is 1, queue 1173bytes
+buffer size:1012
+sendTo:0x01000000 0xe4009a41 0x5f91c901 0x00030000
+prepare to decode video, size:1012
+size:1280, width:1280, height:800
+send 2596 bytes
+nal_ref_idc:2, nal_unit_type:1, len:629.
+default mode
+buffer size:2564
+sendTo:0x01000000 0xe6009a41 0x7f92cd01 0x5f3393fd
+prepare to decode video, size:2564
+size:1280, width:1280, height:800
+singleQueue:send 665 bytes
+nal_ref_idc:2, nal_unit_type:1, len:856.
+default mode
+buffer size:633
+sendTo:0x01000000 0xe8009a41 0xdf91d101 0x00030000
+prepare to decode video, size:633
+size:1280, width:1280, height:800
+singleQueue:send 892 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:176.
+S is 0, E is 1, queue 174bytes
+buffer size:860
+sendTo:0x01000000 0xea009a41 0x9f91d501 0x00030000
+prepare to decode video, size:860
+size:1280, width:1280, height:800
+send 2983 bytes
+nal_ref_idc:2, nal_unit_type:1, len:884.
+default mode
+buffer size:2951
+sendTo:0x01000000 0xec009a41 0x7f92d901 0x10c4220e
+prepare to decode video, size:2951
+size:1280, width:1280, height:800
+singleQueue:send 920 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:69.
+S is 0, E is 1, queue 67bytes
+buffer size:888
+sendTo:0x01000000 0xee009a41 0x9f91dd01 0x00030000
+prepare to decode video, size:888
+size:1280, width:1280, height:800
+send 1490 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:698.
+S is 0, E is 1, queue 696bytes
+buffer size:1458
+sendTo:0x01000000 0xf0009a41 0x5f91e101 0xb73f0000
+prepare to decode video, size:1458
+size:1280, width:1280, height:800
+send 3505 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1011.
+default mode
+buffer size:3473
+sendTo:0x01000000 0xf2009a41 0x7f92e501 0x39138f7d
+prepare to decode video, size:3473
+size:1280, width:1280, height:800
+singleQueue:send 1047 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:908.
+S is 0, E is 1, queue 906bytes
+buffer size:1015
+sendTo:0x01000000 0xf4009a41 0x9f91e901 0x00030000
+prepare to decode video, size:1015
+size:1280, width:1280, height:800
+send 3715 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1250.
+default mode
+buffer size:3683
+sendTo:0x01000000 0xf6009a41 0xff95ed01 0xb1882c1c
+prepare to decode video, size:3683
+size:1280, width:1280, height:800
+singleQueue:send 1286 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:261.
+S is 0, E is 1, queue 259bytes
+buffer size:1254
+sendTo:0x01000000 0xf8009a41 0x9f91f101 0x00030000
+prepare to decode video, size:1254
+size:1280, width:1280, height:800
+send 1682 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1170.
+S is 0, E is 1, queue 1168bytes
+buffer size:1650
+sendTo:0x01000000 0xfa009a41 0x5f91f501 0x00030000
+prepare to decode video, size:1650
+size:1280, width:1280, height:800
+send 2591 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:43.
+S is 0, E is 1, queue 41bytes
+buffer size:2559
+sendTo:0x01000000 0xfc009a41 0x7f93f901 0x63f00919
+prepare to decode video, size:2559
+size:1280, width:1280, height:800
+send 1464 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:129.
+S is 0, E is 1, queue 127bytes
+buffer size:1432
+sendTo:0x01000000 0xfe009a41 0x5f91fd01 0x00030000
+prepare to decode video, size:1432
+size:1280, width:1280, height:800
+send 2936 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:387.
+S is 0, E is 1, queue 385bytes
+buffer size:2904
+sendTo:0x01000000 0x00019a41 0x7f920102 0x7a01a95b
+prepare to decode video, size:2904
+size:1280, width:1280, height:800
+send 1808 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:916.
+S is 0, E is 1, queue 914bytes
+buffer size:1776
+sendTo:0x01000000 0x02019a41 0x1f910502 0xb2dd2c00
+prepare to decode video, size:1776
+size:1280, width:1280, height:800
+send 2337 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:213.
+S is 0, E is 1, queue 211bytes
+buffer size:2305
+sendTo:0x01000000 0x04019a41 0x7f930902 0x38774400
+prepare to decode video, size:2305
+size:1280, width:1280, height:800
+send 1634 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:794.
+S is 0, E is 1, queue 792bytes
+buffer size:1602
+sendTo:0x01000000 0x06019a41 0x1f910d02 0xabfd2d00
+prepare to decode video, size:1602
+size:1280, width:1280, height:800
+send 2215 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:605.
+S is 0, E is 1, queue 603bytes
+buffer size:2183
+sendTo:0x01000000 0x08019a41 0x7f931102 0x7b411a00
+prepare to decode video, size:2183
+size:1280, width:1280, height:800
+send 2026 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:947.
+S is 0, E is 1, queue 945bytes
+buffer size:1994
+sendTo:0x01000000 0x0a019a41 0x7f931502 0x40e70400
+prepare to decode video, size:1994
+size:1280, width:1280, height:800
+send 2368 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:175.
+S is 0, E is 1, queue 173bytes
+buffer size:2336
+sendTo:0x01000000 0x0c019a41 0x7f921902 0x850d7a00
+prepare to decode video, size:2336
+size:1280, width:1280, height:800
+send 1596 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:961.
+S is 0, E is 1, queue 959bytes
+buffer size:1564
+sendTo:0x01000000 0x0e019a41 0x7f931d02 0x36670400
+prepare to decode video, size:1564
+size:1280, width:1280, height:800
+send 2382 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:235.
+S is 0, E is 1, queue 233bytes
+buffer size:2350
+sendTo:0x01000000 0x10019a41 0x7f922102 0x166ae411
+prepare to decode video, size:2350
+size:1280, width:1280, height:800
+send 1656 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:775.
+S is 0, E is 1, queue 773bytes
+buffer size:1624
+sendTo:0x01000000 0x12019a41 0x7f932502 0xdb1c1300
+prepare to decode video, size:1624
+size:1280, width:1280, height:800
+send 2196 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:22.
+S is 0, E is 1, queue 20bytes
+buffer size:2164
+sendTo:0x01000000 0x14019a41 0x7f922902 0x19193d00
+prepare to decode video, size:2164
+size:1280, width:1280, height:800
+send 1443 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:297.
+S is 0, E is 1, queue 295bytes
+buffer size:1411
+sendTo:0x01000000 0x16019a41 0x7f932d02 0x7e411a00
+prepare to decode video, size:1411
+size:1280, width:1280, height:800
+send 3104 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1008.
+default mode
+buffer size:3072
+sendTo:0x01000000 0x18019a41 0x069f3102 0xe71cb6fc
+prepare to decode video, size:3072
+size:1280, width:1280, height:800
+singleQueue:send 1044 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1284.
+S is 0, E is 1, queue 1282bytes
+buffer size:1012
+sendTo:0x01000000 0x1a019a41 0x1f913502 0x01030000
+prepare to decode video, size:1012
+size:1280, width:1280, height:800
+send 5477 bytes
+nal_ref_idc:2, nal_unit_type:1, len:920.
+default mode
+buffer size:5445
+sendTo:0x01000000 0x1c019a41 0xff923902 0x9e3cfa02
+prepare to decode video, size:5445
+size:1280, width:1280, height:800
+singleQueue:send 956 bytes
+nal_ref_idc:2, nal_unit_type:1, len:800.
+default mode
+buffer size:924
+sendTo:0x01000000 0x1e019a41 0x7f933d02 0x73420000
+prepare to decode video, size:924
+size:1280, width:1280, height:800
+singleQueue:send 836 bytes
+nal_ref_idc:2, nal_unit_type:1, len:755.
+default mode
+buffer size:804
+sendTo:0x01000000 0x20019a41 0x5f914102 0xa6110000
+prepare to decode video, size:804
+size:1280, width:1280, height:800
+singleQueue:send 791 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:230.
+S is 0, E is 1, queue 228bytes
+buffer size:759
+sendTo:0x01000000 0x22019a41 0x5f914502 0x02030000
+prepare to decode video, size:759
+size:1280, width:1280, height:800
+send 3037 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1033.
+default mode
+buffer size:3005
+sendTo:0x01000000 0x24019a41 0x009f4902 0x7982727d
+prepare to decode video, size:3005
+size:1280, width:1280, height:800
+singleQueue:send 1069 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:4.
+S is 0, E is 1, queue 2bytes
+buffer size:1037
+sendTo:0x01000000 0x26019a41 0x1f914d02 0xa39b1800
+prepare to decode video, size:1037
+size:1280, width:1280, height:800
+send 1425 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:410.
+S is 0, E is 1, queue 408bytes
+buffer size:1393
+sendTo:0x01000000 0x28019a41 0x1f915102 0x16470500
+prepare to decode video, size:1393
+size:1280, width:1280, height:800
+send 1831 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:531.
+S is 0, E is 1, queue 529bytes
+buffer size:1799
+sendTo:0x01000000 0x2a019a41 0x1f915502 0xae62cb01
+prepare to decode video, size:1799
+size:1280, width:1280, height:800
+send 1952 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:975.
+S is 0, E is 1, queue 973bytes
+buffer size:1920
+sendTo:0x01000000 0x2c019a41 0x9f915902 0xdff30000
+prepare to decode video, size:1920
+size:1280, width:1280, height:800
+send 2396 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:651.
+S is 0, E is 1, queue 649bytes
+buffer size:2364
+sendTo:0x01000000 0x2e019a41 0x9f915d02 0xf9720700
+prepare to decode video, size:2364
+size:1280, width:1280, height:800
+send 3458 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1061.
+S is 0, E is 1, queue 1059bytes
+buffer size:3426
+sendTo:0x01000000 0x30019a41 0x9f916102 0x9b040000
+prepare to decode video, size:3426
+size:1280, width:1280, height:800
+send 2482 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1098.
+S is 0, E is 1, queue 1096bytes
+buffer size:2450
+sendTo:0x01000000 0x32019a41 0xa7906502 0x00030000
+prepare to decode video, size:2450
+size:1280, width:1280, height:800
+send 2519 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1099.
+S is 0, E is 1, queue 1097bytes
+buffer size:2487
+sendTo:0x01000000 0x34019a41 0xb7906902 0x00030000
+prepare to decode video, size:2487
+size:1280, width:1280, height:800
+send 2520 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1227.
+S is 0, E is 1, queue 1225bytes
+buffer size:2488
+sendTo:0x01000000 0x36019a41 0xc7906d02 0x00030000
+prepare to decode video, size:2488
+size:1280, width:1280, height:800
+send 2648 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1281.
+S is 0, E is 1, queue 1279bytes
+buffer size:2616
+sendTo:0x01000000 0x38019a41 0xc7907102 0x00030000
+prepare to decode video, size:2616
+size:1280, width:1280, height:800
+send 2702 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1362.
+S is 0, E is 1, queue 1360bytes
+buffer size:2670
+sendTo:0x01000000 0x3a019a41 0xc7907502 0x00030000
+prepare to decode video, size:2670
+size:1280, width:1280, height:800
+send 2783 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:18.
+S is 0, E is 1, queue 16bytes
+buffer size:2751
+sendTo:0x01000000 0x3c019a41 0xc7907902 0x00030000
+prepare to decode video, size:2751
+size:1280, width:1280, height:800
+send 2825 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:854.
+S is 0, E is 1, queue 852bytes
+buffer size:2793
+sendTo:0x01000000 0x3e019a41 0xc7907d02 0x00030000
+prepare to decode video, size:2793
+size:1280, width:1280, height:800
+send 3661 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:124.
+S is 0, E is 1, queue 122bytes
+buffer size:3629
+sendTo:0x01000000 0x40019a41 0xc7908102 0x00030000
+prepare to decode video, size:3629
+size:1280, width:1280, height:800
+send 2931 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:294.
+S is 0, E is 1, queue 292bytes
+buffer size:2899
+sendTo:0x01000000 0x42019a41 0xc7908502 0xad2a0000
+prepare to decode video, size:2899
+size:1280, width:1280, height:800
+send 3101 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:300.
+S is 0, E is 1, queue 298bytes
+buffer size:3069
+sendTo:0x01000000 0x44019a41 0xc7908902 0xad2a0000
+prepare to decode video, size:3069
+size:1280, width:1280, height:800
+send 3107 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:310.
+S is 0, E is 1, queue 308bytes
+buffer size:3075
+sendTo:0x01000000 0x46019a41 0xc7908d02 0x00030000
+prepare to decode video, size:3075
+size:1280, width:1280, height:800
+send 3117 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:713.
+S is 0, E is 1, queue 711bytes
+buffer size:3085
+sendTo:0x01000000 0x48019a41 0xc7909102 0x00030000
+prepare to decode video, size:3085
+size:1280, width:1280, height:800
+send 4906 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:603.
+S is 0, E is 1, queue 601bytes
+buffer size:4874
+sendTo:0x01000000 0x4a019a41 0xc7909502 0xf90882de
+prepare to decode video, size:4874
+size:1280, width:1280, height:800
+send 3410 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1386.
+S is 0, E is 1, queue 1384bytes
+buffer size:3378
+sendTo:0x01000000 0x4c019a41 0xc7909902 0x1c668b19
+prepare to decode video, size:3378
+size:1280, width:1280, height:800
+send 4193 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:580.
+S is 0, E is 1, queue 578bytes
+buffer size:4161
+sendTo:0x01000000 0x4e019a41 0xc7909d02 0x1d859a25
+prepare to decode video, size:4161
+size:1280, width:1280, height:800
+send 3387 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:544.
+S is 0, E is 1, queue 542bytes
+buffer size:3355
+sendTo:0x01000000 0x50019a41 0xc790a102 0xd5b75d13
+prepare to decode video, size:3355
+size:1280, width:1280, height:800
+send 3351 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:543.
+S is 0, E is 1, queue 541bytes
+buffer size:3319
+sendTo:0x01000000 0x52019a41 0xc790a502 0x835b2214
+prepare to decode video, size:3319
+size:1280, width:1280, height:800
+send 4736 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:519.
+S is 0, E is 1, queue 517bytes
+buffer size:4704
+sendTo:0x01000000 0x54019a41 0xc790a902 0xef21764d
+prepare to decode video, size:4704
+size:1280, width:1280, height:800
+send 3326 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:423.
+S is 0, E is 1, queue 421bytes
+buffer size:3294
+sendTo:0x01000000 0x56019a41 0xc790ad02 0x426c5b1e
+prepare to decode video, size:3294
+size:1280, width:1280, height:800
+send 3230 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:132.
+S is 0, E is 1, queue 130bytes
+buffer size:3198
+sendTo:0x01000000 0x58019a41 0xc790b102 0x652e834d
+prepare to decode video, size:3198
+size:1280, width:1280, height:800
+send 2939 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:222.
+S is 0, E is 1, queue 220bytes
+buffer size:2907
+sendTo:0x01000000 0x5a019a41 0xc790b502 0x01030000
+prepare to decode video, size:2907
+size:1280, width:1280, height:800
+send 3029 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1079.
+S is 0, E is 1, queue 1077bytes
+buffer size:2997
+sendTo:0x01000000 0x5c019a41 0xc790b902 0x00030000
+prepare to decode video, size:2997
+size:1280, width:1280, height:800
+send 3886 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:270.
+S is 0, E is 1, queue 268bytes
+buffer size:3854
+sendTo:0x01000000 0x5e019a41 0xc790bd02 0xc1050000
+prepare to decode video, size:3854
+size:1280, width:1280, height:800
+send 3077 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:411.
+S is 0, E is 1, queue 409bytes
+buffer size:3045
+sendTo:0x01000000 0x60019a41 0xc790c102 0x00030000
+prepare to decode video, size:3045
+size:1280, width:1280, height:800
+send 3218 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:353.
+S is 0, E is 1, queue 351bytes
+buffer size:3186
+sendTo:0x01000000 0x62019a41 0xc790c502 0x55971816
+prepare to decode video, size:3186
+size:1280, width:1280, height:800
+send 3160 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:744.
+S is 0, E is 1, queue 742bytes
+buffer size:3128
+sendTo:0x01000000 0x64019a41 0xc790c902 0x9d27020a
+prepare to decode video, size:3128
+size:1280, width:1280, height:800
+send 3551 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:379.
+S is 0, E is 1, queue 377bytes
+buffer size:3519
+sendTo:0x01000000 0x66019a41 0xc790cd02 0x21961815
+prepare to decode video, size:3519
+size:1280, width:1280, height:800
+send 3186 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:369.
+S is 0, E is 1, queue 367bytes
+buffer size:3154
+sendTo:0x01000000 0x68019a41 0xc790d102 0xc640db3e
+prepare to decode video, size:3154
+size:1280, width:1280, height:800
+send 4562 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:315.
+S is 0, E is 1, queue 313bytes
+buffer size:4530
+sendTo:0x01000000 0x6a019a41 0xc790d502 0xf90882de
+prepare to decode video, size:4530
+size:1280, width:1280, height:800
+send 3122 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:439.
+S is 0, E is 1, queue 437bytes
+buffer size:3090
+sendTo:0x01000000 0x6c019a41 0xc790d902 0x2892f60f
+prepare to decode video, size:3090
+size:1280, width:1280, height:800
+send 3246 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1122.
+S is 0, E is 1, queue 1120bytes
+buffer size:3214
+sendTo:0x01000000 0x6e019a41 0xc790dd02 0x11fc1901
+prepare to decode video, size:3214
+size:1280, width:1280, height:800
+send 2543 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:920.
+S is 0, E is 1, queue 918bytes
+buffer size:2511
+sendTo:0x01000000 0x70019a41 0xc790e102 0x496485de
+prepare to decode video, size:2511
+size:1280, width:1280, height:800
+send 2341 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:448.
+S is 0, E is 1, queue 446bytes
+buffer size:2309
+sendTo:0x01000000 0x72019a41 0xc790e502 0x91582214
+prepare to decode video, size:2309
+size:1280, width:1280, height:800
+send 3255 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:813.
+S is 0, E is 1, queue 811bytes
+buffer size:3223
+sendTo:0x01000000 0x74019a41 0xc790e902 0xdc65fda6
+prepare to decode video, size:3223
+size:1280, width:1280, height:800
+send 2234 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:395.
+S is 0, E is 1, queue 393bytes
+buffer size:2202
+sendTo:0x01000000 0x76019a41 0xc790ed02 0xae90e91a
+prepare to decode video, size:2202
+size:1280, width:1280, height:800
+send 3202 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1357.
+S is 0, E is 1, queue 1355bytes
+buffer size:3170
+sendTo:0x01000000 0x78019a41 0xc790f102 0x8e51db3e
+prepare to decode video, size:3170
+size:1280, width:1280, height:800
+send 2778 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:746.
+S is 0, E is 1, queue 744bytes
+buffer size:2746
+sendTo:0x01000000 0x7a019a41 0xc790f502 0xcc2c7e0f
+prepare to decode video, size:2746
+size:1280, width:1280, height:800
+send 4939 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:492.
+S is 0, E is 1, queue 490bytes
+buffer size:4907
+sendTo:0x01000000 0x7c019a41 0xc790f902 0xc172db3e
+prepare to decode video, size:4907
+size:1280, width:1280, height:800
+send 3299 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1094.
+S is 0, E is 1, queue 1092bytes
+buffer size:3267
+sendTo:0x01000000 0x7e019a41 0xc790fd02 0x0a313f09
+prepare to decode video, size:3267
+size:1280, width:1280, height:800
+send 2515 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:603.
+S is 0, E is 1, queue 601bytes
+buffer size:2483
+sendTo:0x01000000 0x80019a41 0xc7900103 0xcc981815
+prepare to decode video, size:2483
+size:1280, width:1280, height:800
+send 3410 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1293.
+S is 0, E is 1, queue 1291bytes
+buffer size:3378
+sendTo:0x01000000 0x82019a41 0xc7900503 0x6af392de
+prepare to decode video, size:3378
+size:1280, width:1280, height:800
+send 2714 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1182.
+S is 0, E is 1, queue 1180bytes
+buffer size:2682
+sendTo:0x01000000 0x84019a41 0xc7900903 0x60d6a60e
+prepare to decode video, size:2682
+size:1280, width:1280, height:800
+send 2603 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:609.
+S is 0, E is 1, queue 607bytes
+buffer size:2571
+sendTo:0x01000000 0x86019a41 0xc7900d03 0x45111816
+prepare to decode video, size:2571
+size:1280, width:1280, height:800
+send 2030 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:566.
+S is 0, E is 1, queue 564bytes
+buffer size:1998
+sendTo:0x01000000 0x88019a41 0xc7901103 0x58d886de
+prepare to decode video, size:1998
+size:1280, width:1280, height:800
+send 1987 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1289.
+S is 0, E is 1, queue 1287bytes
+buffer size:1955
+sendTo:0x01000000 0x8a019a41 0xc7901503 0x692ec656
+prepare to decode video, size:1955
+size:1280, width:1280, height:800
+send 2710 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:338.
+S is 0, E is 1, queue 336bytes
+buffer size:2678
+sendTo:0x01000000 0x8c019a41 0xc7901903 0x173a3f0e
+prepare to decode video, size:2678
+size:1280, width:1280, height:800
+send 1759 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:800.
+S is 0, E is 1, queue 798bytes
+buffer size:1727
+sendTo:0x01000000 0x8e019a41 0xc7901d03 0x43b49d12
+prepare to decode video, size:1727
+size:1280, width:1280, height:800
+send 2221 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:983.
+S is 0, E is 1, queue 981bytes
+buffer size:2189
+sendTo:0x01000000 0x90019a41 0xc7902103 0xc2274a0a
+prepare to decode video, size:2189
+size:1280, width:1280, height:800
+send 2404 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1131.
+S is 0, E is 1, queue 1129bytes
+buffer size:2372
+sendTo:0x01000000 0x92019a41 0xc7902503 0xfd6c788f
+prepare to decode video, size:2372
+size:1280, width:1280, height:800
+send 2552 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1060.
+S is 0, E is 1, queue 1058bytes
+buffer size:2520
+sendTo:0x01000000 0x94019a41 0xc7902903 0x11d4867c
+prepare to decode video, size:2520
+size:1280, width:1280, height:800
+send 2481 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1031.
+S is 0, E is 1, queue 1029bytes
+buffer size:2449
+sendTo:0x01000000 0x96019a41 0xc7902d03 0xd666867c
+prepare to decode video, size:2449
+size:1280, width:1280, height:800
+send 2452 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 0, E is 0, queue 1386bytes
+nal_ref_idc:2, nal_unit_type:28, len:330.
+S is 0, E is 1, queue 328bytes
+buffer size:2420
+sendTo:0x01000000 0x98019a41 0xc7903103 0x0a998a6d
+prepare to decode video, size:2420
+size:1280, width:1280, height:800
+send 3137 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:670.
+S is 0, E is 1, queue 668bytes
+buffer size:3105
+sendTo:0x01000000 0x9a019a41 0xc7903503 0x9cc5834d
+prepare to decode video, size:3105
+size:1280, width:1280, height:800
+send 2091 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:535.
+S is 0, E is 1, queue 533bytes
+buffer size:2059
+sendTo:0x01000000 0x9c019a41 0xc7903903 0x5fb9cd06
+prepare to decode video, size:2059
+size:1280, width:1280, height:800
+send 1956 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:388.
+S is 0, E is 1, queue 386bytes
+buffer size:1924
+sendTo:0x01000000 0x9e019a41 0xc7903d03 0x3b6e4b0c
+prepare to decode video, size:1924
+size:1280, width:1280, height:800
+send 1809 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:258.
+S is 0, E is 1, queue 256bytes
+buffer size:1777
+sendTo:0x01000000 0xa0019a41 0xc7904103 0x34266a0b
+prepare to decode video, size:1777
+size:1280, width:1280, height:800
+send 1679 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:344.
+S is 0, E is 1, queue 342bytes
+buffer size:1647
+sendTo:0x01000000 0xa2019a41 0xc7904503 0x39264a0a
+prepare to decode video, size:1647
+size:1280, width:1280, height:800
+send 1765 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:238.
+S is 0, E is 1, queue 236bytes
+buffer size:1733
+sendTo:0x01000000 0xa4019a41 0xc7904903 0xc827920a
+prepare to decode video, size:1733
+size:1280, width:1280, height:800
+send 1659 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1332.
+default mode
+buffer size:1627
+sendTo:0x01000000 0xa6019a41 0xc7904d03 0x0f313f08
+prepare to decode video, size:1627
+size:1280, width:1280, height:800
+singleQueue:send 1368 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:639.
+S is 0, E is 1, queue 637bytes
+buffer size:1336
+sendTo:0x01000000 0xa8019a41 0xc7905103 0x3c6e9b0c
+prepare to decode video, size:1336
+size:1280, width:1280, height:800
+send 2060 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:409.
+S is 0, E is 1, queue 407bytes
+buffer size:2028
+sendTo:0x01000000 0xaa019a41 0xc7905503 0x19b7a506
+prepare to decode video, size:2028
+size:1280, width:1280, height:800
+send 1830 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:405.
+S is 0, E is 1, queue 403bytes
+buffer size:1798
+sendTo:0x01000000 0xac019a41 0xc7905903 0xc76d5501
+prepare to decode video, size:1798
+size:1280, width:1280, height:800
+send 1826 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:459.
+S is 0, E is 1, queue 457bytes
+buffer size:1794
+sendTo:0x01000000 0xae019a41 0xc7905d03 0x5a34bf09
+prepare to decode video, size:1794
+size:1280, width:1280, height:800
+send 1880 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:303.
+S is 0, E is 1, queue 301bytes
+buffer size:1848
+sendTo:0x01000000 0xb0019a41 0xc7906103 0x9ab89d12
+prepare to decode video, size:1848
+size:1280, width:1280, height:800
+send 1724 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1328.
+default mode
+buffer size:1692
+sendTo:0x01000000 0xb2019a41 0xc7906503 0xba1a0000
+prepare to decode video, size:1692
+size:1280, width:1280, height:800
+singleQueue:send 1364 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1216.
+default mode
+buffer size:1332
+sendTo:0x01000000 0xb4019a41 0xc7906903 0x40070300
+prepare to decode video, size:1332
+size:1280, width:1280, height:800
+singleQueue:send 1252 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:102.
+S is 0, E is 1, queue 100bytes
+buffer size:1220
+sendTo:0x01000000 0xb6019a41 0xc7906d03 0x00030000
+prepare to decode video, size:1220
+size:1280, width:1280, height:800
+send 1523 bytes
+nal_ref_idc:2, nal_unit_type:1, len:980.
+default mode
+buffer size:1491
+sendTo:0x01000000 0xb8019a41 0xc7907103 0x19b72d06
+prepare to decode video, size:1491
+size:1280, width:1280, height:800
+singleQueue:send 1016 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1264.
+default mode
+buffer size:984
+sendTo:0x01000000 0xba019a41 0xc7907503 0x00030000
+prepare to decode video, size:984
+size:1280, width:1280, height:800
+singleQueue:send 1300 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:222.
+S is 0, E is 1, queue 220bytes
+buffer size:1268
+sendTo:0x01000000 0xbc019a41 0xb7907903 0xb25d3a01
+prepare to decode video, size:1268
+size:1280, width:1280, height:800
+send 1643 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1117.
+default mode
+buffer size:1611
+sendTo:0x01000000 0xbe019a41 0xa7907d03 0x7fa52809
+prepare to decode video, size:1611
+size:1280, width:1280, height:800
+singleQueue:send 1153 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:138.
+S is 0, E is 1, queue 136bytes
+buffer size:1121
+sendTo:0x01000000 0xc0019a41 0xc7908103 0x00030000
+prepare to decode video, size:1121
+size:1280, width:1280, height:800
+send 1559 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:179.
+S is 0, E is 1, queue 177bytes
+buffer size:1527
+sendTo:0x01000000 0xc2019a41 0xb7908503 0x7b7f0300
+prepare to decode video, size:1527
+size:1280, width:1280, height:800
+send 1600 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:204.
+S is 0, E is 1, queue 202bytes
+buffer size:1568
+sendTo:0x01000000 0xc4019a41 0xc7908903 0x00030000
+prepare to decode video, size:1568
+size:1280, width:1280, height:800
+send 1625 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:719.
+S is 0, E is 1, queue 717bytes
+buffer size:1593
+sendTo:0x01000000 0xc6019a41 0xc7908d03 0x00030000
+prepare to decode video, size:1593
+size:1280, width:1280, height:800
+send 2140 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:130.
+S is 0, E is 1, queue 128bytes
+buffer size:2108
+sendTo:0x01000000 0xc8019a41 0xc7909103 0x6e1f0000
+prepare to decode video, size:2108
+size:1280, width:1280, height:800
+send 1551 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:249.
+S is 0, E is 1, queue 247bytes
+buffer size:1519
+sendTo:0x01000000 0xca019a41 0xc7909503 0x00030000
+prepare to decode video, size:1519
+size:1280, width:1280, height:800
+send 1670 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:323.
+S is 0, E is 1, queue 321bytes
+buffer size:1638
+sendTo:0x01000000 0xcc019a41 0xc7909903 0x00030000
+prepare to decode video, size:1638
+size:1280, width:1280, height:800
+send 1744 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:256.
+S is 0, E is 1, queue 254bytes
+buffer size:1712
+sendTo:0x01000000 0xce019a41 0xc7909d03 0x00030000
+prepare to decode video, size:1712
+size:1280, width:1280, height:800
+send 1677 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:128.
+S is 0, E is 1, queue 126bytes
+buffer size:1645
+sendTo:0x01000000 0xd0019a41 0xc790a103 0x00030000
+prepare to decode video, size:1645
+size:1280, width:1280, height:800
+send 1549 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:232.
+S is 0, E is 1, queue 230bytes
+buffer size:1517
+sendTo:0x01000000 0xd2019a41 0xc790a503 0x00030000
+prepare to decode video, size:1517
+size:1280, width:1280, height:800
+send 1653 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:1176.
+S is 0, E is 1, queue 1174bytes
+buffer size:1621
+sendTo:0x01000000 0xd4019a41 0xc790a903 0x00030000
+prepare to decode video, size:1621
+size:1280, width:1280, height:800
+send 2597 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:445.
+S is 0, E is 1, queue 443bytes
+buffer size:2565
+sendTo:0x01000000 0xd6019a41 0xc790ad03 0x00030000
+prepare to decode video, size:2565
+size:1280, width:1280, height:800
+send 1866 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:561.
+S is 0, E is 1, queue 559bytes
+buffer size:1834
+sendTo:0x01000000 0xd8019a41 0xc790b103 0x00030000
+prepare to decode video, size:1834
+size:1280, width:1280, height:800
+send 1982 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:632.
+S is 0, E is 1, queue 630bytes
+buffer size:1950
+sendTo:0x01000000 0xda019a41 0xc790b503 0x00030000
+prepare to decode video, size:1950
+size:1280, width:1280, height:800
+send 2053 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:483.
+S is 0, E is 1, queue 481bytes
+buffer size:2021
+sendTo:0x01000000 0xdc019a41 0xc790b903 0x00030000
+prepare to decode video, size:2021
+size:1280, width:1280, height:800
+send 1904 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:475.
+S is 0, E is 1, queue 473bytes
+buffer size:1872
+sendTo:0x01000000 0xde019a41 0xc790bd03 0x00030000
+prepare to decode video, size:1872
+size:1280, width:1280, height:800
+send 1896 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:397.
+S is 0, E is 1, queue 395bytes
+buffer size:1864
+sendTo:0x01000000 0xe0019a41 0xc790c103 0x00030000
+prepare to decode video, size:1864
+size:1280, width:1280, height:800
+send 1818 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:85.
+S is 0, E is 1, queue 83bytes
+buffer size:1786
+sendTo:0x01000000 0xe2019a41 0xc790c503 0x00030000
+prepare to decode video, size:1786
+size:1280, width:1280, height:800
+send 1506 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:165.
+S is 0, E is 1, queue 163bytes
+buffer size:1474
+sendTo:0x01000000 0xe4019a41 0xc790c903 0x00030000
+prepare to decode video, size:1474
+size:1280, width:1280, height:800
+send 1586 bytes
+nal_ref_idc:2, nal_unit_type:1, len:813.
+default mode
+buffer size:1554
+sendTo:0x01000000 0xe6019a41 0xc790cd03 0x00030000
+prepare to decode video, size:1554
+size:1280, width:1280, height:800
+singleQueue:send 849 bytes
+nal_ref_idc:2, nal_unit_type:1, len:776.
+default mode
+buffer size:817
+sendTo:0x01000000 0xe8019a41 0xc790d103 0xbd27220b
+prepare to decode video, size:817
+size:1280, width:1280, height:800
+singleQueue:send 812 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:976.
+S is 0, E is 1, queue 974bytes
+buffer size:780
+sendTo:0x01000000 0xea019a41 0xc790d503 0x00030000
+prepare to decode video, size:780
+size:1280, width:1280, height:800
+send 2397 bytes
+nal_ref_idc:2, nal_unit_type:1, len:943.
+default mode
+buffer size:2365
+sendTo:0x01000000 0xec019a41 0x8790d903 0x21a95027
+prepare to decode video, size:2365
+size:1280, width:1280, height:800
+singleQueue:send 979 bytes
+nal_ref_idc:2, nal_unit_type:1, len:980.
+default mode
+buffer size:947
+sendTo:0x01000000 0xee019a41 0xc790dd03 0x00030000
+prepare to decode video, size:947
+size:1280, width:1280, height:800
+singleQueue:send 1016 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1132.
+default mode
+buffer size:984
+sendTo:0x01000000 0xf0019a41 0xc790e103 0x00030000
+prepare to decode video, size:984
+size:1280, width:1280, height:800
+singleQueue:send 1168 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:120.
+S is 0, E is 1, queue 118bytes
+buffer size:1136
+sendTo:0x01000000 0xf2019a41 0xb790e503 0x00030000
+prepare to decode video, size:1136
+size:1280, width:1280, height:800
+send 1541 bytes
+nal_ref_idc:2, nal_unit_type:1, len:1120.
+default mode
+buffer size:1509
+sendTo:0x01000000 0xf4019a41 0xa790e903 0x53d20900
+prepare to decode video, size:1509
+size:1280, width:1280, height:800
+singleQueue:send 1156 bytes
+nal_ref_idc:2, nal_unit_type:28, len:1388.
+S is 1, E is 0, queue 1391bytes
+nal_ref_idc:2, nal_unit_type:28, len:135.
+S is 0, E is 1, queue 133bytes
+buffer size:1124
+sendTo:0x01000000 0xf6019a41 0xb790ed03 0x00030000
+prepare to decode video, size:1124
+size:1280, width:1280, height:800
+send 1556 bytes
