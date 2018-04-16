@@ -464,14 +464,17 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case OPEN_DRIVER_MONITOR:
+            	break;
+            	/*
                 select_cam("remote-camera-driver-monitor");
                 get_param();
                 set_cam();
                 init_cam();
                 break;
+                */
 
             case CLOSE_DRIVER_MONITOR:
-                release_cam();
+                /*release_cam();*/
                 break;
 
             case OPEN_AVM:

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,18 +10,18 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/left_open"
+            android:id="@+id/front_open"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="left_open" />
+            android:text="front_open"/>
 
         <Button
-            android:id="@+id/left_close"
+            android:id="@+id/front_close"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="left_close" />
+            android:text="front_close"/>
     </LinearLayout>
 
     <LinearLayout
@@ -34,14 +34,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="rear_open" />
+            android:text="rear_open"/>
 
         <Button
             android:id="@+id/rear_close"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="rear_close" />
+            android:text="rear_close"/>
     </LinearLayout>
 
     <LinearLayout
@@ -50,58 +50,18 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/front_open"
+            android:id="@+id/left_open"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="front_open" />
+            android:text="left_open"/>
 
         <Button
-            android:id="@+id/front_close"
+            android:id="@+id/left_close"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="front_close" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/driver_monitor_open"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="driver_monitor_open" />
-
-        <Button
-            android:id="@+id/driver_monitor_close"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="driver_monitor_close" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/avm_open"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="avm_open" />
-
-        <Button
-            android:id="@+id/avm_close"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="avm_close" />
+            android:text="left_close"/>
     </LinearLayout>
 
     <LinearLayout
@@ -114,13 +74,54 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="right_open" />
+            android:text="right_open"/>
 
         <Button
             android:id="@+id/right_close"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="right_close" />
+            android:text="right_close"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/driver_monitor_open"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="driver_monitor_open"/>
+
+        <Button
+            android:id="@+id/driver_monitor_close"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="driver_monitor_close"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/avm_open"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="avm_open"/>
+
+        <Button
+            android:id="@+id/avm_close"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="avm_close"/>
+    </LinearLayout>
+
 </LinearLayout>
