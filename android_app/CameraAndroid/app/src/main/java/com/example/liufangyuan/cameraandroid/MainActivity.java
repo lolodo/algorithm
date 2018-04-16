@@ -385,6 +385,23 @@ public class MainActivity extends AppCompatActivity {
         return 0;
     }
 
+    private int start_cam() {
+        JSONObject jsonCmd = new JSONObject();
+
+        try {
+            jsonCmd.put("cmd-start-stream", "");
+        } catch (Exception e) {
+            Log.e(TAG, "start_cam");
+            return -1;
+        }
+
+        final String result = jsonCmd.toString();
+        Log.i(TAG, "cmd>>>>>>>>>>>>: " + result);
+        send_msg(result);
+
+        return 0;
+    }
+
     private void release_cam() {
         JSONObject jsonCmd = new JSONObject();
 
@@ -462,6 +479,7 @@ public class MainActivity extends AppCompatActivity {
                 get_param();
                 set_cam();
                 init_cam();
+                start_cam();
                 break;
 
             case CLOSE_AVM:
