@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
     private void send_msg(final String msg) {
         try {
             Log.i(TAG, "send_msg: 1");
-            Socket socket = new Socket("172.20.1.11", 8888);
+            Socket socket = new Socket("172.20.1.11", 37568);
             OutputStream os = socket.getOutputStream();
             os.write(msg.getBytes());
             os.flush();
