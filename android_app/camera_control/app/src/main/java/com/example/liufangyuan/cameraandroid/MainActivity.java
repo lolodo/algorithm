@@ -22,8 +22,36 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "cameraService";
     private String cameraName;
-    private String host = "172.20.1.1";
+    private String host = "127.0.0.1";
     private int port = 8554;
+
+    public static final String CMD_SET = "cmd-set-parameters";
+    public static final String CMD_GET = "cmd-get-parameters";
+    public static final String CMD_CHECK = "cmd-check-device";
+    public static final String CMD_INIT = "cmd-init-device";
+    public static final String CMD_START = "cmd-start-stream";
+    public static final String CMD_STOP = "cmd-start-stream";
+    public static final String CMD_RELEASE = "cmd-release-device";
+    public static final String CMD_CONTROL = "cmd-control";
+
+    public static final String EVT_VERSION = "evt-version";
+    public static final String CAMERA_NAME = "camera-name";
+    public static final String SUPPORTED_PREVIEW_FORMAT = "preview-format-values";
+    public static final String SUPPORTED_PREVIEW_SIZE = "preview-size-values";
+    public static final String SUPPORTED_PREVIEW_FPS = "preview-fps-values";
+    public static final String RECEIVE_IP_ADDRESS = "receive-ip-address";
+    public static final String RECEIVE_PORT = "receive-port";
+
+    public static final String EVT_VER_ONE = "evt-version-1.0";
+    public static final String EVT_VER_TWO = "evt-version-2.0";
+    public static final String PIXEL_FORMAT_JPEG = "jpeg";
+    public static final String PIXEL_FORMAT_BAYER_RGGB = "bayer-rggb";
+
+    public static final String FORMAT_H_264 = "preview-format-h264";
+    public static final String DEFAULT_SIZE = "1280x800";
+    public static final String DEFAULT_FPS = "30";
+    public static final String DEFAULT_IP = "127.0.0.1";
+    public static final String DEFAULT_PORT = "8554";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -281,26 +309,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void select_cam(String cam_name) {
         JSONObject jsonCmd = new JSONObject();
-        JSONObject param = new JSONObject();
+        StringBuilder sel_cmd = new StringBuilder();
 
         this.cameraName = cam_name;
+        sel_cmd.append(EVT_VERSION);
+        sel_cmd.append("=");
+        sel_cmd.append(EVT_VER_TWO);
+        sel_cmd.append(";");
+
+        sel_cmd.append(CAMERA_NAME);
+        sel_cmd.append("=");
+        sel_cmd.append(cam_name);
 
         try {
-            param.put("evt-version", "evt-version-2.0");
-        } catch (Exception e) {
-            Log.e(TAG, "select_cam: evt-version");
-            return;
-        }
-
-        try {
-            param.put("camera-name", cam_name);
-        } catch (Exception e) {
-            Log.e(TAG, "select_cam: camera-name");
-            return;
-        }
-
-        try {
-            jsonCmd.put("cmd-set-parameters", param);
+            jsonCmd.put(CMD_SET, sel_cmd.toString());
         } catch (Exception e) {
             Log.e(TAG, "select_cam: cmd-set-parameters");
             return;
@@ -317,45 +339,35 @@ public class MainActivity extends AppCompatActivity {
 
     private int set_cam() {
         JSONObject jsonCmd = new JSONObject();
-        JSONObject param = new JSONObject();
+        StringBuilder set_cmd = new StringBuilder();
+
+        set_cmd.append(SUPPORTED_PREVIEW_FORMAT);
+        set_cmd.append("=");
+        set_cmd.append(FORMAT_H_264);
+        set_cmd.append(";");
+
+        set_cmd.append(SUPPORTED_PREVIEW_SIZE);
+        set_cmd.append("=");
+        set_cmd.append(DEFAULT_SIZE);
+        set_cmd.append(";");
+
+        set_cmd.append(SUPPORTED_PREVIEW_FPS);
+        set_cmd.append("=");
+        set_cmd.append(DEFAULT_FPS);
+        set_cmd.append(";");
+
+        set_cmd.append(RECEIVE_IP_ADDRESS);
+        set_cmd.append("=");
+        set_cmd.append(DEFAULT_IP);
+        set_cmd.append(";");
+
+        set_cmd.append(RECEIVE_PORT);
+        set_cmd.append("=");
+        set_cmd.append(DEFAULT_PORT);
+        set_cmd.append(";");
 
         try {
-            param.put("preview-format", "preview-format-h264");
-        } catch (Exception e) {
-            Log.e(TAG, "operate_camera: preview-format");
-            return -1;
-        }
-
-        try {
-            param.put("preview-size", "1280x800");
-        } catch (Exception e) {
-            Log.e(TAG, "operate_camera:preview-size");
-            return -1;
-        }
-
-        try {
-            param.put("preview-fps-values", "30");
-        } catch (Exception e) {
-            Log.e(TAG, "operate_camera:preview-fps-values");
-            return -1;
-        }
-
-        try {
-            param.put("receive-ip-address", host);
-        } catch (Exception e) {
-            Log.e(TAG, "operate_camera:ip-address");
-            return -1;
-        }
-
-        try {
-            param.put("receive-port", port);
-        } catch (Exception e) {
-            Log.e(TAG, "operate_camera:receive-port");
-            return -1;
-        }
-
-        try {
-            jsonCmd.put("cmd-set-parameters", param);
+            jsonCmd.put(CMD_SET, set_cmd.toString());
         } catch (Exception e) {
             Log.e(TAG, "operate_camera: cmd-set-parameters");
             return -1;
@@ -372,7 +384,7 @@ public class MainActivity extends AppCompatActivity {
         JSONObject jsonCmd = new JSONObject();
 
         try {
-            jsonCmd.put("cmd-init-device", "");
+            jsonCmd.put(CMD_INIT, "NULL");
         } catch (Exception e) {
             Log.e(TAG, "init_cam");
             return -1;
@@ -389,7 +401,7 @@ public class MainActivity extends AppCompatActivity {
         JSONObject jsonCmd = new JSONObject();
 
         try {
-            jsonCmd.put("cmd-start-stream", "");
+            jsonCmd.put(CMD_START, "NULL");
         } catch (Exception e) {
             Log.e(TAG, "start_cam");
             return -1;
@@ -406,7 +418,7 @@ public class MainActivity extends AppCompatActivity {
         JSONObject jsonCmd = new JSONObject();
 
         try {
-            jsonCmd.put("cmd-release-device", "");
+            jsonCmd.put(CMD_RELEASE, "NULL");
         } catch (Exception e) {
             Log.e(TAG, "release_cam");
             return;
@@ -424,6 +436,7 @@ public class MainActivity extends AppCompatActivity {
                 get_param();
                 set_cam();
                 init_cam();
+                start_cam();
                 break;
 
             case CLOSE_FRONT:
@@ -435,6 +448,7 @@ public class MainActivity extends AppCompatActivity {
                 get_param();
                 set_cam();
                 init_cam();
+                start_cam();
                 break;
 
             case CLOSE_REAR:
@@ -446,6 +460,7 @@ public class MainActivity extends AppCompatActivity {
                 get_param();
                 set_cam();
                 init_cam();
+                start_cam();
                 break;
 
             case CLOSE_LEFT:
@@ -457,6 +472,7 @@ public class MainActivity extends AppCompatActivity {
                 get_param();
                 set_cam();
                 init_cam();
+                start_cam();
                 break;
 
             case CLOSE_RIGHT:
@@ -464,17 +480,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case OPEN_DRIVER_MONITOR:
-            	break;
-            	/*
                 select_cam("remote-camera-driver-monitor");
                 get_param();
                 set_cam();
                 init_cam();
+                start_cam();
                 break;
-                */
 
             case CLOSE_DRIVER_MONITOR:
-                /*release_cam();*/
+                release_cam();
                 break;
 
             case OPEN_AVM:
