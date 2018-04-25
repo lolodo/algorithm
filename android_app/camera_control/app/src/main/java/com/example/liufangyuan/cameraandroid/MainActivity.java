@@ -15,7 +15,7 @@ import java.net.Socket;
 enum CameraOperations {
     OPEN_FRONT, CLOSE_FRONT, OPEN_REAR, CLOSE_REAR, OPEN_LEFT, CLOSE_LEFT, OPEN_RIGHT, CLOSE_RIGHT,
     OPEN_DRIVER_MONITOR, CLOSE_DRIVER_MONITOR,
-    OPEN_AVM, CLOSE_AVM
+    OPEN_AVM, CLOSE_AVM, AVM_H_ROTATE, AVM_VD_ROTATE, AVM_VH_ROTATE
 }
 
 public class MainActivity extends AppCompatActivity {
@@ -51,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String DEFAULT_IP = "127.0.0.1";
     public static final String DEFAULT_PORT = "8554";
 
+    public static final String AVM_VIEW_HORIZONTAL_ROTATION_KEY = "view_horizontal_rotation";
+    public static final String AVM_VIEW_HEIGHT_ROTATION_KEY = "view_height_rotation";
+    public static final String AVM_VIEW_DISTANCE_ROTATION_KEY = "view_distance_rotation";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +76,64 @@ public class MainActivity extends AppCompatActivity {
 
         Button avm_open = (Button) findViewById(R.id.avm_open);
         Button avm_close = (Button) findViewById(R.id.avm_close);
+
+        Button avm_hori_rotation = (Button) findViewById(R.id.avm_hori_rotate);
+        Button avm_vd_rotation = (Button) findViewById(R.id.avm_vd_rotate);
+        Button avm_vh_rotation = (Button) findViewById(R.id.avm_vh_rotate);
+
+        avm_hori_rotation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.avm_hori_rotate:
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                operate_camera(CameraOperations.AVM_H_ROTATE);
+                            }
+                        }).start();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        avm_vd_rotation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.avm_vd_rotate:
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                operate_camera(CameraOperations.AVM_VD_ROTATE);
+                            }
+                        }).start();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        avm_vh_rotation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.avm_vh_rotate:
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                operate_camera(CameraOperations.AVM_VH_ROTATE);
+                            }
+                        }).start();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
 
         front_open.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -411,6 +473,83 @@ public class MainActivity extends AppCompatActivity {
         return 0;
     }
 
+    private int control_h_rotate() {
+        JSONObject jsonCmd = new JSONObject();
+        StringBuilder h_cmd = new StringBuilder();
+
+        h_cmd.append(CAMERA_NAME);
+        h_cmd.append("=");
+        h_cmd.append("remote-camera-avm-synthesis;");
+
+        h_cmd.append(AVM_VIEW_HORIZONTAL_ROTATION_KEY);
+        h_cmd.append("=");
+        h_cmd.append("yes");
+        try {
+            jsonCmd.put(CMD_CONTROL, h_cmd.toString());
+        } catch (Exception e) {
+            Log.e(TAG, "control_h_rotate");
+            return -1;
+        }
+
+        final String result = jsonCmd.toString();
+        Log.i(TAG, "cmd>>>>>>>>>>>>: " + result);
+        send_msg(result);
+
+        return 0;
+    }
+
+    private int control_vh_rotate() {
+        JSONObject jsonCmd = new JSONObject();
+        StringBuilder h_cmd = new StringBuilder();
+
+        h_cmd.append(CAMERA_NAME);
+        h_cmd.append("=");
+        h_cmd.append("remote-camera-avm-synthesis;");
+
+        h_cmd.append(AVM_VIEW_HEIGHT_ROTATION_KEY);
+        h_cmd.append("=");
+        h_cmd.append("yes");
+
+        try {
+            jsonCmd.put(CMD_CONTROL, h_cmd.toString());
+        } catch (Exception e) {
+            Log.e(TAG, "control_vh_rotate");
+            return -1;
+        }
+
+        final String result = jsonCmd.toString();
+        Log.i(TAG, "cmd>>>>>>>>>>>>: " + result);
+        send_msg(result);
+
+        return 0;
+    }
+
+    private int control_vd_rotate() {
+        JSONObject jsonCmd = new JSONObject();
+        StringBuilder h_cmd = new StringBuilder();
+
+        h_cmd.append(CAMERA_NAME);
+        h_cmd.append("=");
+        h_cmd.append("remote-camera-avm-synthesis;");
+
+        h_cmd.append(AVM_VIEW_DISTANCE_ROTATION_KEY);
+        h_cmd.append("=");
+        h_cmd.append("yes");
+
+        try {
+            jsonCmd.put(CMD_CONTROL, h_cmd.toString());
+        } catch (Exception e) {
+            Log.e(TAG, "control_vh_rotate");
+            return -1;
+        }
+
+        final String result = jsonCmd.toString();
+        Log.i(TAG, "cmd>>>>>>>>>>>>: " + result);
+        send_msg(result);
+
+        return 0;
+    }
+
     private void release_cam() {
         JSONObject jsonCmd = new JSONObject();
 
@@ -428,6 +567,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void operate_camera(CameraOperations operator) {
         switch (operator) {
+            case AVM_H_ROTATE:
+                control_h_rotate();
+                break;
+
+            case AVM_VD_ROTATE:
+                control_vd_rotate();
+                break;
+
+            case AVM_VH_ROTATE:
+                control_vh_rotate();
+                break;
+
             case OPEN_FRONT:
                 select_cam("remote-camera-avm-front");
                 get_param();

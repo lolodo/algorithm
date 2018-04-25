@@ -124,4 +124,32 @@
             android:text="avm_close"/>
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/avm_hori_rotate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="avm_hori_rotatation"/>
+
+        <Button
+            android:id="@+id/avm_vd_rotate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="avm_distance_rotation"/>
+
+        <Button
+            android:id="@+id/avm_vh_rotate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="avm_height_rotation"/>
+    </LinearLayout>
+
 </LinearLayout>
