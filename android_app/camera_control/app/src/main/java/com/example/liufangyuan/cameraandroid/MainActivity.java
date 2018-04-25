@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "cameraService";
     private String cameraName;
-    private String host = "127.0.0.1";
-    private int port = 8554;
 
     public static final String CMD_SET = "cmd-set-parameters";
     public static final String CMD_GET = "cmd-get-parameters";
@@ -364,7 +362,6 @@ public class MainActivity extends AppCompatActivity {
         set_cmd.append(RECEIVE_PORT);
         set_cmd.append("=");
         set_cmd.append(DEFAULT_PORT);
-        set_cmd.append(";");
 
         try {
             jsonCmd.put(CMD_SET, set_cmd.toString());
