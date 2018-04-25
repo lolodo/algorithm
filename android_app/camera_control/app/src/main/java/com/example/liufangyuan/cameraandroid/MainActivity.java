@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import org.json.JSONObject;
 
@@ -15,7 +17,8 @@ import java.net.Socket;
 enum CameraOperations {
     OPEN_FRONT, CLOSE_FRONT, OPEN_REAR, CLOSE_REAR, OPEN_LEFT, CLOSE_LEFT, OPEN_RIGHT, CLOSE_RIGHT,
     OPEN_DRIVER_MONITOR, CLOSE_DRIVER_MONITOR,
-    OPEN_AVM, CLOSE_AVM, AVM_H_ROTATE, AVM_VD_ROTATE, AVM_VH_ROTATE
+    OPEN_AVM, CLOSE_AVM, AVM_H_ROTATE, AVM_VD_ROTATE, AVM_VH_ROTATE,
+    AVM_H_ROTATE_DEGREE, AVM_VD_ROTATE_VALUE, AVM_VH_ROTATE_VALUE
 }
 
 public class MainActivity extends AppCompatActivity {
@@ -55,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String AVM_VIEW_HEIGHT_ROTATION_KEY = "view_height_rotation";
     public static final String AVM_VIEW_DISTANCE_ROTATION_KEY = "view_distance_rotation";
 
+    private int h_rotate;
+    private int vh_rotate;
+    private int vd_rotate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +87,89 @@ public class MainActivity extends AppCompatActivity {
         Button avm_hori_rotation = (Button) findViewById(R.id.avm_hori_rotate);
         Button avm_vd_rotation = (Button) findViewById(R.id.avm_vd_rotate);
         Button avm_vh_rotation = (Button) findViewById(R.id.avm_vh_rotate);
+
+        SeekBar seekBar = (SeekBar) findViewById(R.id.h_progress);
+        final TextView textView = (TextView) findViewById(R.id.h_text);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // 当拖动条的滑块位置发生改变时触发该方法,在这里直接使用参数progress，即当前滑块代表的进度值
+                textView.setText("horizontal degree:" + Integer.toString(progress));
+//                if ((progress % 5) == 0) {
+                    h_rotate = progress;
+                    new Thread((new Runnable() {
+                        @Override
+                        public void run() {
+                            operate_camera(CameraOperations.AVM_H_ROTATE_DEGREE);
+                        }
+                    })).start();
+//                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                Log.e("------------", "开始滑动！");
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Log.e("------------", "停止滑动！");
+            }
+        });
+
+        SeekBar vh_seekBar = (SeekBar) findViewById(R.id.vh_progress);
+        final TextView vh_textView = (TextView) findViewById(R.id.vh_text);
+        vh_seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // 当拖动条的滑块位置发生改变时触发该方法,在这里直接使用参数progress，即当前滑块代表的进度值
+                vh_textView.setText("height:" + Integer.toString(progress + 500) + "mm");
+                vh_rotate = progress + 500;
+                new Thread((new Runnable() {
+                    @Override
+                    public void run() {
+                        operate_camera(CameraOperations.AVM_VH_ROTATE_VALUE);
+                    }
+                })).start();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                Log.e("------------", "开始滑动！");
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Log.e("------------", "停止滑动！");
+            }
+        });
+
+        SeekBar vd_seekBar = (SeekBar) findViewById(R.id.vd_progress);
+        final TextView vd_textView = (TextView) findViewById(R.id.vd_text);
+        vd_seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // 当拖动条的滑块位置发生改变时触发该方法,在这里直接使用参数progress，即当前滑块代表的进度值
+                vd_textView.setText("distance:" + Integer.toString(progress + 500) + "mm");
+                vd_rotate = progress + 500;
+                new Thread((new Runnable() {
+                    @Override
+                    public void run() {
+                        operate_camera(CameraOperations.AVM_VD_ROTATE_VALUE);
+                    }
+                })).start();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                Log.e("------------", "开始滑动！");
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Log.e("------------", "停止滑动！");
+            }
+        });
 
         avm_hori_rotation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -565,8 +655,92 @@ public class MainActivity extends AppCompatActivity {
         send_msg(result);
     }
 
+    private void horizontal_degree() {
+        JSONObject jsonCmd = new JSONObject();
+        StringBuilder h_cmd = new StringBuilder();
+
+        h_cmd.append(CAMERA_NAME);
+        h_cmd.append("=");
+        h_cmd.append("remote-camera-avm-synthesis;");
+
+        h_cmd.append("zrot");
+        h_cmd.append("=");
+        h_cmd.append(h_rotate);
+
+        try {
+            jsonCmd.put(CMD_CONTROL, h_cmd.toString());
+        } catch (Exception e) {
+            Log.e(TAG, "horizontal_degree");
+            return;
+        }
+
+        final String result = jsonCmd.toString();
+        Log.i(TAG, "cmd>>>>>>>>>>>>: " + result);
+        send_msg(result);
+    }
+
+    private void vh_control() {
+        JSONObject jsonCmd = new JSONObject();
+        StringBuilder h_cmd = new StringBuilder();
+
+        h_cmd.append(CAMERA_NAME);
+        h_cmd.append("=");
+        h_cmd.append("remote-camera-avm-synthesis;");
+
+        h_cmd.append("viewh");
+        h_cmd.append("=");
+        h_cmd.append(vh_rotate);
+
+        try {
+            jsonCmd.put(CMD_CONTROL, h_cmd.toString());
+        } catch (Exception e) {
+            Log.e(TAG, "horizontal_degree");
+            return;
+        }
+
+        final String result = jsonCmd.toString();
+        Log.i(TAG, "cmd>>>>>>>>>>>>: " + result);
+        send_msg(result);
+    }
+
+
+    private void vd_control() {
+        JSONObject jsonCmd = new JSONObject();
+        StringBuilder h_cmd = new StringBuilder();
+
+        h_cmd.append(CAMERA_NAME);
+        h_cmd.append("=");
+        h_cmd.append("remote-camera-avm-synthesis;");
+
+        h_cmd.append("viewd");
+        h_cmd.append("=");
+        h_cmd.append(vd_rotate);
+
+        try {
+            jsonCmd.put(CMD_CONTROL, h_cmd.toString());
+        } catch (Exception e) {
+            Log.e(TAG, "horizontal_degree");
+            return;
+        }
+
+        final String result = jsonCmd.toString();
+        Log.i(TAG, "cmd>>>>>>>>>>>>: " + result);
+        send_msg(result);
+    }
     private void operate_camera(CameraOperations operator) {
         switch (operator) {
+            case AVM_VD_ROTATE_VALUE:
+                vd_control();
+                break;
+
+            case AVM_VH_ROTATE_VALUE:
+                vh_control();
+                break;
+
+            case AVM_H_ROTATE_DEGREE:
+                horizontal_degree();
+                break;
+
             case AVM_H_ROTATE:
                 control_h_rotate();
                 break;

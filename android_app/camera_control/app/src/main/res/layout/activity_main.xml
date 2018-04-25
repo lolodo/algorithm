@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,14 +14,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="front_open"/>
+            android:text="front_open" />
 
         <Button
             android:id="@+id/front_close"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="front_close"/>
+            android:text="front_close" />
     </LinearLayout>
 
     <LinearLayout
@@ -34,14 +34,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="rear_open"/>
+            android:text="rear_open" />
 
         <Button
             android:id="@+id/rear_close"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="rear_close"/>
+            android:text="rear_close" />
     </LinearLayout>
 
     <LinearLayout
@@ -54,14 +54,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="left_open"/>
+            android:text="left_open" />
 
         <Button
             android:id="@+id/left_close"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="left_close"/>
+            android:text="left_close" />
     </LinearLayout>
 
     <LinearLayout
@@ -74,14 +74,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="right_open"/>
+            android:text="right_open" />
 
         <Button
             android:id="@+id/right_close"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="right_close"/>
+            android:text="right_close" />
     </LinearLayout>
 
     <LinearLayout
@@ -94,14 +94,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="driver_monitor_open"/>
+            android:text="driver_monitor_open" />
 
         <Button
             android:id="@+id/driver_monitor_close"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="driver_monitor_close"/>
+            android:text="driver_monitor_close" />
     </LinearLayout>
 
     <LinearLayout
@@ -114,14 +114,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="avm_open"/>
+            android:text="avm_open" />
 
         <Button
             android:id="@+id/avm_close"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="avm_close"/>
+            android:text="avm_close" />
     </LinearLayout>
 
 
@@ -135,21 +135,98 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="avm_hori_rotatation"/>
+            android:text="avm_hori_rotatation" />
 
         <Button
             android:id="@+id/avm_vd_rotate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="avm_distance_rotation"/>
+            android:text="avm_distance_rotation" />
 
         <Button
             android:id="@+id/avm_vh_rotate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="avm_height_rotation"/>
+            android:text="avm_height_rotation" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/h_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:gravity="left"
+        android:padding="6dp"
+        android:text="horizontal degree:0"
+        android:textColor="#16BC5C"
+        android:textSize="16dp" />
+
+    <SeekBar
+        android:id="@+id/h_progress"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_toLeftOf="@+id/h_text"
+        android:max="360"
+        android:maxHeight="2dp"
+        android:minHeight="2dp"
+        android:paddingBottom="3dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="3dp"
+        android:progressDrawable="@layout/layer_progress"
+        android:thumb="@layout/shape_circle" />
+
+    <TextView
+        android:id="@+id/vh_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:gravity="left"
+        android:padding="6dp"
+        android:text="height:500mm"
+        android:textColor="#16BC5C"
+        android:textSize="16dp" />
+
+    <SeekBar
+        android:id="@+id/vh_progress"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_toLeftOf="@+id/vh_text"
+        android:max="1000"
+        android:maxHeight="2dp"
+        android:minHeight="2dp"
+        android:paddingBottom="3dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="3dp"
+        android:progressDrawable="@layout/layer_progress"
+        android:thumb="@layout/shape_circle" />
+
+    <TextView
+        android:id="@+id/vd_text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:gravity="left"
+        android:padding="6dp"
+        android:text="distance:500mm"
+        android:textColor="#16BC5C"
+        android:textSize="16dp" />
+
+    <SeekBar
+        android:id="@+id/vd_progress"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_toLeftOf="@+id/vd_text"
+        android:max="1000"
+        android:maxHeight="2dp"
+        android:minHeight="2dp"
+        android:paddingBottom="3dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="3dp"
+        android:progressDrawable="@layout/layer_progress"
+        android:thumb="@layout/shape_circle" />
 </LinearLayout>
