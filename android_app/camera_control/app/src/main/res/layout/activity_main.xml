@@ -159,7 +159,7 @@
         android:layout_alignParentRight="true"
         android:gravity="left"
         android:padding="6dp"
-        android:text="horizontal degree:0"
+        android:text="horizontal degree:90"
         android:textColor="#16BC5C"
         android:textSize="16dp" />
 
@@ -211,7 +211,7 @@
         android:layout_alignParentRight="true"
         android:gravity="left"
         android:padding="6dp"
-        android:text="distance:500mm"
+        android:text="distance:800mm"
         android:textColor="#16BC5C"
         android:textSize="16dp" />
 
@@ -220,7 +220,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_toLeftOf="@+id/vd_text"
-        android:max="1000"
+        android:max="800"
         android:maxHeight="2dp"
         android:minHeight="2dp"
         android:paddingBottom="3dp"
