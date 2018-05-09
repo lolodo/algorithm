@@ -57,6 +57,14 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+//        int rotation = getDisplayOrientation();
+        mCamera.setDisplayOrientation(90);
 
+    }
+
+    public int getDisplayOrientation() {
+//        int displayOrientation;
+//        return displayOrientation;
+        return 0;
     }
 }
