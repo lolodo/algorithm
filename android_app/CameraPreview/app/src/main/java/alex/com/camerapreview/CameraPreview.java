@@ -5,8 +5,11 @@ import android.content.Context;
 //import android.hardware.Camera;
 import android.hardware.Camera;
 import android.util.Log;
+import android.view.Display;
+import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder;
+import android.view.WindowManager;
 
 import java.io.IOException;
 
@@ -57,14 +60,33 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-//        int rotation = getDisplayOrientation();
-        mCamera.setDisplayOrientation(90);
+        int rotation = getDisplayOrientation();
+        mCamera.setDisplayOrientation(rotation);
 
     }
 
     public int getDisplayOrientation() {
-//        int displayOrientation;
-//        return displayOrientation;
-        return 0;
+        Display display = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        int rotation = display.getRotation();
+        int degress = 0;
+        switch (rotation) {
+            case Surface.ROTATION_0:
+                degress = 0;
+                break;
+            case Surface.ROTATION_90:
+                degress = 90;
+                break;
+            case Surface.ROTATION_180:
+                degress = 180;
+                break;
+            case Surface.ROTATION_270:
+                degress = 270;
+                break;
+        }
+
+        android.hardware.Camera.CameraInfo camInfo = new android.hardware.Camera.CameraInfo();
+        android.hardware.Camera.getCameraInfo(Camera.CameraInfo.CAMERA_FACING_FRONT, camInfo);
+        int result = (360 + 180 + camInfo.orientation - degress) % 360;
+        return result;
     }
 }
