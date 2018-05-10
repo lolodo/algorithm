@@ -1,14 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="alex.com.camerapreview.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/cameraPreview"
-        android:layout_width="0px"
-        android:layout_height="fill_parent"
-        android:layout_weight="1" />
+    <SurfaceView
+        android:id="@+id/idPreview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="16:10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/frontCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="front"
+        app:layout_constraintTop_toBottomOf="@+id/idPreview" />
+
+    <Button
+        android:id="@+id/rearCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rear"
+        app:layout_constraintLeft_toRightOf="@+id/frontCamera"
+        app:layout_constraintTop_toBottomOf="@id/idPreview" />
+
+    <Button
+        android:id="@+id/leftCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="left"
+        app:layout_constraintLeft_toRightOf="@+id/rearCamera"
+        app:layout_constraintTop_toBottomOf="@+id/idPreview" />
+
+    <Button
+        android:id="@+id/rightCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="right"
+        app:layout_constraintLeft_toRightOf="@+id/leftCamera"
+        app:layout_constraintTop_toBottomOf="@+id/idPreview" />
+
+    <Button
+        android:id="@+id/driverMonitor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="driver"
+        app:layout_constraintLeft_toRightOf="@+id/rightCamera"
+        app:layout_constraintTop_toBottomOf="@+id/idPreview" />
+
+    <Button
+        android:id="@+id/roofCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="roof"
+        app:layout_constraintLeft_toRightOf="@+id/driverMonitor"
+        app:layout_constraintTop_toBottomOf="@+id/idPreview" />
+
+    <Button
+        android:id="@+id/dvrCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dvr"
+        app:layout_constraintLeft_toRightOf="@+id/roofCamera"
+        app:layout_constraintTop_toBottomOf="@+id/idPreview" />
+
+    <Button
+        android:id="@+id/avmCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="avm"
+        app:layout_constraintLeft_toRightOf="@+id/dvrCamera"
+        app:layout_constraintTop_toBottomOf="@+id/idPreview" />
+
+    <Button
+        android:id="@+id/avm_rotation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="avm rotation"
+        app:layout_constraintTop_toBottomOf="@+id/frontCamera" />
+
+    <Button
+        android:id="@+id/avm_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="avm distance"
+        app:layout_constraintLeft_toRightOf="@+id/avm_rotation"
+        app:layout_constraintTop_toBottomOf="@+id/frontCamera" />
+
+    <Button
+        android:id="@+id/avm_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="avm height"
+        app:layout_constraintLeft_toRightOf="@+id/avm_distance"
+        app:layout_constraintTop_toBottomOf="@+id/frontCamera" />
+
+    <Button
+        android:id="@+id/takePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="take photo"
+        app:layout_constraintLeft_toRightOf="@+id/avm_height"
+        app:layout_constraintTop_toBottomOf="@id/driverMonitor" />
+
+    <Button
+        android:id="@+id/recorder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="recorder video"
+        app:layout_constraintLeft_toRightOf="@+id/takePhoto"
+        app:layout_constraintTop_toBottomOf="@id/roofCamera" />
+
+    <CheckBox
+        android:id="@+id/localPreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="local preview"
+        app:layout_constraintTop_toBottomOf="@id/avm_rotation" />
 
 </android.support.constraint.ConstraintLayout>
