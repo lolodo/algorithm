@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" tools:context=".MainActivity">
+        <SurfaceView android:id="@+id/idPreview" android:layout_width="match_parent" android:layout_height="match_parent" />
+        <RelativeLayout android:id="@+id/rlTop" android:layout_width="match_parent" android:layout_height="50dp" android:layout_marginTop="10dp">
+                <Button android:id="@+id/btLeft" android:layout_marginLeft="30dp" android:layout_width="30dp" android:layout_height="30dp" android:background="@mipmap/item_list" android:layout_centerVertical="true" />
+                <Button android:id="@+id/btRight" android:layout_marginRight="30dp" android:layout_width="30dp" android:layout_height="30dp" android:background="@mipmap/item_list" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        </RelativeLayout>
+        <RadioGroup android:id="@+id/rgLeft" android:layout_width="200dp" android:layout_height="350dp" android:layout_below="@id/rlTop" android:layout_marginLeft="20dp" android:layout_marginTop="50dp" android:visibility="gone">
+                <RadioButton android:id="@+id/item_picture" android:checked="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingLeft="20dp" android:textColor="#FFFFFF" android:textSize="30dp" android:text="Picture" />
+                <RadioButton android:id="@+id/item_video" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:paddingLeft="20dp" android:textSize="30dp" android:text="Video" />
+        </RadioGroup>
+        <RadioGroup android:id="@+id/rgRight" android:layout_width="250dp" android:layout_height="400dp" android:layout_alignParentRight="true" android:layout_below="@id/rlTop" android:layout_marginRight="20dp" android:layout_marginTop="50dp" android:visibility="gone">
+                <RadioButton android:id="@+id/item_DVR" android:checked="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:paddingLeft="20dp" android:textSize="30dp" android:text="DVR" />
+                <RadioButton android:id="@+id/item_ROOF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:paddingLeft="20dp" android:textSize="30dp" android:text="ROOF" />
+                <RadioButton android:id="@+id/item_DVR_ROOF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:paddingLeft="20dp" android:textSize="30dp" android:text="DVR_ROOF" />
+                <RadioButton android:id="@+id/item_AVM_SYS" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:paddingLeft="20dp" android:textSize="30dp" android:text="AVM_SYS" />
+                <RadioButton android:id="@+id/item_AVM_FRONT" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:paddingLeft="20dp" android:textSize="30dp" android:text="AVM_FRONT" />
+                <RadioButton android:id="@+id/item_AVM_BACK" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:paddingLeft="20dp" android:textSize="30dp" android:text="AVM_BACK" />
+                <RadioButton android:id="@+id/item_AVM_LEFT" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:paddingLeft="20dp" android:textSize="30dp" android:text="AVM_LEFT" />
+                <RadioButton android:id="@+id/item_AVM_RIGHT" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:paddingLeft="20dp" android:textSize="30dp" android:text="AVM_RIGHT" />
+                <RadioButton android:id="@+id/item_DRIVER" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:paddingLeft="20dp" android:textSize="30dp" android:text="DRIVER" />
+        </RadioGroup>
+        <RelativeLayout android:id="@+id/idPhoto" android:layout_width="match_parent" android:layout_height="100dp" android:layout_alignParentBottom="true" android:background="#0f000000">
+                <View android:id="@+id/photoButton" android:layout_width="60dp" android:layout_height="60dp" android:layout_centerInParent="true" android:background="@drawable/photo_selector" android:clickable="true" />
+        </RelativeLayout>
+        <RelativeLayout android:id="@+id/idVideo" android:layout_width="match_parent" android:layout_height="100dp" android:layout_alignParentBottom="true" android:background="#0f000000" android:visibility="gone">
+                <View android:id="@+id/videoButton" android:layout_width="60dp" android:layout_height="60dp" android:layout_centerInParent="true" android:background="@drawable/video_icon" android:clickable="true" />
+        </RelativeLayout>
+        <TextView android:id="@+id/idRecordTime" android:layout_above="@id/idVideo" android:layout_centerHorizontal="true" android:layout_marginBottom="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" android:textColor="#FFE61818" android:textSize="40px" android:text="00:00:00" />
+</RelativeLayout>
