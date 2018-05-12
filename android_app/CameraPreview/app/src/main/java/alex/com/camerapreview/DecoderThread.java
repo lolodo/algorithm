@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by fangyuan on 5/11/18.
  */
 
-public class VideoBuffer {
+class VideoBuffer {
     public byte[] mData;
     public int mFrameSize;
     public long mTimeStamp;
@@ -45,6 +45,7 @@ public class DecoderThread extends Thread {
     private boolean mThreadExited = false;
     private boolean mThreadSelfExit = false;
     private EventHandler mEventHandler;
+    private int buf_count = 0;
 
     private class EventHandler extends Handler {
         public static final int CAMERA_STREAM_EOF = -99;
@@ -55,7 +56,7 @@ public class DecoderThread extends Thread {
         private static final int CAMERA_MSG_COMPRESSED_IMAGE = 0x004;
         private static final int CAMERA_MSG_PREVIEW_FRAME_EOF = 0x010;
 
-        public EventHandler(RemoteCamera c, Looper looper) {
+        public EventHandler(Looper looper) {
             super(looper);
         }
 
@@ -219,9 +220,11 @@ public class DecoderThread extends Thread {
                     mGetFailedCount++;
                     continue;
                 } else {
+                    Log.d(TAG, "run: get the " + buf_count + " buffer");
                     mGetFailedCount = 0;
                     buf = mVideoQueue.get(0);
                     mVideoQueue.remove(0);
+                    buf_count++;
                 }
             }
 
