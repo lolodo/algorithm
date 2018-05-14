@@ -127,7 +127,16 @@ public class DecoderThread extends Thread {
     }
 
     public DecoderThread(SurfaceHolder holder) {
+        Looper looper;
         mSurfaceHolder = holder;
+
+        if ((looper = Looper.myLooper()) != null) {
+            mEventHandler = new EventHandler(looper);
+        } else if ((looper = Looper.getMainLooper()) != null) {
+            mEventHandler = new EventHandler(looper);
+        } else {
+            mEventHandler = null;
+        }
     }
 
     private void postEventFromNative(Object camera_ref, int what, int arg1, int arg2, Object obj) {

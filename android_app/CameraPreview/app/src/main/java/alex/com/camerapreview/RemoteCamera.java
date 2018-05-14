@@ -6,6 +6,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class RemoteCamera {
     private Parameters mRemoteCameraParams = null;
     private List<Size> mSupportedPreviewSizes;
     private List<Integer> mSupportedPreviewFrameRates;
+    private List<String> mSupportedPreiewFormats;
     private DecoderThread mDecoderThread = null;
 
     private static native final void native_init();
@@ -172,6 +174,7 @@ public class RemoteCamera {
         mRemoteCameraParams = getParameters();
         mSupportedPreviewSizes = mRemoteCameraParams.getSupportedPreviewSizes();
         mSupportedPreviewFrameRates = mRemoteCameraParams.getSupportedPreviewFrameRates();
+        mSupportedPreiewFormats = mRemoteCameraParams.getSupportedPreviewFormats();
 
         Log.d(TAG, "format: " + format + ", fps: " + fps + ", width: " + width + ", height: " + height);
 
