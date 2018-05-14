@@ -21,25 +21,30 @@ public class RemoteCamera {
     private List<String> mSupportedPreiewFormats;
     private DecoderThread mDecoderThread = null;
 
-    private static native final void native_init();
+    private native static void native_init();
 
-    private native final int native_setup(Object camera_this);
+    private native static int native_setup(Object camera_this);
 
-    private native final void native_release();
+    private native static void native_release();
 
-    private native final int native_init_client(String serverIP, int sererPort, int clientPort);
+    private native static int native_init_client(String serverIP, int sererPort, int clientPort);
 
-    private native final void native_release_client();
+    private native static void native_release_client();
 
-    private native final void native_setParameters(String params);
+    private native static void native_setParameters(String params);
 
-    private native final String native_getParameters();
+    private native static String native_getParameters();
 
-    private native final int native_start_stream();
+    private native static int native_start_stream();
 
-    private native final void native_stop_stream();
+    private native static void native_stop_stream();
 
-    private native final void native_takePicture(int msgType);
+    private native static void native_takePicture(int msgType);
+
+    static {
+        System.loadLibrary("remote_camera_jni");
+        native_init();
+    }
 
     private String mCameraName;
 
